@@ -1,0 +1,42 @@
+{
+  "id": "wildsea",
+  "name": "wildsea",
+  "title": "The Wildsea (Unofficial)",
+  "description": "Character sheets and dice rolling for The Wildsea",
+  "authors": [
+    {
+      "name": "demondownload",
+      "url": "https://dice.camp/@aniki21",
+      "discord": "demondownload#5359",
+      "ko-fi": "demondownload"
+    }
+  ],
+  "version": "0.0.1",
+  "url": "https://gitlab.com/pacosgrove1/wildsea-foundry",
+  "manifest": "https://gitlab.com/api/v4/projects/pacosgrove1%2Fwildsea-foundry/packages/generic/wildsea-foundry/latest/system.json",
+  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.0.1/downloads/wildsea-foundry-v0.0.1.zip",
+
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/wildsea/assets/setup.webp",
+      "thumbnail": "systems/wildsea/assets/setup.webp"
+    }
+  ],
+  "esmodules": ["wildsea.js"],
+  "styles": ["styles/wildsea.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English (US)",
+      "path": "lang/en.json"
+    }
+  ],
+  "initiative": "1d20"
+}

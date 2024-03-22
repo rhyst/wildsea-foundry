@@ -1,0 +1,34 @@
+{
+  "Actor": {
+    "types": ["player"],
+    "player": {
+      "bloodline": "",
+      "origin": "",
+      "post": "",
+      "milestones": {
+        "major": [],
+        "minor": []
+      },
+      "drives": []
+    }
+  },
+  "Item": {
+    "types": ["aspect"],
+    "templates": {
+      "hasDetails": {
+        "details": "",
+        "collapsed": false
+      },
+      "hasTrack": {
+        "track": {
+          "value": 0
+        }
+      }
+    },
+    "aspect": {
+      "templates": ["nasDetails", "hasTrack"],
+      "track": { "max": 8 },
+      "type": ""
+    }
+  }
+}

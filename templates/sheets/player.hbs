@@ -1,0 +1,30 @@
+<form class="wildsea">
+  <div class="flexrow spaced">
+    <div class="flexcol spaced">
+      <div class="flexrow spaced">
+        <div class="flex0 img"><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
+        <div>
+          <input id="name" class="corners light" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
+        </div>
+      </div>
+      {{> "systems/wildsea/templates/sheets/player/background.hbs"}}
+      {{> "systems/wildsea/templates/sheets/player/milestones.hbs"}}
+      {{> "systems/wildsea/templates/sheets/player/drives.hbs"}}
+      {{> "systems/wildsea/templates/sheets/player/mires.hbs"}}
+    </div>
+    <div class="flexcol spaced">
+      {{> "systems/wildsea/templates/sheets/player/edges.hbs"}}
+      {{> "systems/wildsea/templates/sheets/player/skills.hbs"}}
+      {{> "systems/wildsea/templates/sheets/player/languages.hbs"}}
+      {{> "systems/wildsea/templates/sheets/player/resources.hbs"}}
+    </div>
+    <div class="flexcol spaced">
+      {{> "systems/wildsea/templates/sheets/player/aspects.hbs"}}
+
+      <div class="temporary-tracks" class="flex0">
+        <h2 class="corners dark">{{localize "wildsea.temporaryTracks"}}</h2>
+      </div>
+    </div>
+
+  </div>
+</form>

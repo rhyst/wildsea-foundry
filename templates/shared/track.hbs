@@ -1,0 +1,7 @@
+<ul class="track">
+  {{#times max}}
+    <li class="{{#if (gte ../value @index)}}checked{{/if}}">
+      <a class="dot" data-index="{{@index}}"></a>
+    </li>
+  {{/times}}
+</ul>

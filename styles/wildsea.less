@@ -1,0 +1,214 @@
+@import url(./config.less);
+
+.window-app .window-content {
+  .wildsea {
+    margin: -8px -8px;
+    padding: 8px 8px;
+    background: @white url('https://i.imgur.com/6qWBie8.png') left center
+      no-repeat;
+    background-size: cover;
+  }
+}
+
+.flex0 {
+  flex: 0;
+}
+
+.wildsea {
+  .body-font();
+  font-size: 0.8rem;
+  background: @white;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    .title-font();
+    border-bottom: none;
+    margin: 0 0 0.25rem;
+    padding: 0;
+    font-weight: 400;
+
+    &.dark {
+      background: @dark-bg;
+      color: @white;
+    }
+
+    &.mid {
+      background: @mid-bg;
+      color: @white;
+    }
+
+    &.light {
+      background: @light-bg;
+      color: @white;
+    }
+
+    &.corners {
+      padding: 0.75rem 0.5rem 0;
+    }
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    line-height: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.3rem;
+  }
+
+  .black {
+    color: @black;
+  }
+
+  .flexrow.spaced {
+    column-gap: 0.5rem;
+  }
+
+  .flexcol.spaced {
+    row-gap: 0.25rem;
+  }
+
+  .img {
+    text-align: center;
+    min-width: 60px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: none;
+      border-radius: 50%;
+      padding: 0;
+      margin: 0;
+      background: @light-bg;
+    }
+  }
+
+  #name {
+    .title-font();
+    margin: 0;
+    padding: 0.4rem 0.5rem 0;
+    height: 64px;
+    font-size: 48px;
+    border: none;
+    background: @light-transparent;
+    text-transform: initial;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .handle {
+    cursor: grab;
+  }
+
+  .corners {
+    clip-path: polygon(
+      0 0.5rem,
+      0.5rem 0,
+      100% 0,
+      100% 60%,
+      calc(100% - 1.5rem) 100%,
+      0 100%
+    );
+  }
+
+  ul.track {
+    display: flex;
+    flex-direction: row;
+    flex: 0;
+    column-gap: 0.1rem;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      width: @dot;
+      height: @dot;
+      margin: 0;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid @mid-bg;
+      position: relative;
+
+      .dot {
+        position: absolute;
+        background: @white;
+        width: calc(100% - 3px);
+        height: calc(100% - 3px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 0.5px solid @mid-bg;
+        border-radius: 50%;
+        display: block;
+      }
+
+      &.checked {
+        .dot {
+          background: @mid-bg;
+        }
+      }
+    }
+  }
+
+  .mire {
+    border-radius: 0 2rem 2rem 0;
+    border: 2px solid @light-bg;
+    padding: 0.25rem 0.5rem;
+    position: relative;
+
+    .track {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .bordered {
+    border: 2px solid @mid-bg;
+    border-radius: 1rem;
+    padding: 0.75rem 0.5rem 0.5rem;
+    margin: -0.75rem 0 0;
+    min-height: 3rem;
+  }
+
+  h3 + .bordered {
+    border-color: @light-bg;
+  }
+
+  .aspect {
+    border: 2px solid @light-bg;
+    border-radius: 0 1rem 1rem 0;
+    overflow: hidden;
+
+    h3 {
+      padding: 0.25rem 0.5rem;
+
+      small {
+        color: black;
+        font-size: 0.8em;
+        text-transform: initial;
+      }
+    }
+
+    .track {
+      padding: 0 0.5rem;
+    }
+
+    p {
+      padding: 0 0.5rem;
+    }
+  }
+
+  .edge {
+    min-width: 30%;
+    max-width: 30%;
+  }
+}

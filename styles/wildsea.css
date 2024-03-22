@@ -1,0 +1,210 @@
+@font-face {
+  font-family: 'Teko';
+  src: url(fonts/Teko/Teko-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: 'Merriweather';
+  src: url(fonts/Merriweather/Merriweather-Light.ttf);
+}
+@font-face {
+  font-family: 'Merriweather';
+  src: url(fonts/Merriweather/Merriweather-LightItalic.ttf);
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Merriweather';
+  src: url(fonts/Merriweather/Merriweather-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Merriweather';
+  src: url(fonts/Merriweather/Merriweather-BoldItalic.ttf);
+  font-weight: 700;
+  font-style: italic;
+}
+.window-app .window-content .wildsea {
+  margin: -8px -8px;
+  padding: 8px 8px;
+  background: #f9f9f9 url('https://i.imgur.com/6qWBie8.png') left center no-repeat;
+  background-size: cover;
+}
+.flex0 {
+  flex: 0;
+}
+.wildsea {
+  font-family: 'Merriweather', serif;
+  font-size: 0.8rem;
+  background: #f9f9f9;
+}
+.wildsea h1,
+.wildsea h2,
+.wildsea h3,
+.wildsea h4,
+.wildsea h5 {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  border-bottom: none;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  font-weight: 400;
+}
+.wildsea h1.dark,
+.wildsea h2.dark,
+.wildsea h3.dark,
+.wildsea h4.dark,
+.wildsea h5.dark {
+  background: #2e2c20;
+  color: #f9f9f9;
+}
+.wildsea h1.mid,
+.wildsea h2.mid,
+.wildsea h3.mid,
+.wildsea h4.mid,
+.wildsea h5.mid {
+  background: #626256;
+  color: #f9f9f9;
+}
+.wildsea h1.light,
+.wildsea h2.light,
+.wildsea h3.light,
+.wildsea h4.light,
+.wildsea h5.light {
+  background: #858778;
+  color: #f9f9f9;
+}
+.wildsea h1.corners,
+.wildsea h2.corners,
+.wildsea h3.corners,
+.wildsea h4.corners,
+.wildsea h5.corners {
+  padding: 0.75rem 0.5rem 0;
+}
+.wildsea h2 {
+  font-size: 1.8rem;
+  line-height: 1.5rem;
+}
+.wildsea h3 {
+  font-size: 1.5rem;
+  line-height: 1.3rem;
+}
+.wildsea .black {
+  color: #2d2a2b;
+}
+.wildsea .flexrow.spaced {
+  column-gap: 0.5rem;
+}
+.wildsea .flexcol.spaced {
+  row-gap: 0.25rem;
+}
+.wildsea .img {
+  text-align: center;
+  min-width: 60px;
+}
+.wildsea .img img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  background: #858778;
+}
+.wildsea #name {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0.4rem 0.5rem 0;
+  height: 64px;
+  font-size: 48px;
+  border: none;
+  background: rgba(133, 135, 120, 0.2);
+  text-transform: initial;
+}
+.wildsea .center {
+  text-align: center;
+}
+.wildsea .handle {
+  cursor: grab;
+}
+.wildsea .corners {
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% 60%, calc(100% - 1.5rem) 100%, 0 100%);
+}
+.wildsea ul.track {
+  display: flex;
+  flex-direction: row;
+  flex: 0;
+  column-gap: 0.1rem;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.wildsea ul.track li {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #626256;
+  position: relative;
+}
+.wildsea ul.track li .dot {
+  position: absolute;
+  background: #f9f9f9;
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5px solid #626256;
+  border-radius: 50%;
+  display: block;
+}
+.wildsea ul.track li.checked .dot {
+  background: #626256;
+}
+.wildsea .mire {
+  border-radius: 0 2rem 2rem 0;
+  border: 2px solid #858778;
+  padding: 0.25rem 0.5rem;
+  position: relative;
+}
+.wildsea .mire .track {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wildsea .bordered {
+  border: 2px solid #626256;
+  border-radius: 1rem;
+  padding: 0.75rem 0.5rem 0.5rem;
+  margin: -0.75rem 0 0;
+  min-height: 3rem;
+}
+.wildsea h3 + .bordered {
+  border-color: #858778;
+}
+.wildsea .aspect {
+  border: 2px solid #858778;
+  border-radius: 0 1rem 1rem 0;
+  overflow: hidden;
+}
+.wildsea .aspect h3 {
+  padding: 0.25rem 0.5rem;
+}
+.wildsea .aspect h3 small {
+  color: black;
+  font-size: 0.8em;
+  text-transform: initial;
+}
+.wildsea .aspect .track {
+  padding: 0 0.5rem;
+}
+.wildsea .aspect p {
+  padding: 0 0.5rem;
+}
+.wildsea .edge {
+  min-width: 30%;
+  max-width: 30%;
+}
