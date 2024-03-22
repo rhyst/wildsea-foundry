@@ -17,6 +17,10 @@ export default class WildseaPlayerSheet extends ActorSheet {
 
     context.system = this.actor.system
 
+    context.aspects = this.actor.itemTypes.aspect.sort((a, b) =>
+      a.sort < b.sort ? -1 : 1,
+    )
+    console.log(context.aspects)
     return context
   }
 }

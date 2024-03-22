@@ -1,6 +1,8 @@
 <div id="aspects" class="flex0">
   <h2 class="corners dark">{{localize "wildsea.aspects"}}</h2>
-  <div class="flexcol spaced">
-    {{> "systems/wildsea/templates/sheets/player/aspect.hbs"}}
+  <div class="flexcol spaced item-list">
+    {{#each aspects as |aspect|}}
+      {{> "systems/wildsea/templates/sheets/player/aspect.hbs" aspect}}
+    {{/each}}
   </div>
 </div>
