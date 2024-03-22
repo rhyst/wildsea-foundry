@@ -47,7 +47,7 @@
   border-bottom: none;
   margin: 0 0 0.25rem;
   padding: 0;
-  font-weight: 400;
+  font-weight: 600;
 }
 .wildsea h1.dark,
 .wildsea h2.dark,
@@ -78,14 +78,14 @@
 .wildsea h3.corners,
 .wildsea h4.corners,
 .wildsea h5.corners {
-  padding: 0.75rem 0.5rem 0;
+  padding: 0.5rem 0.5rem 0;
 }
 .wildsea h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1.5rem;
 }
 .wildsea h3 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1.3rem;
 }
 .wildsea .black {
@@ -109,6 +109,10 @@
   padding: 0;
   margin: 0;
   background: #858778;
+}
+.wildsea label {
+  font-weight: bold;
+  font-variant: small-caps;
 }
 .wildsea input,
 .wildsea select {
