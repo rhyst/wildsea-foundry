@@ -119,6 +119,10 @@
   border: none;
   background: rgba(133, 135, 120, 0.2);
   text-transform: initial;
+  padding: 0 0.5rem;
+  border-radius: 0;
+}
+.wildsea select {
   padding: 0 0.25rem;
 }
 .wildsea #name {
