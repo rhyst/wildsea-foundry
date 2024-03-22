@@ -15,6 +15,8 @@ export default class WildseaPlayerSheet extends ActorSheet {
   getData() {
     const context = super.getData()
 
+    context.system = this.actor.system
+
     return context
   }
 }

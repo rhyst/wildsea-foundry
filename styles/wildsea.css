@@ -35,6 +35,7 @@
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;
   background: #f9f9f9;
+  color: #2d2a2b;
 }
 .wildsea h1,
 .wildsea h2,
@@ -109,6 +110,13 @@
   margin: 0;
   background: #858778;
 }
+.wildsea input,
+.wildsea select {
+  border: none;
+  background: rgba(133, 135, 120, 0.2);
+  text-transform: initial;
+  padding: 0 0.25rem;
+}
 .wildsea #name {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
@@ -116,9 +124,6 @@
   padding: 0.4rem 0.5rem 0;
   height: 64px;
   font-size: 48px;
-  border: none;
-  background: rgba(133, 135, 120, 0.2);
-  text-transform: initial;
 }
 .wildsea .center {
   text-align: center;

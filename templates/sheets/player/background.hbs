@@ -1,6 +1,10 @@
 <div id="background" class="flex0">
   <h2 class="corners dark">{{localize "wildsea.background"}}</h2>
   <div class="bordered">
-    <p>Lorem ipsum</p>
+    <div class="flexcol">
+      {{> "systems/wildsea/templates/shared/form_field.hbs" field="system.bloodline" value=system.bloodline label="wildsea.bloodline"}}
+      {{> "systems/wildsea/templates/shared/form_field.hbs" field="system.origin" value=system.origin label="wildsea.origin"}}
+      {{> "systems/wildsea/templates/shared/form_field.hbs" field="system.post" value=system.post label="wildsea.post"}}
+    </div>
   </div>
 </div>

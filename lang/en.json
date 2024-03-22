@@ -1,6 +1,9 @@
 {
   "wildsea": {
     "background": "Background",
+    "bloodline": "Bloodline",
+    "origin": "Origin",
+    "post": "Post",
     "milestones": "Milestones",
     "major": "Major",
     "minor": "Minor",
