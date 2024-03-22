@@ -127,7 +127,7 @@
   cursor: grab;
 }
 .wildsea .corners {
-  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% 60%, calc(100% - 1.5rem) 100%, 0 100%);
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
 }
 .wildsea ul.track {
   display: flex;
@@ -207,4 +207,5 @@
 .wildsea .edge {
   min-width: 30%;
   max-width: 30%;
+  margin-bottom: 0.25rem;
 }
