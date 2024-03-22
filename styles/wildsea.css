@@ -26,11 +26,8 @@ a:hover,
 #context-menu li.context-item:hover {
   text-shadow: 0 0 8px #858778;
 }
-.window-app .window-content .wildsea {
-  margin: -8px -8px;
-  padding: 8px 8px;
-  background: #f9f9f9 url('https://i.imgur.com/6qWBie8.png') left center no-repeat;
-  background-size: cover;
+.window-app .window-content {
+  background: #f9f9f9;
 }
 .flex0 {
   flex: 0;
@@ -136,6 +133,28 @@ a:hover,
   padding: 0.4rem 0.5rem 0;
   height: 64px;
   font-size: 48px;
+}
+.wildsea .description {
+  --editor-height: 8rem;
+  flex: 1;
+  display: flex;
+  min-height: var(--editor-height);
+  border: 1px solid #858778;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.wildsea .description .editor {
+  min-height: var(--editor-height);
+  width: 100%;
+}
+.wildsea .description .editor .editor-content {
+  min-height: var(--editor-height);
+}
+.wildsea .description .editor .tox.tox-tinymce {
+  min-height: var(--editor-height);
+}
+.wildsea .description.short {
+  --editor-height: calc(8rem / 2);
 }
 .wildsea .center {
   text-align: center;

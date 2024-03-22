@@ -1,6 +1,6 @@
-<ul class="track">
+<ul class="track" data-item-id="{{id}}">
   {{#times max}}
-    <li class="{{#if (gte ../value @index)}}checked{{/if}}">
+    <li class="box {{#if (gte ../value @index)}}checked{{/if}}">
       <a class="dot" data-index="{{@index}}"></a>
     </li>
   {{/times}}

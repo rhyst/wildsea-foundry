@@ -8,13 +8,7 @@ a,
 }
 
 .window-app .window-content {
-  .wildsea {
-    margin: -8px -8px;
-    padding: 8px 8px;
-    background: @white url('https://i.imgur.com/6qWBie8.png') left center
-      no-repeat;
-    background-size: cover;
-  }
+  background: @white;
 }
 
 .flex0 {
@@ -119,6 +113,34 @@ a,
     padding: 0.4rem 0.5rem 0;
     height: 64px;
     font-size: 48px;
+  }
+
+  .description {
+    --editor-height: @editor-height;
+
+    flex: 1;
+    display: flex;
+    min-height: var(--editor-height);
+    border: 1px solid @light-bg;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+
+    .editor {
+      min-height: var(--editor-height);
+      width: 100%;
+
+      .editor-content {
+        min-height: var(--editor-height);
+      }
+
+      .tox.tox-tinymce {
+        min-height: var(--editor-height);
+      }
+    }
+
+    &.short {
+      --editor-height: calc(@editor-height / 2);
+    }
   }
 
   .center {

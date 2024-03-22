@@ -1,4 +1,5 @@
 import { WILDSEA } from '../config.js'
+import { enrich } from '../helpers.js'
 
 export default class WildseaPlayerSheet extends ActorSheet {
   get template() {
@@ -12,12 +13,15 @@ export default class WildseaPlayerSheet extends ActorSheet {
     })
   }
 
-  getData() {
+  async getData() {
     const context = super.getData()
     context.system = this.actor.system
     context.aspects = this.actor.itemTypes.aspect.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )
+    for (const aspect of context.aspects) {
+      aspect.system.enrichedDetails = await enrich(aspect.system.details)
+    }
 
     return context
   }
@@ -28,6 +32,9 @@ export default class WildseaPlayerSheet extends ActorSheet {
         if (this.actor.type === 'player') {
           // Item context menu
           new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
+
+          // Item tracks
+          html.find('.track .box').click(this.clickTrack.bind(this))
         }
       }
     }
@@ -53,4 +60,13 @@ export default class WildseaPlayerSheet extends ActorSheet {
       },
     },
   ]
+
+  async clickTrack(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const itemId = target.closest('.track').dataset.itemId
+    const item = this.actor.items.get(itemId)
+    console.log(item)
+  }
 }

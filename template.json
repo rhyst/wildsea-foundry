@@ -14,7 +14,7 @@
     }
   },
   "Item": {
-    "types": ["aspect"],
+    "types": ["aspect", "temporaryTrack"],
     "templates": {
       "hasDetails": {
         "details": "",
@@ -27,8 +27,13 @@
       }
     },
     "aspect": {
-      "templates": ["nasDetails", "hasTrack"],
+      "templates": ["hasDetails", "hasTrack"],
       "track": { "max": 8 },
+      "type": ""
+    },
+    "temporaryTrack": {
+      "templates": ["hasDetails", "hasTrack"],
+      "track": { "max": 4 },
       "type": ""
     }
   }

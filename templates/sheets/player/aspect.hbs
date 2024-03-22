@@ -1,8 +1,9 @@
 <div class="aspect item" data-item-id="{{id}}">
   <h3 class="light handle">
     <span class="itemContextMenu">{{name}}</span>
-    <small class="black">Bloodline</small>
+    <small class="black">{{system.type}}</small>
   </h3>
-  {{> "systems/wildsea/templates/shared/track.hbs" system.track}}
-  <p>Your sheddings have mild psychotropic properties. Mark to create a rare resource, <em>Hallucinogenic Spores</em>.</p>
+  {{> "systems/wildsea/templates/shared/track.hbs" system.track id=id}}
+  {{{system.enrichedDetails}}}
 </div>
+{{log system}}

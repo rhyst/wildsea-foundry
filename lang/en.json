@@ -5,6 +5,7 @@
     "bloodline": "Bloodline",
     "charts": "Charts",
     "delete": "Delete",
+    "details": "Details",
     "drives": "Drives",
     "edges": "Edges",
     "edit": "Edit",
@@ -21,6 +22,8 @@
     "skills": "Skills",
     "specimens": "Specimens",
     "temporaryTracks": "Temporary Tracks",
+    "track_max": "Track",
+    "type": "Type",
     "whispers": "Whispers"
   },
   "SETTINGS": {

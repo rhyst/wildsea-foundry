@@ -1,6 +1,7 @@
 import { WILDSEA } from './system/config.js'
 import { loadHandlebarsPartials } from './system/preload.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
+import WildseaAspectSheet from './system/sheets/aspect.js'
 
 Hooks.once('init', () => {
   console.log('wildsea | Initializing')
@@ -15,7 +16,12 @@ Hooks.once('init', () => {
     types: ['player'],
   })
 
-  Handlebars.registerHelper('times', function (n, content) {
+  Items.unregisterSheet('core', ItemSheet)
+  Items.registerSheet('wildsea', WildseaAspectSheet)
+
+  CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
+
+  Handlebars.registerHelper('times', (n, content) => {
     let result = ''
     for (let i = 0; i < n; i++) {
       content.data.index = i + 1
@@ -23,4 +29,6 @@ Hooks.once('init', () => {
     }
     return result
   })
+
+  Handlebars.registerHelper('fieldType', (type = null) => type || 'text')
 })
