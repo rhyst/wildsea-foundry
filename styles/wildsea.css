@@ -4,11 +4,11 @@
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Light.ttf);
+  src: url(fonts/Merriweather/Merriweather-Regular.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-LightItalic.ttf);
+  src: url(fonts/Merriweather/Merriweather-Italic.ttf);
   font-style: italic;
 }
 @font-face {
@@ -31,6 +31,18 @@ a:hover,
 }
 .flex0 {
   flex: 0;
+}
+.flexrow.spaced {
+  column-gap: 0.5rem;
+}
+.flexrow.spaced.wide {
+  column-gap: 1rem;
+}
+.flexcol.spaced.spaced {
+  row-gap: 0.5rem;
+}
+.flexcol.spaced.spaced.wide {
+  row-gap: 1rem;
 }
 .wildsea {
   font-family: 'Merriweather', serif;
@@ -91,12 +103,6 @@ a:hover,
 }
 .wildsea .black {
   color: #2d2a2b;
-}
-.wildsea .flexrow.spaced {
-  column-gap: 0.5rem;
-}
-.wildsea .flexcol.spaced {
-  row-gap: 0.25rem;
 }
 .wildsea .img {
   text-align: center;
@@ -239,9 +245,4 @@ a:hover,
 }
 .wildsea .aspect p {
   padding: 0 0.5rem;
-}
-.wildsea .edge {
-  min-width: 30%;
-  max-width: 30%;
-  margin-bottom: 0.25rem;
 }
