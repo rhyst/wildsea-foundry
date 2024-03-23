@@ -11,10 +11,6 @@ a,
   background: @white;
 }
 
-.flex0 {
-  flex: 0;
-}
-
 .flexrow {
   &.spaced {
     column-gap: 0.5rem;
@@ -33,6 +29,24 @@ a,
   }
 }
 
+.flex0 {
+  flex: 0;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.columns-2 {
+  column-count: 2;
+  column-gap: 0.5rem;
+}
+
+.columns-3 {
+  column-count: 3;
+  column-gap: 0.5rem;
+}
+
 .wildsea {
   .body-font();
   font-size: 0.8rem;
@@ -49,20 +63,13 @@ a,
     margin: 0 0 0.25rem;
     padding: 0;
     font-weight: 600;
+    position: relative;
 
-    &.dark {
-      background: @dark-bg;
-      color: @white;
-    }
-
-    &.mid {
-      background: @mid-bg;
-      color: @white;
-    }
-
-    &.light {
-      background: @light-bg;
-      color: @white;
+    a.addItem {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.25rem;
+      font-size: 1rem;
     }
 
     &.corners {
@@ -172,6 +179,33 @@ a,
     );
   }
 
+  .dark {
+    background: @dark-bg;
+    color: @white;
+  }
+
+  .mid {
+    background: @mid-bg;
+    color: @white;
+  }
+
+  .light {
+    background: @light-bg;
+    color: @white;
+  }
+
+  .light-transparent {
+    background: @light-transparent;
+  }
+
+  .padded {
+    padding: 0.5rem;
+  }
+
+  .list-track {
+    margin-bottom: 0.25rem;
+  }
+
   ul.track {
     display: flex;
     flex-direction: row;
@@ -260,8 +294,5 @@ a,
     p {
       padding: 0 0.5rem;
     }
-  }
-
-  .edge {
   }
 }

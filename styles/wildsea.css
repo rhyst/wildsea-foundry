@@ -29,9 +29,6 @@ a:hover,
 .window-app .window-content {
   background: #f9f9f9;
 }
-.flex0 {
-  flex: 0;
-}
 .flexrow.spaced {
   column-gap: 0.5rem;
 }
@@ -43,6 +40,20 @@ a:hover,
 }
 .flexcol.spaced.spaced.wide {
   row-gap: 1rem;
+}
+.flex0 {
+  flex: 0;
+}
+.flex {
+  display: flex !important;
+}
+.columns-2 {
+  column-count: 2;
+  column-gap: 0.5rem;
+}
+.columns-3 {
+  column-count: 3;
+  column-gap: 0.5rem;
 }
 .wildsea {
   font-family: 'Merriweather', serif;
@@ -61,30 +72,17 @@ a:hover,
   margin: 0 0 0.25rem;
   padding: 0;
   font-weight: 600;
+  position: relative;
 }
-.wildsea h1.dark,
-.wildsea h2.dark,
-.wildsea h3.dark,
-.wildsea h4.dark,
-.wildsea h5.dark {
-  background: #2e2c20;
-  color: #f9f9f9;
-}
-.wildsea h1.mid,
-.wildsea h2.mid,
-.wildsea h3.mid,
-.wildsea h4.mid,
-.wildsea h5.mid {
-  background: #626256;
-  color: #f9f9f9;
-}
-.wildsea h1.light,
-.wildsea h2.light,
-.wildsea h3.light,
-.wildsea h4.light,
-.wildsea h5.light {
-  background: #858778;
-  color: #f9f9f9;
+.wildsea h1 a.addItem,
+.wildsea h2 a.addItem,
+.wildsea h3 a.addItem,
+.wildsea h4 a.addItem,
+.wildsea h5 a.addItem {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.25rem;
+  font-size: 1rem;
 }
 .wildsea h1.corners,
 .wildsea h2.corners,
@@ -170,6 +168,27 @@ a:hover,
 }
 .wildsea .corners {
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+}
+.wildsea .dark {
+  background: #2e2c20;
+  color: #f9f9f9;
+}
+.wildsea .mid {
+  background: #626256;
+  color: #f9f9f9;
+}
+.wildsea .light {
+  background: #858778;
+  color: #f9f9f9;
+}
+.wildsea .light-transparent {
+  background: rgba(133, 135, 120, 0.2);
+}
+.wildsea .padded {
+  padding: 0.5rem;
+}
+.wildsea .list-track {
+  margin-bottom: 0.25rem;
 }
 .wildsea ul.track {
   display: flex;

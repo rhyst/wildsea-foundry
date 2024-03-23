@@ -1,6 +1,10 @@
 <div id="skills" class="flex0">
   <h2 class="corners dark">{{localize "wildsea.skills"}}</h2>
   <div class="bordered">
-    <p>Skills</p>
+    <div class="columns-3">
+      {{#times 18}}
+        {{> "systems/wildsea/templates/sheets/player/list_track.hbs" name="Name" value=0 max=3}}
+      {{/times}}
+    </div>
   </div>
 </div>

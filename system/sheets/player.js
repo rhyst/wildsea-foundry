@@ -15,13 +15,15 @@ export default class WildseaPlayerSheet extends ActorSheet {
 
   async getData() {
     const context = super.getData()
+    for (const item of this.actor.items) {
+      item.system.enrichedDetails = await enrich(item.system.details)
+    }
+
     context.system = this.actor.system
+
     context.aspects = this.actor.itemTypes.aspect.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )
-    for (const aspect of context.aspects) {
-      aspect.system.enrichedDetails = await enrich(aspect.system.details)
-    }
 
     return context
   }
@@ -34,7 +36,8 @@ export default class WildseaPlayerSheet extends ActorSheet {
           new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
 
           // Item tracks
-          html.find('.track .box').click(this.clickTrack.bind(this))
+          html.find('.item .track').click(this.increaseTrack.bind(this))
+          html.find('.item .track').contextmenu(this.reduceTrack.bind(this))
         }
       }
     }
@@ -61,12 +64,40 @@ export default class WildseaPlayerSheet extends ActorSheet {
     },
   ]
 
-  async clickTrack(event) {
+  async increaseTrack(event) {
     event.preventDefault()
 
     const target = event.currentTarget
     const itemId = target.closest('.track').dataset.itemId
     const item = this.actor.items.get(itemId)
-    console.log(item)
+    const newValue = Math.min(
+      item.system.track.value + 1,
+      item.system.track.max,
+    )
+
+    item.update({
+      system: {
+        track: {
+          value: newValue,
+        },
+      },
+    })
+  }
+
+  async reduceTrack(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const itemId = target.closest('.track').dataset.itemId
+    const item = this.actor.items.get(itemId)
+    const newValue = Math.max(item.system.track.value - 1, 0)
+
+    item.update({
+      system: {
+        track: {
+          value: newValue,
+        },
+      },
+    })
   }
 }
