@@ -38,6 +38,10 @@ export default class WildseaPlayerSheet extends ActorSheet {
       a.sort < b.sort ? -1 : 1,
     )
 
+    context.temporaryTracks = this.actor.itemTypes.temporaryTrack.sort((a, b) =>
+      a.sort < b.sort ? -1 : 1,
+    )
+
     return context
   }
 
@@ -243,7 +247,9 @@ export default class WildseaPlayerSheet extends ActorSheet {
       case 'mire':
         this.addMire('<p>lorem ipsum</p>') // should come from a dialog popup
         break
-
+      case 'temporaryTrack':
+        this.addTemporaryTrack()
+        break
       default:
         ui.notifications.warn(
           `Type "${data.itemType}" not recognised or not implemented`,
@@ -264,6 +270,25 @@ export default class WildseaPlayerSheet extends ActorSheet {
       },
     }
 
+    this.addEmbeddedDocument(itemData)
+  }
+
+  async addTemporaryTrack() {
+    const defaultData = {}
+
+    const itemData = {
+      name: game.i18n.localize('wildsea.newTemporaryTrackName'),
+      type: 'temporaryTrack',
+      data: {
+        details: game.i18n.localize('wildsea.newTemporaryTrackDetails'),
+        ...defaultData,
+      },
+    }
+
+    this.addEmbeddedDocument(itemData)
+  }
+
+  async addEmbeddedDocument(itemData) {
     const docs = await this.actor.createEmbeddedDocuments('Item', [itemData])
     docs.forEach((item) => item.sheet.render(true))
   }
