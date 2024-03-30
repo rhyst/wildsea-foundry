@@ -3,14 +3,56 @@
     "types": ["player"],
     "player": {
       "bloodline": "",
-      "origin": "",
-      "post": "",
+      "drives": [],
+      "edges": {
+        "grace": 0,
+        "iron": 0,
+        "instinct": 0,
+        "sharps": 0,
+        "teeth": 0,
+        "tides": 0,
+        "veils": 0
+      },
+      "languages": {
+        "lowSour": 0,
+        "cthonic": 0,
+        "saprekk": 0,
+        "gaudimm": 0,
+        "knock": 0,
+        "brasstongue": 0,
+        "rakaSpit": 0,
+        "lyreBite": 0,
+        "oldHand": 0,
+        "signalling": 0,
+        "highvin": 0
+      },
       "milestones": {
         "major": [],
         "minor": []
       },
-      "drives": [],
-      "mires": []
+      "mires": [],
+      "origin": "",
+      "post": "",
+      "skills": {
+        "brace": 0,
+        "break": 0,
+        "conconct": 0,
+        "cook": 0,
+        "delve": 0,
+        "flourish": 0,
+        "hack": 0,
+        "harvest": 0,
+        "hunt": 0,
+        "outwit": 0,
+        "rattle": 0,
+        "scavenge": 0,
+        "sense": 0,
+        "study": 0,
+        "sway": 0,
+        "tend": 0,
+        "vault": 0,
+        "wavewalk": 0
+      }
     }
   },
   "Item": {

@@ -1,5 +1,5 @@
 import { WILDSEA } from '../config.js'
-import { enrich } from '../helpers.js'
+import { enrich, listToRows, clamp } from '../helpers.js'
 
 export default class WildseaPlayerSheet extends ActorSheet {
   get template() {
@@ -15,6 +15,10 @@ export default class WildseaPlayerSheet extends ActorSheet {
 
   async getData() {
     const context = super.getData()
+    context.edgesList = listToRows(WILDSEA.edges, 3)
+    context.skillsList = listToRows(WILDSEA.skills, 2)
+    context.languagesList = listToRows(WILDSEA.languages, 2)
+
     for (const item of this.actor.items) {
       item.system.enrichedDetails = await enrich(item.system.details)
     }
@@ -36,8 +40,16 @@ export default class WildseaPlayerSheet extends ActorSheet {
           new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
 
           // Item tracks
-          html.find('.item .track').click(this.increaseTrack.bind(this))
-          html.find('.item .track').contextmenu(this.reduceTrack.bind(this))
+          html.find('.item .track').click(this.increaseItemTrack.bind(this))
+          html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
+
+          // other tracks
+          html
+            .find('.list-track .track')
+            .click(this.increaseListTrack.bind(this))
+          html
+            .find('.list-track .track')
+            .contextmenu(this.decreaseListTrack.bind(this))
         }
       }
     }
@@ -64,7 +76,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
     },
   ]
 
-  async increaseTrack(event) {
+  async increaseItemTrack(event) {
     event.preventDefault()
 
     const target = event.currentTarget
@@ -84,7 +96,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
     })
   }
 
-  async reduceTrack(event) {
+  async reduceItemTrack(event) {
     event.preventDefault()
 
     const target = event.currentTarget
@@ -96,6 +108,83 @@ export default class WildseaPlayerSheet extends ActorSheet {
       system: {
         track: {
           value: newValue,
+        },
+      },
+    })
+  }
+
+  async increaseListTrack(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const data = target.closest('.track').dataset
+
+    switch (data.itemType) {
+      case 'edge':
+        this.adjustEdge(data.itemId)
+        break
+      case 'skill':
+        this.adjustSkill(data.itemId)
+        break
+      case 'language':
+        this.adjustLanguage(data.itemId)
+      default:
+        break
+    }
+  }
+
+  async decreaseListTrack(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const data = target.closest('.track').dataset
+
+    switch (data.itemType) {
+      case 'edge':
+        this.adjustEdge(data.itemId, -1)
+        break
+      case 'skill':
+        this.adjustSkill(data.itemId, -1)
+        break
+      case 'language':
+        this.adjustLanguage(data.itemId, -1)
+      default:
+        break
+    }
+  }
+
+  async adjustEdge(key, change = 1) {
+    const currentValue = this.actor.system.edges[key] || 0
+    const newValue = clamp(currentValue + change, WILDSEA.edgeMax)
+
+    this.actor.update({
+      system: {
+        edges: {
+          [key]: newValue,
+        },
+      },
+    })
+  }
+  async adjustSkill(key, change = 1) {
+    const currentValue = this.actor.system.skills[key] || 0
+    const newValue = clamp(currentValue + change, WILDSEA.skillMax)
+
+    this.actor.update({
+      system: {
+        skills: {
+          [key]: newValue,
+        },
+      },
+    })
+  }
+  async adjustLanguage(key, change = 1) {
+    const currentValue = this.actor.system.languages[key] || 0
+    const newValue = clamp(currentValue + change, WILDSEA.languageMax)
+
+    this.actor.update({
+      system: {
+        languages: {
+          [key]: newValue,
         },
       },
     })

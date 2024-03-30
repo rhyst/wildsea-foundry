@@ -47,14 +47,6 @@ a:hover,
 .flex {
   display: flex !important;
 }
-.columns-2 {
-  column-count: 2;
-  column-gap: 0.5rem;
-}
-.columns-3 {
-  column-count: 3;
-  column-gap: 0.5rem;
-}
 .wildsea {
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;

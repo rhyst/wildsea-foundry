@@ -4,7 +4,7 @@
       <div class="flexrow spaced">
         <div class="flex0 img"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" /></div>
         <div class="flexcol spaced">
-          <input id="name" class="corners light" type="text" name="name" value="{{item.name}}" placeholder="{{localize "wildsea.name"}}" />
+          <input id="name" class="corners" type="text" name="name" value="{{item.name}}" placeholder="{{localize "wildsea.name"}}" />
           <div class="flexrow spaced">
             {{> "systems/wildsea/templates/shared/text_field.hbs" field="system.type" value=system.type label="wildsea.type"}}
             {{> "systems/wildsea/templates/shared/number_field.hbs" field="system.track.max" value=system.track.max label="wildsea.track_max" min=1 max=8}}

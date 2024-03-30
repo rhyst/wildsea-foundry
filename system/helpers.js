@@ -7,3 +7,25 @@ export const enrich = async (html, secrets = false) => {
 
   return html
 }
+
+export const listToRows = (array, columns) => {
+  const result = []
+  let currentRow = []
+
+  for (const index in array) {
+    currentRow.push(array[index])
+
+    if ((parseInt(index) + 1) % columns === 0) {
+      result.push(currentRow)
+      currentRow = []
+    }
+  }
+
+  if (currentRow.length > 0)
+    result.push(Array.from({ ...currentRow, length: columns }))
+
+  return result
+}
+
+export const clamp = (value, max, min = 0) =>
+  Math.min(max, Math.max(min, value))
