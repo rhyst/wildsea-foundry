@@ -38,6 +38,12 @@ a,
 }
 
 .wildsea {
+  #context-menu {
+    .title-font();
+    font-size: 0.9rem;
+    text-transform: initial;
+  }
+
   .body-font();
   font-size: 0.8rem;
   background: @white;
@@ -265,13 +271,13 @@ a,
   .aspect {
     border: 2px solid @light-bg;
     border-radius: 0 1rem 1rem 0;
-    overflow: hidden;
 
     h3 {
       padding: 0.25rem 0.5rem;
+      border-radius: 0 calc(1rem - 2px) 0 0;
 
       small {
-        color: black;
+        color: @light-transparent;
         font-size: 0.8em;
         text-transform: initial;
       }

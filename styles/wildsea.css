@@ -53,6 +53,12 @@ a:hover,
   background: #f9f9f9;
   color: #2d2a2b;
 }
+.wildsea #context-menu {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  text-transform: initial;
+}
 .wildsea h1,
 .wildsea h2,
 .wildsea h3,
@@ -114,7 +120,7 @@ a:hover,
 .wildsea input,
 .wildsea select {
   border: none;
-  background: rgba(133, 135, 120, 0.2);
+  background: #e2e2df;
   text-transform: initial;
   padding: 0 0.5rem;
   border-radius: 0;
@@ -174,7 +180,7 @@ a:hover,
   color: #f9f9f9;
 }
 .wildsea .light-transparent {
-  background: rgba(133, 135, 120, 0.2);
+  background: #e2e2df;
 }
 .wildsea .padded {
   padding: 0.5rem;
@@ -241,13 +247,13 @@ a:hover,
 .wildsea .aspect {
   border: 2px solid #858778;
   border-radius: 0 1rem 1rem 0;
-  overflow: hidden;
 }
 .wildsea .aspect h3 {
   padding: 0.25rem 0.5rem;
+  border-radius: 0 calc(1rem - 2px) 0 0;
 }
 .wildsea .aspect h3 small {
-  color: black;
+  color: #e2e2df;
   font-size: 0.8em;
   text-transform: initial;
 }

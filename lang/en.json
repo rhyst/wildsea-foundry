@@ -35,6 +35,8 @@
     "minor": "Minor",
     "mires": "Mires",
     "name": "Name",
+    "newAspectDetails": "<p>Aspect description goes here.</p>",
+    "newAspectName": "New Aspect",
     "none": "None",
     "oldHand": "Old Hand",
     "origin": "Origin",

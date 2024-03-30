@@ -46,6 +46,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
         if (this.actor.type === 'player') {
           // Item context menu
           new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
+          new ContextMenu(html, '.mireContextMenu', this.mireContextMenu)
 
           // Item tracks
           html.find('.item .track').click(this.increaseItemTrack.bind(this))
@@ -89,6 +90,25 @@ export default class WildseaPlayerSheet extends ActorSheet {
       callback: (element) => {
         const itemId = element.closest('.item').data('item-id')
         this.actor.deleteEmbeddedDocuments('Item', [itemId])
+      },
+    },
+  ]
+
+  mireContextMenu = [
+    {
+      name: game.i18n.localize('wildsea.edit'),
+      icon: '<i class="fas fa-edit"></i>',
+      callback: (element) => {
+        const itemId = element.closest('.mire').data('item-id')
+        console.log(itemId)
+      },
+    },
+    {
+      name: game.i18n.localize('wildsea.delete'),
+      icon: '<i class="fas fa-trash"></i>',
+      callback: (element) => {
+        const itemId = element.closest('.mire').data('item-id')
+        this.removeMire(itemId)
       },
     },
   ]
@@ -216,6 +236,9 @@ export default class WildseaPlayerSheet extends ActorSheet {
     const data = target.dataset
 
     switch (data.itemType) {
+      case 'aspect':
+        this.addAspect()
+        break
       case 'mire':
         this.addMire('<p>lorem ipsum</p>') // should come from a dialog popup
         break
@@ -226,6 +249,22 @@ export default class WildseaPlayerSheet extends ActorSheet {
         )
         break
     }
+  }
+
+  async addAspect() {
+    const defaultData = {}
+
+    const itemData = {
+      name: game.i18n.localize('wildsea.newAspectName'),
+      type: 'aspect',
+      data: {
+        details: game.i18n.localize('wildsea.newAspectDetails'),
+        ...defaultData,
+      },
+    }
+
+    const docs = await this.actor.createEmbeddedDocuments('Item', [itemData])
+    docs.forEach((item) => item.sheet.render(true))
   }
 
   async addMire(text) {
@@ -289,9 +328,11 @@ export default class WildseaPlayerSheet extends ActorSheet {
     const target = event.currentTarget
     const data = target.closest('.mire').dataset
 
-    const mires = this.actor.system.mires.filter(
-      (mire) => mire.id !== data.itemId,
-    )
+    this.removeMire(data.itemId)
+  }
+
+  async removeMire(id) {
+    const mires = this.actor.system.mires.filter((mire) => mire.id !== id)
 
     this.actor.update({
       system: {
