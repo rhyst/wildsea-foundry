@@ -1,5 +1,6 @@
 import { WILDSEA } from '../config.js'
 import { enrich, listToRows, clamp, generateId } from '../helpers.js'
+import { renderDialog } from '../dialog.js'
 
 export default class WildseaPlayerSheet extends ActorSheet {
   get template() {
@@ -267,7 +268,16 @@ export default class WildseaPlayerSheet extends ActorSheet {
     docs.forEach((item) => item.sheet.render(true))
   }
 
-  async addMire(text) {
+  async addMire() {
+    const data = await renderDialog(
+      game.i18n.localize('wildsea.newMire'),
+      this.processMireDialog,
+    )
+
+    if (data.cancelled) return
+
+    const text = data.text
+
     const id = generateId()
     const newMire = {
       id,
@@ -286,6 +296,11 @@ export default class WildseaPlayerSheet extends ActorSheet {
         mires,
       },
     })
+  }
+
+  processMireDialog(html) {
+    const form = html[0].querySelector('form')
+    return { text: form.text.value.trim() }
   }
 
   async increaseMireTrack(event) {

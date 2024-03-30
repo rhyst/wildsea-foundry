@@ -1,8 +1,8 @@
 export const renderDialog = async (
   title,
+  handler = (_html = '') => {},
   data = {},
   template = '/systems/wildsea/templates/dialogs/simple.hbs',
-  handler = (_html = '') => {},
 ) => {
   const content = await renderTemplate(template, data)
 
