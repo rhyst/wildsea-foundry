@@ -1,8 +1,12 @@
 <div class="mire flexrow" data-item-id="{{id}}">
-  <div>
-    {{{text}}}
+  <div class="editMire">
+    {{#if text}}
+      {{{text}}}
+    {{else}}
+      <p><em>Missing</em></p>
+    {{/if}}
   </div>
   <div class="flex0">
-    {{> "systems/wildsea/templates/shared/track.hbs" max=track.max value=track.value}}
+    {{> "systems/wildsea/templates/shared/track.hbs" max=track.max value=track.value type="mire"}}
   </div>
 </div>

@@ -8,8 +8,7 @@
   <div class="flexcol spaced item-list">
     {{#if (any system.mires)}}
       {{#each system.mires as |mire id|}}
-        {{log mire}}
-        {{> "systems/wildsea/templates/sheets/player/mire.hbs" mire id=id}}
+        {{> "systems/wildsea/templates/sheets/player/mire.hbs" mire}}
       {{/each}}
     {{else}}
       <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>

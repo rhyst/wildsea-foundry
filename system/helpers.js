@@ -32,3 +32,9 @@ export const clamp = (value, max, min = 0) =>
 
 export const generateId = () =>
   Date.now().toString(36) + Math.random().toString(36).substring(2)
+
+export const deleteAndReturn = (map, key) => {
+  var a = map[key]
+  delete map[key]
+  return a
+}

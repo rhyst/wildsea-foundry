@@ -1,44 +1,53 @@
 <div id="resources" class="flex0">
-  <h2 class="corners dark">{{localize "wildsea.resources"}}</h2>
+  <h2 class="corners dark">
+    {{localize "wildsea.resources"}}
+    <a class="addItem" data-item-type="resource">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h2>
   <div class="flexcol spaced">
     <div class="flexrow spaced">
       <div>
-        <h3 class="corners mid">
-          {{localize "wildsea.salvage"}}
-          <a class="addItem" data-item-type="{{type}}">
-            <i class="fas fa-plus"></i>
-          </a>
-        </h3>
+        <h3 class="corners mid">{{localize "wildsea.salvage"}}</h3>
+        {{#if (any system.salvage)}}
+          {{#each system.salvage as |item|}}
+            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
+          {{/each}}
+        {{else}}
           <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        {{/if}}
       </div>
       <div>
-        <h3 class="corners mid">
-          {{localize "wildsea.specimens"}}
-          <a class="addItem" data-item-type="{{type}}">
-            <i class="fas fa-plus"></i>
-          </a>
-        </h3>
+        <h3 class="corners mid">{{localize "wildsea.specimens"}}</h3>
+        {{#if (any system.specimen)}}
+          {{#each system.specimen as |item|}}
+            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
+          {{/each}}
+        {{else}}
           <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        {{/if}}
       </div>
     </div>
     <div class="flexrow spaced">
       <div>
-        <h3 class="corners mid">
-          {{localize "wildsea.whispers"}}
-          <a class="addItem" data-item-type="{{type}}">
-            <i class="fas fa-plus"></i>
-          </a>
-        </h3>
+        <h3 class="corners mid">{{localize "wildsea.whispers"}}</h3>
+        {{#if (any system.whisper)}}
+          {{#each system.whisper as |item|}}
+            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
+          {{/each}}
+        {{else}}
           <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        {{/if}}
       </div>
       <div>
-        <h3 class="corners mid">
-          {{localize "wildsea.charts"}}
-          <a class="addItem" data-item-type="{{type}}">
-            <i class="fas fa-plus"></i>
-          </a>
-        </h3>
+        <h3 class="corners mid">{{localize "wildsea.charts"}}</h3>
+        {{#if (any system.chart)}}
+          {{#each system.chart as |item|}}
+            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
+          {{/each}}
+        {{else}}
           <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        {{/if}}
       </div>
     </div>
   </div>

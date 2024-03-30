@@ -25,6 +25,14 @@ export default class WildseaPlayerSheet extends ActorSheet {
 
     context.system = this.actor.system
 
+    const resources = this.actor.itemTypes.resource
+
+    for (const resourceType of WILDSEA.resourceTypes) {
+      context.system[resourceType] = resources.filter(
+        (r) => r.system.type === resourceType,
+      )
+    }
+
     context.aspects = this.actor.itemTypes.aspect.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )
@@ -42,6 +50,13 @@ export default class WildseaPlayerSheet extends ActorSheet {
           // Item tracks
           html.find('.item .track').click(this.increaseItemTrack.bind(this))
           html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
+
+          // Mire tracks
+          html.find('.mire .track').click(this.increaseMireTrack.bind(this))
+          html
+            .find('.mire .track')
+            .contextmenu(this.decreaseMireTrack.bind(this))
+          html.find('.mire .editMire').contextmenu(this.deleteMire.bind(this))
 
           // other tracks
           html
@@ -200,14 +215,15 @@ export default class WildseaPlayerSheet extends ActorSheet {
     const target = event.currentTarget
     const data = target.dataset
 
-    console.log(data)
-
     switch (data.itemType) {
       case 'mire':
         this.addMire('<p>lorem ipsum</p>') // should come from a dialog popup
         break
 
       default:
+        ui.notifications.warn(
+          `Type "${data.itemType}" not recognised or not implemented`,
+        )
         break
     }
   }
@@ -215,6 +231,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
   async addMire(text) {
     const id = generateId()
     const newMire = {
+      id,
       text,
       track: {
         value: 0,
@@ -222,17 +239,64 @@ export default class WildseaPlayerSheet extends ActorSheet {
       },
     }
 
-    const currentMires = this.actor.system.mires
-    currentMires[id] = newMire
+    const mires = [...this.actor.system.mires]
+    mires.push(newMire)
 
     this.actor.update({
       system: {
-        mires: {
-          [id]: newMire,
-        },
+        mires,
       },
     })
   }
 
-  async increaseMireTrack(id) {}
+  async increaseMireTrack(event) {
+    event.preventDefault()
+    const target = event.currentTarget
+    const data = target.dataset
+
+    this.adjustMireTrack(data.itemId)
+  }
+
+  async decreaseMireTrack(event) {
+    event.preventDefault()
+    const target = event.currentTarget
+    const data = target.dataset
+
+    this.adjustMireTrack(data.itemId, -1)
+  }
+
+  async adjustMireTrack(id, value = 1) {
+    const mires = [...this.actor.system.mires]
+    const mire = mires.filter((mire) => mire.id === id)[0]
+
+    if (mire) {
+      const currentValue = mire.track.value
+      const newValue = clamp(currentValue + value, mire.track.max)
+
+      mire.track.value = newValue
+
+      this.actor.update({
+        system: {
+          mires,
+        },
+      })
+    }
+  }
+
+  async deleteMire(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const data = target.closest('.mire').dataset
+
+    const mires = this.actor.system.mires.filter(
+      (mire) => mire.id !== data.itemId,
+    )
+
+    this.actor.update({
+      system: {
+        mires,
+      },
+    })
+  }
 }

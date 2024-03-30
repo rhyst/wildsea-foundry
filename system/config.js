@@ -52,3 +52,5 @@ WILDSEA.languages = [
   'signalling',
   'highvin',
 ]
+
+WILDSEA.resourceTypes = ['salvage', 'specimen', 'whisper', 'chart']

@@ -30,7 +30,7 @@
         "major": {},
         "minor": {}
       },
-      "mires": {},
+      "mires": [],
       "origin": "",
       "post": "",
       "skills": {
@@ -56,11 +56,14 @@
     }
   },
   "Item": {
-    "types": ["aspect", "temporaryTrack"],
+    "types": ["aspect", "resource", "temporaryTrack"],
     "templates": {
       "hasDetails": {
         "details": "",
         "collapsed": false
+      },
+      "hasTags": {
+        "tags": ""
       },
       "hasTrack": {
         "track": {
@@ -72,6 +75,9 @@
       "templates": ["hasDetails", "hasTrack"],
       "track": { "max": 8 },
       "type": ""
+    },
+    "resource": {
+      "templates": ["hasDetails", "hasTags"]
     },
     "temporaryTrack": {
       "templates": ["hasDetails", "hasTrack"],

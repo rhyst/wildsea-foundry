@@ -1,7 +1,11 @@
 import { WILDSEA } from './system/config.js'
-import { loadHandlebarsPartials } from './system/preload.js'
-import WildseaPlayerSheet from './system/sheets/player.js'
+import {
+  loadHandlebarsHelpers,
+  loadHandlebarsPartials,
+} from './system/preload.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
+import WildseaPlayerSheet from './system/sheets/player.js'
+import WildseaResourceSheet from './system/sheets/resource.js'
 
 Hooks.once('init', () => {
   console.log('wildsea | Initializing')
@@ -17,25 +21,12 @@ Hooks.once('init', () => {
   })
 
   Items.unregisterSheet('core', ItemSheet)
-  Items.registerSheet('wildsea', WildseaAspectSheet)
+  Items.registerSheet('wildsea', WildseaAspectSheet, {
+    types: ['aspect', 'temporaryTrack'],
+  })
+  Items.registerSheet('wildsea', WildseaResourceSheet, { types: ['resource'] })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
 
-  Handlebars.registerHelper('times', (n, content) => {
-    let result = ''
-    for (let i = 0; i < n; i++) {
-      content.data.index = i + 1
-      result += content.fn(i)
-    }
-    return result
-  })
-
-  Handlebars.registerHelper('fieldType', (type = null) => type || 'text')
-  Handlebars.registerHelper(
-    'any',
-    (array) => (Object.values(array || [])?.length || 0) > 0,
-  )
-  Handlebars.registerHelper('byKey', (array, key) => {
-    return array[key]
-  })
+  loadHandlebarsHelpers()
 })
