@@ -31,7 +31,10 @@ Hooks.once('init', () => {
   })
 
   Handlebars.registerHelper('fieldType', (type = null) => type || 'text')
-  Handlebars.registerHelper('any', (array) => (array?.length || 0) > 0)
+  Handlebars.registerHelper(
+    'any',
+    (array) => (Object.values(array || [])?.length || 0) > 0,
+  )
   Handlebars.registerHelper('byKey', (array, key) => {
     return array[key]
   })

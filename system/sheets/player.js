@@ -1,5 +1,5 @@
 import { WILDSEA } from '../config.js'
-import { enrich, listToRows, clamp } from '../helpers.js'
+import { enrich, listToRows, clamp, generateId } from '../helpers.js'
 
 export default class WildseaPlayerSheet extends ActorSheet {
   get template() {
@@ -50,6 +50,8 @@ export default class WildseaPlayerSheet extends ActorSheet {
           html
             .find('.list-track .track')
             .contextmenu(this.decreaseListTrack.bind(this))
+
+          html.find('.addItem').click(this.addItem.bind(this))
         }
       }
     }
@@ -165,6 +167,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
       },
     })
   }
+
   async adjustSkill(key, change = 1) {
     const currentValue = this.actor.system.skills[key] || 0
     const newValue = clamp(currentValue + change, WILDSEA.skillMax)
@@ -177,6 +180,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
       },
     })
   }
+
   async adjustLanguage(key, change = 1) {
     const currentValue = this.actor.system.languages[key] || 0
     const newValue = clamp(currentValue + change, WILDSEA.languageMax)
@@ -189,4 +193,46 @@ export default class WildseaPlayerSheet extends ActorSheet {
       },
     })
   }
+
+  async addItem(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const data = target.dataset
+
+    console.log(data)
+
+    switch (data.itemType) {
+      case 'mire':
+        this.addMire('<p>lorem ipsum</p>') // should come from a dialog popup
+        break
+
+      default:
+        break
+    }
+  }
+
+  async addMire(text) {
+    const id = generateId()
+    const newMire = {
+      text,
+      track: {
+        value: 0,
+        max: 2,
+      },
+    }
+
+    const currentMires = this.actor.system.mires
+    currentMires[id] = newMire
+
+    this.actor.update({
+      system: {
+        mires: {
+          [id]: newMire,
+        },
+      },
+    })
+  }
+
+  async increaseMireTrack(id) {}
 }

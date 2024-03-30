@@ -29,3 +29,6 @@ export const listToRows = (array, columns) => {
 
 export const clamp = (value, max, min = 0) =>
   Math.min(max, Math.max(min, value))
+
+export const generateId = () =>
+  Date.now().toString(36) + Math.random().toString(36).substring(2)
