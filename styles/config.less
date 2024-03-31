@@ -53,5 +53,16 @@
   text-transform: uppercase;
 }
 
+.corners() {
+  clip-path: polygon(
+    0 0.5rem,
+    0.5rem 0,
+    100% 0,
+    100% calc(100% - 1rem),
+    calc(100% - 1.5rem) 100%,
+    0 100%
+  );
+}
+
 @dot: 1rem;
 @editor-height: 8rem;

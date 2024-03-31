@@ -28,6 +28,6 @@ export const renderDialog = async (
       close: (_html) => resolve({ cancelled: true }),
     }
 
-    new Dialog(dialog, { classes: ['dialog', 'wildsea'] }).render(true)
+    new Dialog(dialog).render(true)
   })
 }

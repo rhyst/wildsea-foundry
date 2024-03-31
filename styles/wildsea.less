@@ -37,6 +37,72 @@ a,
   display: flex !important;
 }
 
+.dialog .dialog-buttons button {
+  .title-font();
+}
+
+button:hover,
+button:focus,
+input[type='text']:focus,
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='date']:focus,
+input[type='time']:focus,
+input[type='search']:focus {
+  box-shadow: 0 0 5px @mid-bg;
+}
+
+.dialog .dialog-buttons button {
+  border: 1px solid @dark-bg !important;
+  background: @light-transparent;
+
+  &.default {
+    background: @light-bg;
+    color: @white;
+  }
+}
+
+.window-app .window-header {
+  .title-font();
+}
+
+.dialog-content {
+  .body-font();
+
+  label {
+    font-variant: small-caps;
+  }
+
+  h4 {
+    .title-font();
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  input[type='text'],
+  input[type='number'],
+  input[type='password'],
+  input[type='date'],
+  input[type='time'],
+  input[type='search'] {
+    .corners();
+    border: none;
+    background: @light-transparent;
+    padding: 0 0.5rem;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+form.wildsea {
+  margin-bottom: 0.5rem;
+}
+
 .wildsea {
   #context-menu {
     .title-font();
@@ -165,14 +231,7 @@ a,
   }
 
   .corners {
-    clip-path: polygon(
-      0 0.5rem,
-      0.5rem 0,
-      100% 0,
-      100% calc(100% - 1rem),
-      calc(100% - 1.5rem) 100%,
-      0 100%
-    );
+    .corners();
   }
 
   .dark {
@@ -284,11 +343,11 @@ a,
     }
 
     .track {
-      padding: 0 0.5rem;
+      margin: 0.5rem;
     }
 
     p {
-      padding: 0 0.5rem;
+      margin: 0.5rem;
     }
   }
 }
