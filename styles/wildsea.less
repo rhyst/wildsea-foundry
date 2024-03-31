@@ -108,6 +108,11 @@ form.wildsea {
     .title-font();
     font-size: 0.9rem;
     text-transform: initial;
+    font-weight: 500;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .body-font();
@@ -149,8 +154,17 @@ form.wildsea {
     line-height: 1.3rem;
   }
 
+  h4 {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+  }
+
   .black {
     color: @black;
+  }
+
+  .text-light {
+    color: @light-bg;
   }
 
   .img {
@@ -232,6 +246,18 @@ form.wildsea {
 
   .corners {
     .corners();
+  }
+
+  .rounded {
+    border-radius: 0.5rem;
+  }
+
+  .border-slim {
+    border: 1px solid @light-bg;
+
+    &.padded {
+      padding: calc(0.5rem - 0.5px);
+    }
   }
 
   .dark {
@@ -332,7 +358,7 @@ form.wildsea {
     border-radius: 0 1rem 1rem 0;
 
     h3 {
-      padding: 0.25rem 0.5rem;
+      padding: 0.5rem 0.5rem 0;
       border-radius: 0 calc(1rem - 2px) 0 0;
 
       small {

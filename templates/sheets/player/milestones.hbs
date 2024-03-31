@@ -1,18 +1,41 @@
 <div id="milestones" class="flex0">
   <h2 class="corners dark">
     {{localize "wildsea.milestones"}}
-    <a class="addItem" data-item-type="milestone">
-      <i class="fas fa-plus"></i>
-    </a>
   </h2>
   <div class="flexrow spaced">
     <div>
-      <h3 class="corners mid">{{localize "wildsea.major"}}</h3>
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+      <h3 class="corners mid">
+        {{localize "wildsea.major"}}
+        <a class="addItem" data-item-type="milestone" data-item-subtype="major">
+          <i class="fas fa-plus"></i>
+        </a>
+      </h3>
+      {{#if (any system.milestone_major)}}
+
+          {{#each system.milestone_major as |milestone|}}
+            {{> "systems/wildsea/templates/sheets/player/slim_item.hbs" milestone type="milestones"}}
+          {{/each}}
+
+      {{else}}
+        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+      {{/if}}
     </div>
     <div>
-      <h3 class="corners mid">{{localize "wildsea.minor"}}</h3>
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+      <h3 class="corners mid">
+        {{localize "wildsea.minor"}}
+        <a class="addItem" data-item-type="milestone" data-item-subtype="minor">
+          <i class="fas fa-plus"></i>
+        </a>
+      </h3>
+      {{#if (any system.milestone_minor)}}
+
+          {{#each system.milestone_minor as |milestone|}}
+            {{> "systems/wildsea/templates/sheets/player/slim_item.hbs" milestone type="milestones"}}
+          {{/each}}
+
+      {{else}}
+        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+      {{/if}}
     </div>
   </div>
 </div>

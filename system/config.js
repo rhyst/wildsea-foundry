@@ -54,3 +54,14 @@ WILDSEA.languages = [
 ]
 
 WILDSEA.resourceTypes = ['salvage', 'specimen', 'whisper', 'chart']
+
+WILDSEA.milestoneSubtypes = ['major', 'minor']
+
+WILDSEA.slimDefaults = {
+  mires: {
+    track: {
+      max: 2,
+      value: 0,
+    },
+  },
+}

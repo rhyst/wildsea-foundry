@@ -5,40 +5,13 @@
       <i class="fas fa-plus"></i>
     </a>
   </h2>
-  <div class="flexcol spaced">
-    {{#if (or (any system.salvage) (any system.specimen) (any system.whisper) (any system.chart))}}
-      <div>
-        {{#if (any system.salvage)}}
-          <h3 class="corners mid">{{localize "wildsea.salvage"}}</h3>
-          {{#each system.salvage as |item|}}
-            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
-          {{/each}}
-        {{/if}}
-      </div>
-      <div>
-        {{#if (any system.specimen)}}
-          <h3 class="corners mid">{{localize "wildsea.specimens"}}</h3>
-          {{#each system.specimen as |item|}}
-            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
-          {{/each}}
-        {{/if}}
-      </div>
-      <div>
-        {{#if (any system.whisper)}}
-          <h3 class="corners mid">{{localize "wildsea.whispers"}}</h3>
-          {{#each system.whisper as |item|}}
-            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
-          {{/each}}
-        {{/if}}
-      </div>
-      <div>
-        {{#if (any system.chart)}}
-          <h3 class="corners mid">{{localize "wildsea.charts"}}</h3>
-          {{#each system.chart as |item|}}
-            {{> "systems/wildsea/templates/sheets/player/resource.hbs" item}}
-          {{/each}}
-        {{/if}}
-      </div>
+  <div class="flexcol spaced item-list">
+    {{#if (any system.resources)}}
+      {{#each system.resources as |resource|}}
+        {{> "systems/wildsea/templates/sheets/player/resource.hbs" resource}}
+      {{/each}}
+    {{else}}
+      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
     {{/if}}
   </div>
 </div>

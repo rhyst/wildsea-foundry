@@ -1,6 +1,13 @@
-<p>
-  <a class="editItem" data-item-id="{{id}}">{{name}}</a>
+<div class="padded rounded border-slim item" data-item-id="{{id}}">
+  <h3 class="itemContextMenu">
+    {{name}}
+    {{#if system.type}}
+      <small class="text-light">{{localize (concat "wildsea." system.type)}}</small>
+    {{/if}}
+  </h3>
   {{#if (any system.tags)}}
-  <br ><small>{{join system.tags ', '}}</small>
+    <div class="drawer {{#if system.collapsed}}hidden{{/if}}">
+      <p>{{system.tags}}</p>
+    </div>
   {{/if}}
-</p>
+</div>

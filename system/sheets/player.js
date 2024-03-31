@@ -10,7 +10,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 1000,
-      height: 700,
+      height: 750,
     })
   }
 
@@ -27,10 +27,16 @@ export default class WildseaPlayerSheet extends ActorSheet {
     context.system = this.actor.system
 
     const resources = this.actor.itemTypes.resource
-
     for (const resourceType of WILDSEA.resourceTypes) {
-      context.system[resourceType] = resources.filter(
-        (r) => r.system.type === resourceType,
+      context.system[resourceType] = resources
+        .filter((r) => r.system.type === resourceType)
+        .sort((a, b) => (a.sort < b.sort ? -1 : 1))
+    }
+
+    const milestones = this.actor.system.milestones
+    for (const subtype of WILDSEA.milestoneSubtypes) {
+      context.system[`milestone_${subtype}`] = milestones.filter(
+        (m) => m.subtype === subtype,
       )
     }
 
@@ -39,6 +45,10 @@ export default class WildseaPlayerSheet extends ActorSheet {
     )
 
     context.temporaryTracks = this.actor.itemTypes.temporaryTrack.sort((a, b) =>
+      a.sort < b.sort ? -1 : 1,
+    )
+
+    context.system.resources = this.actor.itemTypes.resource.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )
 
@@ -51,7 +61,12 @@ export default class WildseaPlayerSheet extends ActorSheet {
         if (this.actor.type === 'player') {
           // Item context menu
           new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
-          new ContextMenu(html, '.mireContextMenu', this.mireContextMenu)
+          new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
+
+          // collapse aspects and temp tracks
+          html
+            .find('.item .itemContextMenu')
+            .click(this.collapseItem.bind(this))
 
           // Item tracks
           html.find('.item .track').click(this.increaseItemTrack.bind(this))
@@ -62,7 +77,6 @@ export default class WildseaPlayerSheet extends ActorSheet {
           html
             .find('.mire .track')
             .contextmenu(this.decreaseMireTrack.bind(this))
-          html.find('.mire .editMire').contextmenu(this.deleteMire.bind(this))
 
           // other tracks
           html
@@ -72,6 +86,7 @@ export default class WildseaPlayerSheet extends ActorSheet {
             .find('.list-track .track')
             .contextmenu(this.decreaseListTrack.bind(this))
 
+          // Add item
           html.find('.addItem').click(this.addItem.bind(this))
         }
       }
@@ -99,12 +114,12 @@ export default class WildseaPlayerSheet extends ActorSheet {
     },
   ]
 
-  mireContextMenu = [
+  slimContextMenu = [
     {
       name: game.i18n.localize('wildsea.edit'),
       icon: '<i class="fas fa-edit"></i>',
       callback: (element) => {
-        const itemId = element.closest('.mire').data('item-id')
+        const itemId = element.data('item-id')
         console.log(itemId)
       },
     },
@@ -112,11 +127,39 @@ export default class WildseaPlayerSheet extends ActorSheet {
       name: game.i18n.localize('wildsea.delete'),
       icon: '<i class="fas fa-trash"></i>',
       callback: (element) => {
-        const itemId = element.closest('.mire').data('item-id')
-        this.removeMire(itemId)
+        const itemId = element.data('item-id')
+        const itemType = element.data('item-type')
+        this.removeSlimItem(itemId, itemType)
       },
     },
   ]
+
+  async collapseItem(event) {
+    event.preventDefault()
+    const itemElement = event.currentTarget.closest('.item')
+    const itemId = itemElement.dataset.itemId
+    $(itemElement)
+      .find('.drawer')
+      .slideToggle({
+        done: () => {
+          this.toggleVisibility(itemId)
+        },
+      })
+  }
+
+  toggleVisibility(itemId) {
+    const item = this.actor.items.get(itemId)
+
+    if (item) {
+      const visible = !item.system.collapsed ? false : true
+
+      item.update({
+        system: {
+          collapsed: !visible,
+        },
+      })
+    }
+  }
 
   async increaseItemTrack(event) {
     event.preventDefault()
@@ -244,8 +287,17 @@ export default class WildseaPlayerSheet extends ActorSheet {
       case 'aspect':
         this.addAspect()
         break
+      case 'drive':
+        this.addSlimItem('drives')
+        break
+      case 'milestone':
+        this.addSlimItem('milestones', data.itemSubtype)
+        break
       case 'mire':
-        this.addMire('<p>lorem ipsum</p>') // should come from a dialog popup
+        this.addSlimItem('mires')
+        break
+      case 'resource':
+        this.addResource()
         break
       case 'temporaryTrack':
         this.addTemporaryTrack()
@@ -273,6 +325,20 @@ export default class WildseaPlayerSheet extends ActorSheet {
     this.addEmbeddedDocument(itemData)
   }
 
+  async addResource() {
+    const defaultData = {}
+
+    const itemData = {
+      name: game.i18n.localize('wildsea.newResourceName'),
+      type: 'resource',
+      data: {
+        ...defaultData,
+      },
+    }
+
+    this.addEmbeddedDocument(itemData)
+  }
+
   async addTemporaryTrack() {
     const defaultData = {}
 
@@ -293,40 +359,40 @@ export default class WildseaPlayerSheet extends ActorSheet {
     docs.forEach((item) => item.sheet.render(true))
   }
 
-  async addMire() {
-    const data = await renderDialog(
-      game.i18n.localize('wildsea.newMire'),
-      this.processMireDialog,
-    )
+  // async addMire() {
+  //   const data = await renderDialog(
+  //     game.i18n.localize('wildsea.newMire'),
+  //     this.processMireDialog,
+  //   )
 
-    if (data.cancelled) return
+  //   if (data.cancelled) return
 
-    const text = data.text
+  //   const text = data.text
 
-    const id = generateId()
-    const newMire = {
-      id,
-      text,
-      track: {
-        value: 0,
-        max: 2,
-      },
-    }
+  //   const id = generateId()
+  //   const newMire = {
+  //     id,
+  //     text,
+  //     track: {
+  //       value: 0,
+  //       max: 2,
+  //     },
+  //   }
 
-    const mires = [...this.actor.system.mires]
-    mires.push(newMire)
+  //   const mires = [...this.actor.system.mires]
+  //   mires.push(newMire)
 
-    this.actor.update({
-      system: {
-        mires,
-      },
-    })
-  }
+  //   this.actor.update({
+  //     system: {
+  //       mires,
+  //     },
+  //   })
+  // }
 
-  processMireDialog(html) {
-    const form = html[0].querySelector('form')
-    return { text: form.text.value.trim() }
-  }
+  // processMireDialog(html) {
+  //   const form = html[0].querySelector('form')
+  //   return { text: form.text.value.trim() }
+  // }
 
   async increaseMireTrack(event) {
     event.preventDefault()
@@ -362,21 +428,51 @@ export default class WildseaPlayerSheet extends ActorSheet {
     }
   }
 
-  async deleteMire(event) {
-    event.preventDefault()
+  async addMilestone(type) {}
 
-    const target = event.currentTarget
-    const data = target.closest('.mire').dataset
+  async addSlimItem(itemType, itemSubtype = null) {
+    const data = await renderDialog(
+      game.i18n.format(
+        'wildsea.newSlim',
+        game.i18n.localize(`wildsea.${itemType}`),
+      ),
+      this.processSlimDialog,
+    )
 
-    this.removeMire(data.itemId)
-  }
+    if (data.cancelled) return
 
-  async removeMire(id) {
-    const mires = this.actor.system.mires.filter((mire) => mire.id !== id)
+    const text = data.text
+
+    const id = generateId()
+    const slimData = {
+      id,
+      text,
+      ...(WILDSEA.slimDefaults[itemType] || {}),
+    }
+
+    if (itemSubtype) slimData['subtype'] = itemSubtype
+
+    const items = [...this.actor.system[itemType]]
+    items.push(slimData)
 
     this.actor.update({
       system: {
-        mires,
+        [itemType]: items,
+      },
+    })
+  }
+
+  processSlimDialog(html) {
+    const form = html[0].querySelector('form')
+    return { text: form.text.value.trim() }
+  }
+
+  async removeSlimItem(itemId, itemType) {
+    this.actor.update({
+      system: {
+        [itemType]: this.actor.system[itemType].filter(
+          (item) => item.id !== itemId,
+        ),
       },
     })
   }

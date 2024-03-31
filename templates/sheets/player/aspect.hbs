@@ -4,5 +4,7 @@
     <small class="black">{{system.type}}</small>
   </h3>
   {{> "systems/wildsea/templates/shared/track.hbs" system.track id=id}}
-  {{{system.enrichedDetails}}}
+  <div class="drawer {{#if system.collapsed}}hidden{{/if}}">
+    {{{system.enrichedDetails}}}
+  </div>
 </div>

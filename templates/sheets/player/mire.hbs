@@ -1,12 +1,12 @@
-<div class="mire flexrow" data-item-id="{{id}}">
-  <div class="mireContextMenu">
+<div class="mire flexrow">
+  <div class="flex3 slimContextMenu" data-item-id="{{id}}" data-item-type="mires">
     {{#if text}}
       <p>{{text}}</p>
     {{else}}
       <p><em>Missing</em></p>
     {{/if}}
   </div>
-  <div class="flex0">
+  <div class="">
     {{> "systems/wildsea/templates/shared/track.hbs" max=track.max value=track.value type="mire"}}
   </div>
 </div>

@@ -26,10 +26,7 @@
         "signalling": 0,
         "highvin": 0
       },
-      "milestones": {
-        "major": {},
-        "minor": {}
-      },
+      "milestones": [],
       "mires": [],
       "origin": "",
       "post": "",
