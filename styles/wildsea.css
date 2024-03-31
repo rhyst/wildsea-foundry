@@ -155,6 +155,14 @@ form.wildsea {
 .wildsea h5.corners {
   padding: 0.5rem 0.5rem 0;
 }
+.wildsea h1 small,
+.wildsea h2 small,
+.wildsea h3 small,
+.wildsea h4 small,
+.wildsea h5 small {
+  font-size: 0.8em;
+  text-transform: initial;
+}
 .wildsea h2 {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -162,16 +170,27 @@ form.wildsea {
 .wildsea h3 {
   font-size: 1.3rem;
   line-height: 1.3rem;
+  text-transform: initial;
 }
 .wildsea h4 {
   font-size: 1.1rem;
   line-height: 1.1rem;
+  text-transform: initial;
 }
 .wildsea .black {
   color: #2d2a2b;
 }
+.wildsea .text-dark {
+  color: #2e2c20;
+}
+.wildsea .text-mid {
+  color: #626256;
+}
 .wildsea .text-light {
   color: #858778;
+}
+.wildsea .text-light-transparent {
+  color: #e2e2df;
 }
 .wildsea .img {
   text-align: center;
@@ -208,6 +227,7 @@ form.wildsea {
   padding: 0.4rem 0.5rem 0;
   height: 64px;
   font-size: 48px;
+  text-transform: initial;
 }
 .wildsea .description {
   --editor-height: 8rem;
@@ -334,14 +354,18 @@ form.wildsea {
   padding: 0.5rem 0.5rem 0;
   border-radius: 0 calc(1rem - 2px) 0 0;
 }
-.wildsea .aspect h3 small {
-  color: #e2e2df;
-  font-size: 0.8em;
-  text-transform: initial;
-}
 .wildsea .aspect .track {
   margin: 0.5rem;
 }
 .wildsea .aspect p {
   margin: 0.5rem;
+}
+.wildsea .drawer {
+  margin-top: 0.5rem;
+}
+.wildsea .drawer p {
+  margin-top: 0;
+}
+.wildsea #resources .item h3 {
+  margin-bottom: 0;
 }

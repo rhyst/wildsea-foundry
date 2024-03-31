@@ -11,11 +11,9 @@
         </a>
       </h3>
       {{#if (any system.milestone_major)}}
-
-          {{#each system.milestone_major as |milestone|}}
-            {{> "systems/wildsea/templates/sheets/player/slim_item.hbs" milestone type="milestones"}}
-          {{/each}}
-
+        {{#each system.milestone_major as |milestone|}}
+          {{> "systems/wildsea/templates/sheets/player/slim_item.hbs" milestone type="milestones"}}
+        {{/each}}
       {{else}}
         <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
       {{/if}}
@@ -28,11 +26,9 @@
         </a>
       </h3>
       {{#if (any system.milestone_minor)}}
-
-          {{#each system.milestone_minor as |milestone|}}
-            {{> "systems/wildsea/templates/sheets/player/slim_item.hbs" milestone type="milestones"}}
-          {{/each}}
-
+        {{#each system.milestone_minor as |milestone|}}
+          {{> "systems/wildsea/templates/sheets/player/slim_item.hbs" milestone type="milestones"}}
+        {{/each}}
       {{else}}
         <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
       {{/if}}

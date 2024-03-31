@@ -1,9 +1,6 @@
 export const WILDSEA = {}
-
 WILDSEA.root_path = 'systems/wildsea'
-
-WILDSEA.aspectTypes = ['']
-
+WILDSEA.edgeMax = 1
 WILDSEA.edges = [
   'grace',
   'iron',
@@ -13,11 +10,24 @@ WILDSEA.edges = [
   'tides',
   'veils',
 ]
-
-WILDSEA.edgeMax = 1
-WILDSEA.skillMax = 3
 WILDSEA.languageMax = 1
-
+WILDSEA.languages = [
+  'lowSour',
+  'cthonic',
+  'saprekk',
+  'gaudimm',
+  'knock',
+  'brasstongue',
+  'rakaSpit',
+  'lyreBite',
+  'oldHand',
+  'signalling',
+  'highvin',
+]
+WILDSEA.milestoneSubtypes = ['major', 'minor']
+WILDSEA.resourceTypes = ['salvage', 'specimen', 'whisper', 'chart']
+WILDSEA.shipRatings = ['armour', 'seals', 'speed', 'saws', 'stealth', 'tilt']
+WILDSEA.skillMax = 3
 WILDSEA.skills = [
   'brace',
   'break',
@@ -38,25 +48,6 @@ WILDSEA.skills = [
   'vault',
   'wavewalk',
 ]
-
-WILDSEA.languages = [
-  'lowSour',
-  'cthonic',
-  'saprekk',
-  'gaudimm',
-  'knock',
-  'brasstongue',
-  'rakaSpit',
-  'lyreBite',
-  'oldHand',
-  'signalling',
-  'highvin',
-]
-
-WILDSEA.resourceTypes = ['salvage', 'specimen', 'whisper', 'chart']
-
-WILDSEA.milestoneSubtypes = ['major', 'minor']
-
 WILDSEA.slimDefaults = {
   mires: {
     track: {

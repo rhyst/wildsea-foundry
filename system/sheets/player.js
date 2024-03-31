@@ -120,7 +120,8 @@ export default class WildseaPlayerSheet extends ActorSheet {
       icon: '<i class="fas fa-edit"></i>',
       callback: (element) => {
         const itemId = element.data('item-id')
-        console.log(itemId)
+        const itemType = element.data('item-type')
+        this.editSlimItem(itemId, itemType)
       },
     },
     {
@@ -432,10 +433,9 @@ export default class WildseaPlayerSheet extends ActorSheet {
 
   async addSlimItem(itemType, itemSubtype = null) {
     const data = await renderDialog(
-      game.i18n.format(
-        'wildsea.newSlim',
-        game.i18n.localize(`wildsea.${itemType}`),
-      ),
+      game.i18n.format('wildsea.newSlim', {
+        type: game.i18n.localize(`wildsea.${itemType}`),
+      }),
       this.processSlimDialog,
     )
 
@@ -465,6 +465,32 @@ export default class WildseaPlayerSheet extends ActorSheet {
   processSlimDialog(html) {
     const form = html[0].querySelector('form')
     return { text: form.text.value.trim() }
+  }
+
+  async editSlimItem(itemId, itemType) {
+    const items = this.actor.system[itemType]
+    const item = items.filter((i) => i.id === itemId)[0]
+
+    if (item) {
+      const data = await renderDialog(
+        game.i18n.format(
+          'wildsea.editSlim',
+          game.i18n.localize(`wildsea.${itemType}`),
+        ),
+        this.processSlimDialog,
+        item,
+      )
+
+      if (data.cancelled) return
+
+      item.text = data.text
+
+      this.actor.update({
+        system: {
+          [itemType]: items,
+        },
+      })
+    }
   }
 
   async removeSlimItem(itemId, itemType) {
