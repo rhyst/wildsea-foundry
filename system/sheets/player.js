@@ -51,7 +51,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     context.system.resources = this.actor.itemTypes.resource.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )
-    console.log(context)
+
     return context
   }
 

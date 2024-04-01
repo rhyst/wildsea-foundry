@@ -25,13 +25,19 @@
         <h2 class="corners dark">Fittings</h2>
 
         <h3 class="corners mid">Motifs/Additions/Rooms</h3>
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        <div class="flexcol item-list spaced">
+          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        </div>
 
         <h3 class="corners mid">Armaments</h3>
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        <div class="flexcol item-list spaced">
+          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        </div>
 
         <h3 class="corners mid">Outriders</h3>
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        <div class="flexcol item-list spaced">
+          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        </div>
       </div>
     </div>
     <div class="flexcol spaced">
@@ -42,10 +48,7 @@
         type="undercrew"}}
     </div>
     <div class="flexcol spaced">
-      <div id="reputation" class="flex0">
-      <h2 class="corners dark">Reputation</h2>
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-      </div>
+      {{> "systems/wildsea/templates/sheets/ship/reputations.hbs"}}
       <div id="cargoPassengers" class="flex0">
         <h2 class="corners dark">Cargo and Passengers</h2>
         <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>

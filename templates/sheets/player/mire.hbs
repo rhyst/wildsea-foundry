@@ -1,5 +1,5 @@
 <div class="mire flexrow">
-  <div class="flex3 slimContextMenu" data-item-id="{{id}}" data-item-type="mires">
+  <div class="flex3 slimContextMenu" data-item-id="{{id}}" data-item-type="{{type}}">
     {{#if text}}
       <p>{{text}}</p>
     {{else}}
@@ -7,6 +7,6 @@
     {{/if}}
   </div>
   <div class="">
-    {{> "systems/wildsea/templates/shared/track.hbs" max=track.max value=track.value type="mire"}}
+    {{> "systems/wildsea/templates/shared/track.hbs" max=track.max value=track.value type=type}}
   </div>
 </div>

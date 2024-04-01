@@ -22,6 +22,7 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/sheets/ship/conditions.hbs',
     'systems/wildsea/templates/sheets/ship/rating.hbs',
     'systems/wildsea/templates/sheets/ship/ratings.hbs',
+    'systems/wildsea/templates/sheets/ship/reputations.hbs',
   ]
 
   return loadTemplates(partials)

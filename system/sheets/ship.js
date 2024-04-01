@@ -47,12 +47,15 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
     const data = event.currentTarget.dataset
     const itemType = data.itemType
+    const itemId = data.itemId
 
     switch (itemType) {
       case 'rating':
-        await this.adjustRating(data.itemId, change)
+        await this.adjustRating(itemId, change)
         break
-
+      case 'reputations':
+        await this.adjustSlimTrack(itemId, itemType, change)
+        break
       default:
         break
     }
@@ -81,6 +84,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
     switch (data.itemType) {
       case 'conditions':
+      case 'reputations':
         this.addSlimItem(data.itemType)
         break
       case 'undercrew':
