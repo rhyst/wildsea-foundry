@@ -91,8 +91,9 @@
       "type": ""
     },
     "fitting": {
-      "templates": ["hasDetails"],
+      "templates": ["hasDetails", "hasTrack"],
       "stakes": 1,
+      "track": { "max": 1 },
       "type": ""
     },
     "resource": {

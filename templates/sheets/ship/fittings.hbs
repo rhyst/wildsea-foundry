@@ -2,7 +2,6 @@
   <h2 class="corners dark">Fittings</h2>
   <div class="flexcol item-list spaced">
     {{#if (any system.fittings)}}
-    {{log system.fittings}}
       {{#each system.fittings as |fitting|}}
         {{> "systems/wildsea/templates/shared/aspect.hbs" fitting id=fitting.id type="fittings"}}
       {{/each}}
