@@ -1,7 +1,7 @@
 import { WILDSEA } from '../config.js'
-import { enrich } from '../helpers.js'
+import WildseaItemSheet from './item.js'
 
-export default class WildseaResourceSheet extends ItemSheet {
+export default class WildseaResourceSheet extends WildseaItemSheet {
   get template() {
     return `${WILDSEA.root_path}/templates/sheets/resource.hbs`
   }
@@ -11,15 +11,5 @@ export default class WildseaResourceSheet extends ItemSheet {
       width: 500,
       height: 165,
     })
-  }
-
-  async getData() {
-    const context = super.getData()
-
-    context.system = this.item.system
-    context.config = WILDSEA
-    context.system.enrichedDetails = await enrich(this.item.system.details)
-
-    return context
   }
 }

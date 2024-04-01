@@ -51,24 +51,13 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     context.system.resources = this.actor.itemTypes.resource.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )
-
+    console.log(context)
     return context
   }
 
   activateListeners(html) {
     if (this.isEditable) {
       if (this.actor.isOwner) {
-        // Item context menu
-        new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
-        new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
-
-        // collapse aspects and temp tracks
-        html.find('.item .itemContextMenu').click(this.collapseItem.bind(this))
-
-        // Item tracks
-        html.find('.item .track').click(this.increaseItemTrack.bind(this))
-        html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
-
         // Mire tracks
         html.find('.mire .track').click(this.increaseMireTrack.bind(this))
         html.find('.mire .track').contextmenu(this.decreaseMireTrack.bind(this))
@@ -85,70 +74,6 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     }
 
     super.activateListeners(html)
-  }
-
-  async collapseItem(event) {
-    event.preventDefault()
-    const itemElement = event.currentTarget.closest('.item')
-    const itemId = itemElement.dataset.itemId
-    $(itemElement)
-      .find('.drawer')
-      .slideToggle({
-        done: () => {
-          this.toggleVisibility(itemId)
-        },
-      })
-  }
-
-  toggleVisibility(itemId) {
-    const item = this.actor.items.get(itemId)
-
-    if (item) {
-      const visible = !item.system.collapsed ? false : true
-
-      item.update({
-        system: {
-          collapsed: !visible,
-        },
-      })
-    }
-  }
-
-  async increaseItemTrack(event) {
-    event.preventDefault()
-
-    const target = event.currentTarget
-    const itemId = target.closest('.track').dataset.itemId
-    const item = this.actor.items.get(itemId)
-    const newValue = Math.min(
-      item.system.track.value + 1,
-      item.system.track.max,
-    )
-
-    item.update({
-      system: {
-        track: {
-          value: newValue,
-        },
-      },
-    })
-  }
-
-  async reduceItemTrack(event) {
-    event.preventDefault()
-
-    const target = event.currentTarget
-    const itemId = target.closest('.track').dataset.itemId
-    const item = this.actor.items.get(itemId)
-    const newValue = Math.max(item.system.track.value - 1, 0)
-
-    item.update({
-      system: {
-        track: {
-          value: newValue,
-        },
-      },
-    })
   }
 
   async increaseListTrack(event) {
@@ -305,11 +230,6 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     }
 
     this.addEmbeddedDocument(itemData)
-  }
-
-  async addEmbeddedDocument(itemData) {
-    const docs = await this.actor.createEmbeddedDocuments('Item', [itemData])
-    docs.forEach((item) => item.sheet.render(true))
   }
 
   async increaseMireTrack(event) {

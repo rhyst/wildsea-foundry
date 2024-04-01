@@ -52,6 +52,10 @@
       }
     },
     "ship": {
+      "armaments": [],
+      "cargoPassengers": [],
+      "conditions": [],
+      "outriders": [],
       "ratings": {
         "armour": { "value": 0, "max": 6 },
         "saws": { "value": 0, "max": 6 },
@@ -60,16 +64,13 @@
         "stealth": { "value": 0, "max": 6 },
         "tilt": { "value": 0, "max": 6 }
       },
-      "stakes": { "value": 0, "max": 0 },
       "reputations": [],
-      "cargoPassengers": [],
       "rooms": [],
-      "armaments": [],
-      "outriders": []
+      "stakes": { "value": 0, "max": 0 }
     }
   },
   "Item": {
-    "types": ["aspect", "resource", "temporaryTrack"],
+    "types": ["aspect", "resource", "temporaryTrack", "undercrew"],
     "templates": {
       "hasDetails": {
         "details": "",
@@ -94,7 +95,12 @@
     },
     "temporaryTrack": {
       "templates": ["hasDetails", "hasTrack"],
-      "track": { "max": 4 },
+      "track": { "max": 8 },
+      "type": ""
+    },
+    "undercrew": {
+      "templates": ["hasDetails", "hasTrack"],
+      "track": { "max": 8 },
       "type": ""
     }
   }

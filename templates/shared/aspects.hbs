@@ -7,9 +7,9 @@
   </h2>
   <div class="flexcol item-list spaced">
     {{#if (any aspects)}}
-    {{#each aspects as |aspect|}}
-      {{> "systems/wildsea/templates/sheets/player/aspect.hbs" aspect}}
-    {{/each}}
+      {{#each aspects as |aspect|}}
+        {{> "systems/wildsea/templates/shared/aspect.hbs" aspect id=aspect.id type=type}}
+      {{/each}}
     {{else}}
     <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
     {{/if}}

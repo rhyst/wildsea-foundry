@@ -23,6 +23,10 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     for (const item of this.actor.items)
       item.system.enrichedDetails = await enrich(item.system.details)
 
+    context.system.undercrew = this.actor.itemTypes.undercrew.sort((a, b) =>
+      a.sort < b.sort ? -1 : 1,
+    )
+
     return context
   }
 
@@ -31,6 +35,8 @@ export default class WildseaShipSheet extends WildseaActorSheet {
       if (this.actor.isOwner) {
         html.find('.track').click(this.adjustTrack.bind(this, 1))
         html.find('.track').contextmenu(this.adjustTrack.bind(this, -1))
+
+        html.find('.addItem').click(this.addItem.bind(this))
       }
     }
     super.activateListeners(html)
@@ -65,5 +71,41 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         },
       },
     })
+  }
+
+  async addItem(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const data = target.dataset
+
+    switch (data.itemType) {
+      case 'conditions':
+        this.addSlimItem(data.itemType)
+        break
+      case 'undercrew':
+        this.addUndercrew()
+        break
+      default:
+        ui.notifications.warn(
+          `Type "${data.itemType}" not recognised or not implemented`,
+        )
+        break
+    }
+  }
+
+  async addUndercrew() {
+    const defaultData = {}
+
+    const itemData = {
+      name: game.i18n.localize('wildsea.newUndercrewName'),
+      type: 'undercrew',
+      data: {
+        details: game.i18n.localize('wildsea.newUndercrewDetails'),
+        ...defaultData,
+      },
+    }
+
+    this.addEmbeddedDocument(itemData)
   }
 }

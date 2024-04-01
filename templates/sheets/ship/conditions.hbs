@@ -1,0 +1,15 @@
+<div id="conditions" class="flex0">
+  <h2 class="corners dark">
+    {{localize "wildsea.conditions"}}
+    <a class="addItem" data-item-type="conditions">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h2>
+    {{#if (any system.conditions)}}
+      {{#each system.conditions as |condition|}}
+        {{> "systems/wildsea/templates/shared/slim_item.hbs" condition type="conditions"}}
+      {{/each}}
+    {{else}}
+      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+    {{/if}}
+</div>

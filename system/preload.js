@@ -1,12 +1,13 @@
 export const loadHandlebarsPartials = () => {
   const partials = [
+    'systems/wildsea/templates/shared/aspect.hbs',
+    'systems/wildsea/templates/shared/aspects.hbs',
     'systems/wildsea/templates/shared/description.hbs',
     'systems/wildsea/templates/shared/number_field.hbs',
     'systems/wildsea/templates/shared/select_field.hbs',
+    'systems/wildsea/templates/shared/slim_item.hbs',
     'systems/wildsea/templates/shared/text_field.hbs',
     'systems/wildsea/templates/shared/track.hbs',
-    'systems/wildsea/templates/sheets/player/aspect.hbs',
-    'systems/wildsea/templates/sheets/player/aspects.hbs',
     'systems/wildsea/templates/sheets/player/background.hbs',
     'systems/wildsea/templates/sheets/player/drives.hbs',
     'systems/wildsea/templates/sheets/player/edges.hbs',
@@ -18,7 +19,7 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/sheets/player/resource.hbs',
     'systems/wildsea/templates/sheets/player/resources.hbs',
     'systems/wildsea/templates/sheets/player/skills.hbs',
-    'systems/wildsea/templates/sheets/player/slim_item.hbs',
+    'systems/wildsea/templates/sheets/ship/conditions.hbs',
     'systems/wildsea/templates/sheets/ship/rating.hbs',
     'systems/wildsea/templates/sheets/ship/ratings.hbs',
   ]

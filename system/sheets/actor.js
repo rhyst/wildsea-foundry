@@ -3,6 +3,23 @@ import { clamp, generateId } from '../helpers.js'
 import { renderDialog } from '../dialog.js'
 
 export default class WildseaActorSheet extends ActorSheet {
+  activateListeners(html) {
+    if (this.isEditable) {
+      if (this.actor.isOwner) {
+        // Item context menu
+        new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
+        new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
+
+        // collapse aspects and temp tracks
+        html.find('.item .itemContextMenu').click(this.collapseItem.bind(this))
+
+        // Item tracks
+        html.find('.item .track').click(this.increaseItemTrack.bind(this))
+        html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
+      }
+    }
+  }
+
   itemContextMenu = [
     {
       name: game.i18n.localize('wildsea.toChat'),
@@ -59,6 +76,11 @@ export default class WildseaActorSheet extends ActorSheet {
       },
     },
   ]
+
+  async addEmbeddedDocument(itemData) {
+    const docs = await this.actor.createEmbeddedDocuments('Item', [itemData])
+    docs.forEach((item) => item.sheet.render(true))
+  }
 
   async addSlimItem(itemType, itemSubtype = null) {
     const data = await renderDialog(
@@ -179,6 +201,70 @@ export default class WildseaActorSheet extends ActorSheet {
         content: html,
       }
       ChatMessage.create(chatData)
+    }
+  }
+
+  async increaseItemTrack(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const itemId = target.dataset.itemId
+    const item = this.actor.items.get(itemId)
+    const newValue = Math.min(
+      item.system.track.value + 1,
+      item.system.track.max,
+    )
+
+    item.update({
+      system: {
+        track: {
+          value: newValue,
+        },
+      },
+    })
+  }
+
+  async reduceItemTrack(event) {
+    event.preventDefault()
+
+    const target = event.currentTarget
+    const itemId = target.dataset.itemId
+    const item = this.actor.items.get(itemId)
+    const newValue = Math.max(item.system.track.value - 1, 0)
+
+    item.update({
+      system: {
+        track: {
+          value: newValue,
+        },
+      },
+    })
+  }
+
+  async collapseItem(event) {
+    event.preventDefault()
+    const itemElement = event.currentTarget.closest('.item')
+    const itemId = itemElement.dataset.itemId
+    $(itemElement)
+      .find('.drawer')
+      .slideToggle({
+        done: () => {
+          this.toggleVisibility(itemId)
+        },
+      })
+  }
+
+  toggleVisibility(itemId) {
+    const item = this.actor.items.get(itemId)
+
+    if (item) {
+      const visible = !item.system.collapsed ? false : true
+
+      item.update({
+        system: {
+          collapsed: !visible,
+        },
+      })
     }
   }
 }
