@@ -100,6 +100,7 @@
     },
     "undercrew": {
       "templates": ["hasDetails", "hasTrack"],
+      "stakes": 1,
       "track": { "max": 8 },
       "type": ""
     }
