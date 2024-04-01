@@ -25,7 +25,9 @@ Hooks.once('init', () => {
     types: ['aspect', 'temporaryTrack'],
   })
   Items.registerSheet('wildsea', WildseaResourceSheet, { types: ['resource'] })
-  Items.registerSheet('wildsea', WildseaShipItemSheet, { types: ['undercrew'] })
+  Items.registerSheet('wildsea', WildseaShipItemSheet, {
+    types: ['fitting', 'undercrew'],
+  })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
 

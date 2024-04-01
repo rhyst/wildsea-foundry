@@ -15,7 +15,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
   }
 
   async getData() {
-    const context = super.getData()
+    const context = await super.getData()
     context.edgesList = listToRows(WILDSEA.edges, 3)
     context.skillsList = listToRows(WILDSEA.skills, 2)
     context.languagesList = listToRows(WILDSEA.languages, 2)

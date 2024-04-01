@@ -20,6 +20,7 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/sheets/player/resources.hbs',
     'systems/wildsea/templates/sheets/player/skills.hbs',
     'systems/wildsea/templates/sheets/ship/conditions.hbs',
+    'systems/wildsea/templates/sheets/ship/fittings.hbs',
     'systems/wildsea/templates/sheets/ship/rating.hbs',
     'systems/wildsea/templates/sheets/ship/ratings.hbs',
     'systems/wildsea/templates/sheets/ship/reputations.hbs',

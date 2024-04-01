@@ -14,12 +14,12 @@
 @font-face {
   font-family: 'Merriweather';
   src: url(fonts/Merriweather/Merriweather-Bold.ttf);
-  font-weight: 700;
+  font-weight: 600;
 }
 @font-face {
   font-family: 'Merriweather';
   src: url(fonts/Merriweather/Merriweather-BoldItalic.ttf);
-  font-weight: 700;
+  font-weight: 600;
   font-style: italic;
 }
 a:hover,

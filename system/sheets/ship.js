@@ -15,13 +15,17 @@ export default class WildseaShipSheet extends WildseaActorSheet {
   }
 
   async getData() {
-    const context = super.getData()
+    const context = await super.getData()
 
     context.config = WILDSEA
     context.system = this.actor.system
 
     for (const item of this.actor.items)
       item.system.enrichedDetails = await enrich(item.system.details)
+
+    context.system.fittings = this.actor.itemTypes.fitting.sort((a, b) =>
+      a.sort < b.sort ? -1 : 1,
+    )
 
     context.system.undercrew = this.actor.itemTypes.undercrew.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,

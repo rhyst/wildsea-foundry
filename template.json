@@ -70,7 +70,7 @@
     }
   },
   "Item": {
-    "types": ["aspect", "resource", "temporaryTrack", "undercrew"],
+    "types": ["aspect", "fitting", "resource", "temporaryTrack", "undercrew"],
     "templates": {
       "hasDetails": {
         "details": "",
@@ -88,6 +88,11 @@
     "aspect": {
       "templates": ["hasDetails", "hasTrack"],
       "track": { "max": 8 },
+      "type": ""
+    },
+    "fitting": {
+      "templates": ["hasDetails"],
+      "stakes": 1,
       "type": ""
     },
     "resource": {

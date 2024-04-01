@@ -21,24 +21,7 @@
       </div>
     </div>
     <div class="flexcol spaced">
-      <div id="fittings" class="flex0">
-        <h2 class="corners dark">Fittings</h2>
-
-        <h3 class="corners mid">Motifs/Additions/Rooms</h3>
-        <div class="flexcol item-list spaced">
-          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-        </div>
-
-        <h3 class="corners mid">Armaments</h3>
-        <div class="flexcol item-list spaced">
-          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-        </div>
-
-        <h3 class="corners mid">Outriders</h3>
-        <div class="flexcol item-list spaced">
-          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-        </div>
-      </div>
+      {{> "systems/wildsea/templates/sheets/ship/fittings.hbs"}}
     </div>
     <div class="flexcol spaced">
       {{> "systems/wildsea/templates/sheets/ship/conditions.hbs"}}
