@@ -58,37 +58,29 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
   activateListeners(html) {
     if (this.isEditable) {
       if (this.actor.isOwner) {
-        if (this.actor.type === 'player') {
-          // Item context menu
-          new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
-          new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
+        // Item context menu
+        new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
+        new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
 
-          // collapse aspects and temp tracks
-          html
-            .find('.item .itemContextMenu')
-            .click(this.collapseItem.bind(this))
+        // collapse aspects and temp tracks
+        html.find('.item .itemContextMenu').click(this.collapseItem.bind(this))
 
-          // Item tracks
-          html.find('.item .track').click(this.increaseItemTrack.bind(this))
-          html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
+        // Item tracks
+        html.find('.item .track').click(this.increaseItemTrack.bind(this))
+        html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
 
-          // Mire tracks
-          html.find('.mire .track').click(this.increaseMireTrack.bind(this))
-          html
-            .find('.mire .track')
-            .contextmenu(this.decreaseMireTrack.bind(this))
+        // Mire tracks
+        html.find('.mire .track').click(this.increaseMireTrack.bind(this))
+        html.find('.mire .track').contextmenu(this.decreaseMireTrack.bind(this))
 
-          // other tracks
-          html
-            .find('.list-track .track')
-            .click(this.increaseListTrack.bind(this))
-          html
-            .find('.list-track .track')
-            .contextmenu(this.decreaseListTrack.bind(this))
+        // other tracks
+        html.find('.list-track .track').click(this.increaseListTrack.bind(this))
+        html
+          .find('.list-track .track')
+          .contextmenu(this.decreaseListTrack.bind(this))
 
-          // Add item
-          html.find('.addItem').click(this.addItem.bind(this))
-        }
+        // Add item
+        html.find('.addItem').click(this.addItem.bind(this))
       }
     }
 

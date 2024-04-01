@@ -44,6 +44,9 @@ a:hover,
 .flex0 {
   flex: 0;
 }
+.flex4 {
+  flex: 4;
+}
 .flex {
   display: flex !important;
 }
@@ -221,6 +224,19 @@ form.wildsea {
 .wildsea .black {
   color: #2d2a2b;
 }
+.wildsea .title {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+}
+.wildsea .uppercase {
+  text-transform: uppercase;
+}
+.wildsea .text-lg {
+  font-size: 1.1rem;
+}
+.wildsea .center {
+  text-align: center;
+}
 .wildsea .text-dark {
   color: #2e2c20;
 }
@@ -339,6 +355,9 @@ form.wildsea {
   position: relative;
   margin: 0;
   padding: 0;
+}
+.wildsea ul.track.padded {
+  padding: 0.25rem 0 0;
 }
 .wildsea ul.track li {
   display: block;

@@ -33,6 +33,10 @@ a,
   flex: 0;
 }
 
+.flex4 {
+  flex: 4;
+}
+
 .flex {
   display: flex !important;
 }
@@ -224,6 +228,22 @@ form.wildsea {
     color: @black;
   }
 
+  .title {
+    .title-font();
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .text-lg {
+    font-size: 1.1rem;
+  }
+
+  .center {
+    text-align: center;
+  }
+
   .text-dark {
     color: @dark-bg;
   }
@@ -369,6 +389,10 @@ form.wildsea {
     position: relative;
     margin: 0;
     padding: 0;
+
+    &.padded {
+      padding: 0.25rem 0 0;
+    }
 
     li {
       display: block;

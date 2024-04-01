@@ -6,6 +6,7 @@ import {
 import WildseaAspectSheet from './system/sheets/aspect.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
+import WildseaShipSheet from './system/sheets/ship.js'
 
 Hooks.once('init', () => {
   console.log('wildsea | Initializing')
@@ -16,8 +17,10 @@ Hooks.once('init', () => {
 
   Actors.unregisterSheet('core', ActorSheet)
   Actors.registerSheet('wildsea', WildseaPlayerSheet, {
-    makeDefault: true,
     types: ['player'],
+  })
+  Actors.registerSheet('wildsea', WildseaShipSheet, {
+    types: ['ship'],
   })
 
   Items.unregisterSheet('core', ItemSheet)

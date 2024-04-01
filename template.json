@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["player"],
+    "types": ["player", "ship"],
     "player": {
       "bloodline": "",
       "drives": [],
@@ -50,6 +50,22 @@
         "vault": 0,
         "wavewalk": 0
       }
+    },
+    "ship": {
+      "ratings": {
+        "armour": { "value": 0, "max": 6 },
+        "saws": { "value": 0, "max": 6 },
+        "seals": { "value": 0, "max": 6 },
+        "speed": { "value": 0, "max": 6 },
+        "stealth": { "value": 0, "max": 6 },
+        "tilt": { "value": 0, "max": 6 }
+      },
+      "stakes": { "value": 0, "max": 0 },
+      "reputations": [],
+      "cargoPassengers": [],
+      "rooms": [],
+      "armaments": [],
+      "outriders": []
     }
   },
   "Item": {
