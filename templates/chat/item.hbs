@@ -1,0 +1,20 @@
+<div class="wildsea">
+  <h3>
+    {{name}}
+    {{#if system.type}}
+      <small class="text-light">{{system.type}}</small>
+    {{/if}}
+  </h3>
+  {{#if system.track}}
+    <ul class="track">
+      {{#times system.track.max}}
+        <li class="box {{#if (gte ../system.track.value @index)}}checked{{/if}}">
+          <a class="dot"></a>
+        </li>
+      {{/times}}
+    </ul>
+  {{/if}}
+  {{#if system.details}}
+    {{{system.details}}}
+  {{/if}}
+</div>
