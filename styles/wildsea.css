@@ -29,6 +29,23 @@ a:hover,
 .window-app .window-content {
   background: #f9f9f9;
 }
+.window-app .window-header {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+}
+#logo {
+  content: url(../assets/logo.webp);
+}
+#pause img {
+  content: url(../assets/spinner.webp);
+  opacity: 0.25;
+}
+#pause figcaption {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  font-size: 3rem;
+  text-shadow: 0 1px 6px #2e2c20;
+}
 .flexrow.spaced {
   column-gap: 0.5rem;
 }
@@ -71,10 +88,6 @@ input[type='search']:focus {
 .dialog .dialog-buttons button.default {
   background: #858778;
   color: #f9f9f9;
-}
-.window-app .window-header {
-  font-family: 'Teko', sans-serif;
-  text-transform: uppercase;
 }
 .dialog-content {
   font-family: 'Merriweather', serif;

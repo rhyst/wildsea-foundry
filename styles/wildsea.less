@@ -7,8 +7,31 @@ a,
   }
 }
 
-.window-app .window-content {
-  background: @white;
+.window-app {
+  .window-content {
+    background: @white;
+  }
+
+  .window-header {
+    .title-font();
+  }
+}
+
+#logo {
+  content: url(../assets/logo.webp);
+}
+
+#pause {
+  img {
+    content: url(../assets/spinner.webp);
+    opacity: 0.25;
+  }
+
+  figcaption {
+    .title-font();
+    font-size: 3rem;
+    text-shadow: 0 1px 6px @dark-bg;
+  }
 }
 
 .flexrow {
@@ -64,10 +87,6 @@ input[type='search']:focus {
     background: @light-bg;
     color: @white;
   }
-}
-
-.window-app .window-header {
-  .title-font();
 }
 
 .dialog-content {
