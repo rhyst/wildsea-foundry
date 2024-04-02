@@ -1,5 +1,11 @@
 export const WILDSEA = {}
 WILDSEA.root_path = 'systems/wildsea'
+
+WILDSEA.defaultTokens = {
+  player: `${WILDSEA.root_path}/assets/tokens/person.png`,
+  ship: `${WILDSEA.root_path}/assets/tokens/iron-hulled-warship.png`,
+}
+
 WILDSEA.edgeMax = 1
 WILDSEA.edges = [
   'grace',

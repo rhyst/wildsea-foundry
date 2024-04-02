@@ -3,6 +3,7 @@ import {
   loadHandlebarsHelpers,
   loadHandlebarsPartials,
 } from './system/preload.js'
+import WildseaActor from './system/actor.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
@@ -15,6 +16,9 @@ Hooks.once('init', () => {
   CONFIG.wildsea = WILDSEA
 
   loadHandlebarsPartials()
+
+  // CONFIG.Item.documentClass = WildseaItem
+  CONFIG.Actor.documentClass = WildseaActor
 
   Actors.unregisterSheet('core', ActorSheet)
   Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'] })
