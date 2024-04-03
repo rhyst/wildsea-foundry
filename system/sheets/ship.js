@@ -92,6 +92,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     switch (data.itemType) {
       case 'conditions':
       case 'reputations':
+      case 'cargoPassengers':
         this.addSlimItem(data.itemType)
         break
       case 'fittings':

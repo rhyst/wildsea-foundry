@@ -11,7 +11,7 @@
       {{> "systems/wildsea/templates/sheets/ship/ratings.hbs"}}
 
       <div id="design" class="flex0">
-        <h2 class="corners dark">Design</h2>
+        <h2 class="corners dark">{{localize "wildsea.design"}}</h2>
 
         <div class="flexrow corners">
           <div class="mid padded title uppercase text-lg">{{localize "wildsea.stakes"}}</div>
@@ -31,10 +31,7 @@
     </div>
     <div class="flexcol spaced">
       {{> "systems/wildsea/templates/sheets/ship/reputations.hbs"}}
-      <div id="cargoPassengers" class="flex0">
-        <h2 class="corners dark">Cargo and Passengers</h2>
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-      </div>
+      {{> "systems/wildsea/templates/sheets/ship/cargo.hbs"}}
     </div>
 
   </div>
