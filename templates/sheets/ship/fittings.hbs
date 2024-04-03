@@ -1,5 +1,10 @@
 <div id="fittings" class="flex0">
-  <h2 class="corners dark">Fittings</h2>
+  <h2 class="corners dark">
+    {{localize "wildsea.fittings"}}
+    <a class="addItem" data-item-type="fittings">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h2>
   <div class="flexcol item-list spaced">
     {{#if (any system.fittings)}}
       {{#each system.fittings as |fitting|}}

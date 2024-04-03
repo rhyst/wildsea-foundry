@@ -18,8 +18,13 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     const context = await super.getData()
     context.system = this.actor.system
 
-    for (const item of this.actor.items)
+    context.stakesUsed = 0
+
+    for (const item of this.actor.items) {
       item.system.enrichedDetails = await enrich(item.system.details)
+      if (item.system.stakes)
+        context.stakesUsed += parseInt(item.system.stakes) || 0
+    }
 
     context.system.fittings = this.actor.itemTypes.fitting.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
@@ -89,6 +94,9 @@ export default class WildseaShipSheet extends WildseaActorSheet {
       case 'reputations':
         this.addSlimItem(data.itemType)
         break
+      case 'fittings':
+        this.addFitting()
+        break
       case 'undercrew':
         this.addUndercrew()
         break
@@ -108,6 +116,21 @@ export default class WildseaShipSheet extends WildseaActorSheet {
       type: 'undercrew',
       data: {
         details: game.i18n.localize('wildsea.newUndercrewDetails'),
+        ...defaultData,
+      },
+    }
+
+    this.addEmbeddedDocument(itemData)
+  }
+
+  async addFitting() {
+    const defaultData = {}
+
+    const itemData = {
+      name: game.i18n.localize('wildsea.newFittingName'),
+      type: 'fitting',
+      data: {
+        details: game.i18n.localize('wildsea.newFittingDetail'),
         ...defaultData,
       },
     }

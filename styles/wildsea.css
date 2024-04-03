@@ -464,6 +464,7 @@ form.wildsea {
   border: 0;
   color: #2d2a2b;
   margin: 0 0 0.25rem;
+  text-transform: initial;
 }
 .sheet.journal-entry .journal-entry-content .journal-page-header h1 small,
 .sheet.journal-entry .journal-entry-content .journal-page-content h1 small,
@@ -475,7 +476,6 @@ form.wildsea {
 .sheet.journal-entry .journal-entry-content .journal-page-content h4 small {
   font-size: 0.9em;
   color: #858778;
-  text-transform: initial;
 }
 .sheet.journal-entry .journal-entry-content .journal-page-header h1,
 .sheet.journal-entry .journal-entry-content .journal-page-content h1 {
@@ -522,14 +522,6 @@ form.wildsea {
 }
 .sheet.journal-entry .journal-entry-content .journal-page-content ul li {
   padding-left: 0.5rem;
-}
-.sheet.journal-entry .journal-entry-content .journal-page-content ul li::marker {
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  content: '\e5d6';
-  text-indent: 5px !important;
-  padding-right: 0.25rem;
-  font-size: 0.8rem;
 }
 .sheet.journal-entry .journal-entry-content .journal-page-content ul li p {
   margin: 0;
