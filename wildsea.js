@@ -9,6 +9,7 @@ import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
 import WildseaShipSheet from './system/sheets/ship.js'
 import WildseaShipItemSheet from './system/sheets/ship_item.js'
+import { setupEnrichers } from './system/enrichers.js'
 
 Hooks.once('init', () => {
   console.log('wildsea | Initializing')
@@ -16,6 +17,8 @@ Hooks.once('init', () => {
   CONFIG.wildsea = WILDSEA
 
   loadHandlebarsPartials()
+  loadHandlebarsHelpers()
+  setupEnrichers()
 
   // CONFIG.Item.documentClass = WildseaItem
   CONFIG.Actor.documentClass = WildseaActor
@@ -34,6 +37,4 @@ Hooks.once('init', () => {
   })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
-
-  loadHandlebarsHelpers()
 })

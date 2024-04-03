@@ -16,7 +16,7 @@ WILDSEA.edges = [
   'tides',
   'veils',
 ]
-WILDSEA.languageMax = 1
+WILDSEA.languageMax = 3
 WILDSEA.languages = [
   'lowSour',
   'cthonic',

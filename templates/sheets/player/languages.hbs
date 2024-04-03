@@ -9,7 +9,7 @@
             {{> "systems/wildsea/templates/sheets/player/list_track.hbs"
               name=(localize (concat "wildsea." language))
               value=(byKey @root.system.languages language)
-              max=1
+              max=@root.config.languageMax
               id=language
               type="language"}}
           {{else}}

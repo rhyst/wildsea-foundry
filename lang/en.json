@@ -68,6 +68,8 @@
     "skills": "Skills",
     "speed": "Speed",
     "stakes": "Stakes",
+    "stakesMany": "{stakes} Stakes",
+    "stakesOne": "1 Stake",
     "stealth": "Stealth",
     "study": "Study",
     "submit": "Submit",

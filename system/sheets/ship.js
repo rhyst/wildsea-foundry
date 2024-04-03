@@ -16,8 +16,6 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
   async getData() {
     const context = await super.getData()
-
-    context.config = WILDSEA
     context.system = this.actor.system
 
     for (const item of this.actor.items)

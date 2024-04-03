@@ -3,6 +3,12 @@ import { clamp, generateId } from '../helpers.js'
 import { renderDialog } from '../dialog.js'
 
 export default class WildseaActorSheet extends ActorSheet {
+  async getData() {
+    const context = super.getData()
+    context.config = WILDSEA
+    return context
+  }
+
   activateListeners(html) {
     if (this.isEditable) {
       if (this.actor.isOwner) {
