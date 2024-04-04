@@ -3,6 +3,7 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/shared/aspect.hbs',
     'systems/wildsea/templates/shared/aspects.hbs',
     'systems/wildsea/templates/shared/description.hbs',
+    'systems/wildsea/templates/shared/effects.hbs',
     'systems/wildsea/templates/shared/number_field.hbs',
     'systems/wildsea/templates/shared/select_field.hbs',
     'systems/wildsea/templates/shared/slim_item.hbs',
@@ -43,7 +44,8 @@ export const loadHandlebarsHelpers = () => {
   Handlebars.registerHelper('fieldType', (type = null) => type || 'text')
   Handlebars.registerHelper(
     'any',
-    (array) => (Object.values(array || [])?.length || 0) > 0,
+    (array) =>
+      (array.name ? array.size : Object.values(array || [])?.length || 0) > 0,
   )
   Handlebars.registerHelper('byKey', (array, key) => array[key])
 

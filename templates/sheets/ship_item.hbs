@@ -6,7 +6,11 @@
         <div class="flexcol spaced">
           <input id="name" class="corners" type="text" name="name" value="{{item.name}}" placeholder="{{localize "wildsea.name"}}" />
           <div class="flexrow spaced">
-            {{> "systems/wildsea/templates/shared/text_field.hbs" field="system.type" value=system.type label="wildsea.type"}}
+            {{#if (eq item.type 'design')}}
+              {{> "systems/wildsea/templates/shared/select_field.hbs" field="system.type" value=system.type label="wildsea.type" selectOptions=config.designTypes}}
+            {{else}}
+              {{> "systems/wildsea/templates/shared/text_field.hbs" field="system.type" value=system.type label="wildsea.type"}}
+            {{/if}}
             {{#if hasTrack}}
               {{> "systems/wildsea/templates/shared/number_field.hbs" field="system.track.max" value=system.track.max label="wildsea.track_max" min=0 max=8}}
             {{/if}}
@@ -16,9 +20,11 @@
       </div>
     </div>
 
-    <div id="body">
+    <div id="body" class="flexcol spaced">
       <h3 class="corners mid">{{localize "wildsea.details"}}</h3>
       {{> "systems/wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.details"}}
+
+      {{> "systems/wildsea/templates/shared/effects.hbs"}}
     </div>
   </div>
 </form>

@@ -26,6 +26,10 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         context.stakesUsed += parseInt(item.system.stakes) || 0
     }
 
+    context.system.designs = this.actor.itemTypes.design.sort((a, b) =>
+      a.sort < b.sort ? -1 : 1,
+    )
+
     context.system.fittings = this.actor.itemTypes.fitting.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )

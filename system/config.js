@@ -6,6 +6,8 @@ WILDSEA.defaultTokens = {
   ship: `${WILDSEA.root_path}/assets/tokens/iron-hulled-warship.png`,
 }
 
+WILDSEA.designTypes = ['size', 'frame', 'hull', 'bite', 'engine']
+
 WILDSEA.edgeMax = 1
 WILDSEA.edges = [
   'grace',

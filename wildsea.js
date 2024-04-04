@@ -5,6 +5,7 @@ import {
 } from './system/preload.js'
 import WildseaActor from './system/actor.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
+import WildseaItem from './system/item.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
 import WildseaShipSheet from './system/sheets/ship.js'
@@ -20,8 +21,8 @@ Hooks.once('init', () => {
   loadHandlebarsHelpers()
   setupEnrichers()
 
-  // CONFIG.Item.documentClass = WildseaItem
   CONFIG.Actor.documentClass = WildseaActor
+  CONFIG.Item.documentClass = WildseaItem
 
   Actors.unregisterSheet('core', ActorSheet)
   Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'] })
@@ -33,7 +34,7 @@ Hooks.once('init', () => {
   })
   Items.registerSheet('wildsea', WildseaResourceSheet, { types: ['resource'] })
   Items.registerSheet('wildsea', WildseaShipItemSheet, {
-    types: ['fitting', 'undercrew'],
+    types: ['design', 'fitting', 'undercrew'],
   })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`

@@ -13,9 +13,21 @@
       <div id="design" class="flex0">
         <h2 class="corners dark">{{localize "wildsea.design"}}</h2>
 
-        <div class="flexrow corners">
-          <div class="mid padded title uppercase text-lg">{{localize "wildsea.stakes"}}</div>
-          <div class="center padded text-lg light-transparent">{{stakesUsed}}</div>
+        <div class="flexcol spaced">
+          <div class="flexrow corners">
+            <div class="mid padded title uppercase text-lg">{{localize "wildsea.stakes"}}</div>
+            <div class="center padded text-lg light-transparent">{{stakesUsed}}</div>
+          </div>
+
+          <div id="designs" class="flexcol spaced">
+            {{#if (any system.designs)}}
+              {{#each system.designs as |design|}}
+                {{> "systems/wildsea/templates/shared/aspect.hbs" design id=design.id type="designs"}}
+              {{/each}}
+            {{else}}
+              <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+            {{/if}}
+          </div>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ a,
 
 .flexrow {
   &.spaced {
-    column-gap: 0.5rem;
+    column-gap: 0.25rem;
     &.wide {
       column-gap: 1rem;
     }
@@ -45,7 +45,7 @@ a,
 
 .flexcol.spaced {
   &.spaced {
-    row-gap: 0.5rem;
+    row-gap: 0.25rem;
     &.wide {
       row-gap: 1rem;
     }
@@ -247,6 +247,43 @@ form.wildsea {
     text-transform: initial;
   }
 
+  table {
+    border: none;
+    background: none;
+
+    thead {
+      .corners();
+      .title-font();
+      background: @mid-bg;
+      color: @white;
+      text-shadow: none;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1rem;
+      border-bottom: 0.5rem solid @white;
+
+      th {
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        text-transform: initial;
+        padding: 0.5rem 0.5rem 0;
+        font-weight: 600;
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background: @light-transparent;
+        }
+
+        td {
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+
   .black {
     color: @black;
   }
@@ -265,6 +302,10 @@ form.wildsea {
 
   .center {
     text-align: center;
+  }
+
+  .right {
+    text-align: right;
   }
 
   .text-dark {
