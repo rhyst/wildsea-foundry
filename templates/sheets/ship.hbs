@@ -9,39 +9,24 @@
       </div>
       
       {{> "systems/wildsea/templates/sheets/ship/ratings.hbs"}}
+      {{> "systems/wildsea/templates/sheets/ship/designs.hbs"}}
 
-      <div id="design" class="flex0">
-        <h2 class="corners dark">{{localize "wildsea.design"}}</h2>
-
-        <div class="flexcol spaced">
-          <div class="flexrow corners">
-            <div class="mid padded title uppercase text-lg">{{localize "wildsea.stakes"}}</div>
-            <div class="center padded text-lg light-transparent">{{stakesUsed}}</div>
-          </div>
-
-          <div id="designs" class="flexcol spaced">
-            {{#if (any system.designs)}}
-              {{#each system.designs as |design|}}
-                {{> "systems/wildsea/templates/shared/aspect.hbs" design id=design.id type="designs"}}
-              {{/each}}
-            {{else}}
-              <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-            {{/if}}
-          </div>
-        </div>
-      </div>
     </div>
     <div class="flexcol spaced">
       {{> "systems/wildsea/templates/sheets/ship/fittings.hbs"}}
-    </div>
-    <div class="flexcol spaced">
-      {{> "systems/wildsea/templates/sheets/ship/conditions.hbs"}}
       {{> "systems/wildsea/templates/shared/aspects.hbs"
         aspects=system.undercrew
         title=(localize "wildsea.undercrew")
         type="undercrew"}}
     </div>
     <div class="flexcol spaced">
+      <div class="flex0">
+        <div class="flexrow corners">
+          <div class="mid padded title uppercase text-lg">{{localize "wildsea.stakes"}}</div>
+          <div class="center padded text-lg light-transparent">{{stakesUsed}}</div>
+        </div>
+      </div>
+      {{> "systems/wildsea/templates/sheets/ship/conditions.hbs"}}
       {{> "systems/wildsea/templates/sheets/ship/reputations.hbs"}}
       {{> "systems/wildsea/templates/sheets/ship/cargo.hbs"}}
     </div>

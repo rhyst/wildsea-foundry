@@ -22,6 +22,8 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/sheets/player/skills.hbs',
     'systems/wildsea/templates/sheets/ship/cargo.hbs',
     'systems/wildsea/templates/sheets/ship/conditions.hbs',
+    'systems/wildsea/templates/sheets/ship/design.hbs',
+    'systems/wildsea/templates/sheets/ship/designs.hbs',
     'systems/wildsea/templates/sheets/ship/fittings.hbs',
     'systems/wildsea/templates/sheets/ship/rating.hbs',
     'systems/wildsea/templates/sheets/ship/ratings.hbs',
@@ -47,7 +49,9 @@ export const loadHandlebarsHelpers = () => {
     (array) =>
       (array.name ? array.size : Object.values(array || [])?.length || 0) > 0,
   )
-  Handlebars.registerHelper('byKey', (array, key) => array[key])
+  Handlebars.registerHelper('byKey', (array, key) => {
+    return array[key]
+  })
 
   Handlebars.registerHelper('join', (array, glue) => array.join(glue))
 }

@@ -1,0 +1,18 @@
+<div id="design" class="flex0">
+  <h2 class="corners dark">{{localize "wildsea.design"}}</h2>
+
+  <div id="designs" class="flexcol spaced">
+    {{#each config.designTypes as |designType|}}
+      <h3 class="corners mid">{{localize (concat "wildsea." designType)}}</h3>
+      <div class="bordered">
+        {{#if (any (byKey @root.designs designType))}}
+          {{#each (byKey @root.designs designType) as |design|}}
+            {{> "systems/wildsea/templates/sheets/ship/design.hbs" design id=design.id}}
+          {{/each}}
+        {{else}}
+          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</div>

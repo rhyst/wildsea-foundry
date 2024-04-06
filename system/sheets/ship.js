@@ -26,6 +26,13 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         context.stakesUsed += parseInt(item.system.stakes) || 0
     }
 
+    context.designs = {}
+    for (const designType of WILDSEA.designTypes) {
+      context.designs[designType] = this.actor.itemTypes.design.filter(
+        (d) => d.system.type === designType,
+      )
+    }
+
     context.system.designs = this.actor.itemTypes.design.sort((a, b) =>
       a.sort < b.sort ? -1 : 1,
     )

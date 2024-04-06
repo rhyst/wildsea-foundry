@@ -52,10 +52,10 @@ a:hover,
 .flexrow.spaced.wide {
   column-gap: 1rem;
 }
-.flexcol.spaced.spaced {
+.flexcol.spaced {
   row-gap: 0.25rem;
 }
-.flexcol.spaced.spaced.wide {
+.flexcol.spaced.wide {
   row-gap: 1rem;
 }
 .flex0 {
