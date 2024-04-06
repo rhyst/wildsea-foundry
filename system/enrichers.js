@@ -20,16 +20,16 @@ const enrichItem = async (match) => {
   let html = `@UUID[${uuid}]{${itemName}}`
 
   if (item) {
-    html = `<h3>${itemName}`
-
     const traits = []
     if (item.system.stakes) traits.push(stakesText(item.system.stakes))
     if (item.system.track && item.system.track.max > 0)
       traits.push(trackText(item.system.track))
-    if (item.system.type) traits.push(item.system.type)
+    if (item.system.type) {
+      if (item.type !== 'design') traits.push(item.system.type)
+    }
 
+    html = `<h3>${itemName}`
     if (traits.length > 0) html += ` <small>${traits.join(' ')}</small>`
-
     html += '</h3>'
     if (item.system.details) html += item.system.details
   }

@@ -6,6 +6,7 @@ import {
 import WildseaActor from './system/actor.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
 import WildseaItem from './system/item.js'
+// import WildseaJournalSheet from './system/sheets/journal.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
 import WildseaShipSheet from './system/sheets/ship.js'
@@ -36,6 +37,9 @@ Hooks.once('init', () => {
   Items.registerSheet('wildsea', WildseaShipItemSheet, {
     types: ['design', 'fitting', 'undercrew'],
   })
+
+  // Journal.unregisterSheet('core', JournalSheet)
+  // Journal.registerSheet('dilemma', WildseaJournalSheet, { makeDefault: true })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
 })
