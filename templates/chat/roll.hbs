@@ -1,0 +1,77 @@
+<div class="wildsea">
+  <h3>
+    Roll
+  </h3>
+  <div class="flexcol spaced">
+    <div class="dice-roll">
+      <div class="dice-result">
+        <div class="dice-formula">
+          {{displayFormula}}
+        </div>
+        <div class="dice-tooltip" style="display: none;">
+          <div class="flexcol spaced">
+            {{#if dicePool.edge}}
+              <div class="flexrow spaced">
+                <label class="padded">{{localize "wildsea.edge"}}</label>
+                <div class="padded">{{localize (concat "wildsea." dicePool.edge)}}</div>
+                <div class="center corners light-transparent padded">
+                  +{{dicePool.edgeDice}}d
+                </div>
+              </div>
+            {{/if}}
+
+            {{#if dicePool.skillType}}
+              <div class="flexrow spaced">
+                <label class="padded">{{localize (concat "wildsea." dicePool.skillType)}}</label>
+                <div class="padded">{{localize (concat "wildsea." dicePool.skillKey)}}</div>
+                <div class="center corners light-transparent padded">
+                  +{{dicePool.skillDice}}d
+                </div>
+              </div>
+            {{/if}}
+
+            {{#if (gt dicePool.advantage 0)}}
+              <div class="flexrow spaced">
+                <label class="padded">{{localize "wildsea.advantage"}}</label>
+                <div class="padded"></div>
+                <div class="center corners light-transparent padded">
+                  +{{dicePool.advantage}}d
+                </div>
+              </div>
+            {{/if}}
+            
+            {{#if (gt dicePool.cut 0)}}
+              <div class="flexrow spaced">
+                <label class="padded">{{localize "wildsea.cut"}}</label>
+                <div class="padded"></div>
+                <div class="center corners light-transparent padded">
+                  +{{dicePool.cut}}d
+                </div>
+              </div>
+            {{/if}}
+          </div>
+
+          <hr />
+          
+          <!-- results -->
+          <ol class="dice-rolls">
+            {{#each results as |result|}}
+              <li class="roll die d6{{#if result.cut}} cut{{/if}}{{#if result.max}} max{{/if}}">{{result.result}}</li>
+            {{/each}}
+          </ol>
+        </div>
+        <h4 class="dice-total corners padded">
+          {{total}}
+        </h4>
+        <h3 class="corners dark padded center">
+          {{localize (concat "wildsea." resultText)}}
+        </h3>
+        {{#if twist}}
+        <h4 class="center corners mid padded">
+          {{localize "wildsea.twist"}}
+        </h4>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

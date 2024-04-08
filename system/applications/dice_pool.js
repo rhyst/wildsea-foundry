@@ -82,12 +82,9 @@ export default class WildseaDicePool extends FormApplication {
 
   handleSubmit(event) {
     event.preventDefault()
-    // do the roll
-    this.doRoll()
-
-    // Reset the pool
-    this.dicePool = blankPool
+    this.doRoll({ ...this.dicePool })
     this.close()
+    this.dicePool = blankPool
   }
 
   handleCancel(event) {
@@ -95,36 +92,96 @@ export default class WildseaDicePool extends FormApplication {
     this.close()
   }
 
-  async doRoll() {
-    console.log(this.dicePool)
+  async doRoll(dicePool) {
+    console.log(dicePool)
     const system = this.actor.system
 
-    const edgeDice = system.edges[this.dicePool.edge] || 0
-    const [skillType, skillKey] = this.dicePool.skillLanguage.split('.')
+    const edgeDice = system.edges[dicePool.edge] || 0
+    dicePool.edgeDice = edgeDice
+
+    const [skillType, skillKey] = dicePool.skillLanguage.split('.')
+    dicePool.skillType = skillType.slice(0, -1)
+    dicePool.skillKey = skillKey
+
     const skillDice = system[skillType]?.[skillKey] || 0
-    const advantageDice = parseInt(this.dicePool.advantage)
+    dicePool.skillDice = skillDice
+
+    const advantageDice = parseInt(dicePool.advantage)
 
     const totalDice = edgeDice + skillDice + advantageDice
-    const cutDice = parseInt(this.dicePool.cut)
+    const cutDice = parseInt(dicePool.cut)
 
     if (totalDice - cutDice <= 0) {
       ui.notifications.error('No dice to roll!')
       return
     }
 
-    const formula = `${totalDice}d6`
-
-    console.log(formula)
-
-    const roll = await new Roll(formula).roll({
+    const roll = await new Roll(`${totalDice}d6`).roll({
       async: true,
     })
-    // const renderedRoll = await roll.render()
 
-    console.log(roll.terms[0].results)
+    // sort results
+    const results = roll.terms[0].results
+      .map(({ active, ...keep }) => keep)
+      .sort((a, b) => (a.result < b.result ? -1 : 1))
 
-    //TODO: sort results high->low, discard first [cut] results, keep the next one
-    //TODO: detect doubles
-    //TODO: output chat result
+    const keptResults = cutDice > 0 ? results.slice(0, -cutDice) : results
+    for (const r of keptResults) r.cut = false
+
+    keptResults[keptResults.length - 1].max = true
+    const total = keptResults[keptResults.length - 1].result
+
+    // look for doubles
+    const keptNumbers = keptResults.map((r) => r.result)
+    const twist =
+      keptNumbers.filter((item, index) => keptNumbers.indexOf(item) !== index)
+        .length > 0
+
+    // get the cut results
+    let cutResults = []
+    if (cutDice > 0) {
+      cutResults = results.slice(-cutDice)
+      for (const r of cutResults) r.cut = true
+    }
+
+    let displayFormula = `${totalDice}d`
+    if (cutDice > 0) {
+      displayFormula += ` ${game.i18n.localize('wildsea.cut')} ${cutDice}`
+    }
+
+    let resultText = ''
+    switch (total) {
+      case 6:
+        resultText = 'triumph'
+        break
+      case 5:
+      case 4:
+        resultText = 'conflict'
+        break
+      default:
+        resultText = 'disaster'
+        break
+    }
+
+    const outcome = {
+      dicePool,
+      results: [...keptResults, ...cutResults],
+      twist,
+      total,
+      displayFormula,
+      resultText,
+    }
+
+    console.log(outcome)
+
+    const template = 'systems/wildsea/templates/chat/roll.hbs'
+    const html = await renderTemplate(template, outcome)
+
+    const chatData = {
+      user: game.user._id,
+      speaker: ChatMessage.getSpeaker(),
+      content: html,
+    }
+    ChatMessage.create(chatData)
   }
 }
