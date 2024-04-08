@@ -172,6 +172,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
         this.addSlimItem('milestones', data.itemSubtype)
         break
       case 'mire':
+      case 'mires':
         this.addSlimItem('mires')
         break
       case 'resource':

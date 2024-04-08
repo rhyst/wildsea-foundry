@@ -133,7 +133,7 @@ export default class WildseaActorSheet extends ActorSheet {
         item,
       )
 
-      if (data.cancelled) return
+      if (data.cancelled || !data.text) return
 
       item.text = data.text
 

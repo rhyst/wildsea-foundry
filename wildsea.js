@@ -5,6 +5,7 @@ import {
 } from './system/preload.js'
 import WildseaActor from './system/actor.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
+import WildseaDicePool from './system/applications/dice_pool.js'
 import WildseaItem from './system/item.js'
 // import WildseaJournalSheet from './system/sheets/journal.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
@@ -17,6 +18,7 @@ Hooks.once('init', () => {
   console.log('wildsea | Initializing')
 
   CONFIG.wildsea = WILDSEA
+  game.wildsea = {}
 
   loadHandlebarsPartials()
   loadHandlebarsHelpers()
@@ -42,4 +44,28 @@ Hooks.once('init', () => {
   // Journal.registerSheet('dilemma', WildseaJournalSheet, { makeDefault: true })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
+})
+
+Hooks.on('ready', async () => {
+  game.wildsea.dicePool = new WildseaDicePool()
+})
+
+Hooks.on('renderSceneControls', (_controls, html) => {
+  const dicePoolButton = $(
+    `<li class="dice-pool-control" data-control="dice-pool" data-tooltip="${game.i18n.localize(
+      'wildsea.dicePoolTitle',
+    )}">
+        <i class="fas fa-dice"></i>
+        <ol class="control-tools">
+        </ol>
+    </li>`,
+  )
+
+  html.find('.main-controls').append(dicePoolButton)
+  html
+    .find('.dice-pool-control')
+    .removeClass('control-tool')
+    .on('click', async () => {
+      await game.wildsea.dicePool.toggle()
+    })
 })

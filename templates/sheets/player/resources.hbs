@@ -5,13 +5,13 @@
       <i class="fas fa-plus"></i>
     </a>
   </h2>
-  <div class="flexcol spaced item-list">
-    {{#if (any system.resources)}}
+  {{#if (any system.resources)}}
+    <div class="flexcol spaced item-list">
       {{#each system.resources as |resource|}}
         {{> "systems/wildsea/templates/sheets/player/resource.hbs" resource}}
       {{/each}}
-    {{else}}
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-    {{/if}}
-  </div>
+    </div>
+  {{else}}
+    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+  {{/if}}
 </div>

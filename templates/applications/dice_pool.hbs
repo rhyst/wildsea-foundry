@@ -1,0 +1,68 @@
+<form class="wildsea flexcol spaced">
+  <div class="form-group">
+    <label>{{localize "wildsea.edge"}}</label>
+    <div class="form-fields">
+      <select id="edge" name="edge" class="corners">
+        {{#select edge}}
+          <option value="">{{localize "wildsea.none"}}</option>
+          {{#each edges as |value label|}}
+            <option value="{{label}}" {{#if (eq value 0)}}disabled{{/if}}>{{localize (concat "wildsea." label)}}{{#if (gt value 0)}} (+{{value}}d){{/if}}</option>
+          {{/each}}
+        {{/select}}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "wildsea.skillLanguage"}}</label>
+    <div class="form-fields">
+      <select id="skillLanguage" name="skillLanguage" class="corners">
+        {{#select skillLanguage}}
+          <option value="">{{localize "wildsea.none"}}</option>
+          <optgroup label="{{localize "wildsea.skills"}}">
+            {{#each skills as |value label|}}
+              <option value="skills.{{label}}" {{#if (eq value 0)}}disabled{{/if}}>{{localize (concat "wildsea." label)}}{{#if (gt value 0)}} (+{{value}}d){{/if}}</option>
+            {{/each}}
+          </optgroup>
+          <optgroup label="{{localize "wildsea.languages"}}">
+            {{#each languages as |value label|}}
+              <option value="languages.{{label}}" {{#if (eq value 0)}}disabled{{/if}}>{{localize (concat "wildsea." label)}}{{#if (gt value 0)}} (+{{value}}d){{/if}}</option>
+            {{/each}}
+          </optgroup>
+        {{/select}}
+      </select>
+    </div>
+  </div>
+
+  
+  <div class="form-group">
+    <label>{{localize "wildsea.advantage"}}</label>
+    <div class="form-fields">
+      <select id="advantage" name="advantage" class="corners">
+        {{#select advantage}}
+          <option value="0">0d</option>
+          {{#times 2}}
+            <option value="{{@index}}">{{@index}}d</option>
+          {{/times}}
+        {{/select}}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "wildsea.cut"}}</label>
+    <div class="form-fields">
+      <input id="cut" name="cut" type="number" min="0" placeholder="0" value="{{cut}}" />
+    </div>
+  </div>
+
+  <div class="flexrow spaced">
+    <div class="center">
+      <a class="block corners mid padded submit">Submit</a>
+    </div>
+    
+    <div class="center">
+      <a class="block cancel corners light padded">Cancel</a>
+    </div>
+  </div>
+</form>

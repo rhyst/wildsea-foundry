@@ -169,9 +169,6 @@ input[type='search']:focus {
   border: none;
   box-shadow: none;
 }
-form.wildsea {
-  margin-bottom: 0.5rem;
-}
 .wildsea {
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;
@@ -184,6 +181,9 @@ form.wildsea {
   font-size: 0.9rem;
   text-transform: initial;
   font-weight: 500;
+}
+.wildsea .block {
+  display: block;
 }
 .wildsea .hidden {
   display: none;
