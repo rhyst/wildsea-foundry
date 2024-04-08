@@ -40,9 +40,9 @@
     <div class="form-fields">
       <select id="advantage" name="advantage" class="corners">
         {{#select advantage}}
-          <option value="0">0d</option>
+          <option value="0">+0d</option>
           {{#times 2}}
-            <option value="{{@index}}">{{@index}}d</option>
+            <option value="{{@index}}">+{{@index}}d</option>
           {{/times}}
         {{/select}}
       </select>
