@@ -44,7 +44,7 @@ build:
     - apt-get install zip
 
     # zip whitelist of files to distribute
-    - zip $ZIP_FILE_NAME -r assets lang styles/*.css styles/fonts system templates CHANGELOG.md README.md wildsea.js system.json template.json
+    - zip $ZIP_FILE_NAME -r assets lang styles/*.css styles/fonts system templates CHANGELOG.md LICENSE README.md system.json template.json wildsea.js
   artifacts:
     # include the system json and created zip file as artifacts of the job
     paths:
