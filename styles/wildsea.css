@@ -28,6 +28,8 @@ a:hover,
 }
 .window-app .window-content {
   background: #f9f9f9;
+  font-family: 'Merriweather', serif;
+  font-size: 0.8rem;
 }
 .window-app .window-header {
   font-family: 'Teko', sans-serif;
@@ -73,27 +75,81 @@ a:hover,
 .right {
   text-align: right;
 }
-.dialog .dialog-buttons button {
-  font-family: 'Teko', sans-serif;
-  text-transform: uppercase;
-}
-button:hover,
 button:focus,
 input[type='text']:focus,
 input[type='number']:focus,
 input[type='password']:focus,
 input[type='date']:focus,
 input[type='time']:focus,
-input[type='search']:focus {
+input[type='search']:focus,
+button:hover,
+input[type='text']:hover,
+input[type='number']:hover,
+input[type='password']:hover,
+input[type='date']:hover,
+input[type='time']:hover,
+input[type='search']:hover {
   box-shadow: 0 0 5px #626256;
 }
+button,
+form button,
 .dialog .dialog-buttons button {
-  border: 1px solid #2e2c20 !important;
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  border: none;
+  border-radius: 0;
   background: #e2e2df;
 }
+button.default,
+form button.default,
 .dialog .dialog-buttons button.default {
   background: #858778;
   color: #f9f9f9;
+  border: none;
+}
+form button {
+  background: #858778;
+  color: #f9f9f9;
+}
+form input[type='text'],
+form input[type='number'],
+form input[type='password'],
+form input[type='date'],
+form input[type='time'],
+form input[type='search'],
+form select {
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  background: #e2e2df;
+  border: none;
+  padding: 0 0.5rem;
+}
+form label {
+  font-variant: small-caps;
+}
+.directory .directory-header .header-search input {
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  font-family: 'Merriweather', serif;
+  font-size: 0.8rem;
+  background: #e2e2df;
+  border: none;
+  padding: 0 0.5rem;
+}
+#chat-controls .roll-type-select {
+  font-family: 'Merriweather', serif;
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  font-size: 0.8rem;
+  background: #e2e2df;
+  padding: 0 0.5rem;
+}
+#chat-form textarea {
+  font-family: 'Merriweather', serif;
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  font-size: 0.8rem;
+  background: #f9f9f9;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0;
 }
 .dialog-content {
   font-family: 'Merriweather', serif;

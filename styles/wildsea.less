@@ -10,6 +10,8 @@ a,
 .window-app {
   .window-content {
     background: @white;
+    .body-font();
+    font-size: 0.8rem;
   }
 
   .window-header {
@@ -72,29 +74,84 @@ a,
   text-align: right;
 }
 
+button,
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='date'],
+input[type='time'],
+input[type='search'] {
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 5px @mid-bg;
+  }
+}
+
+button,
+form button,
 .dialog .dialog-buttons button {
   .title-font();
-}
-
-button:hover,
-button:focus,
-input[type='text']:focus,
-input[type='number']:focus,
-input[type='password']:focus,
-input[type='date']:focus,
-input[type='time']:focus,
-input[type='search']:focus {
-  box-shadow: 0 0 5px @mid-bg;
-}
-
-.dialog .dialog-buttons button {
-  border: 1px solid @dark-bg !important;
+  .corners();
+  border: none;
+  border-radius: 0;
   background: @light-transparent;
 
   &.default {
     background: @light-bg;
     color: @white;
+    border: none;
   }
+}
+
+form button {
+  background: @light-bg;
+  color: @white;
+}
+
+form {
+  input[type='text'],
+  input[type='number'],
+  input[type='password'],
+  input[type='date'],
+  input[type='time'],
+  input[type='search'],
+  select {
+    .corners();
+    background: @light-transparent;
+    border: none;
+    padding: 0 0.5rem;
+  }
+
+  label {
+    font-variant: small-caps;
+  }
+}
+
+.directory .directory-header .header-search input {
+  .corners();
+  .body-font();
+  font-size: 0.8rem;
+  background: @light-transparent;
+  border: none;
+  padding: 0 0.5rem;
+}
+
+#chat-controls .roll-type-select {
+  .body-font();
+  .corners();
+  font-size: 0.8rem;
+  background: @light-transparent;
+  padding: 0 0.5rem;
+}
+
+#chat-form textarea {
+  .body-font();
+  .corners();
+  font-size: 0.8rem;
+  background: @white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0;
 }
 
 .dialog-content {
