@@ -5,13 +5,13 @@
       <i class="fas fa-plus"></i>
     </a>
   </h2>
-  <div class="flexcol item-list spaced">
-    {{#if (any system.fittings)}}
+  {{#if (any system.fittings)}}
+    <div class="flexcol item-list spaced">
       {{#each system.fittings as |fitting|}}
         {{> "systems/wildsea/templates/shared/aspect.hbs" fitting id=fitting.id type="fittings"}}
       {{/each}}
-    {{else}}
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-    {{/if}}
-  </div>
+    </div>
+  {{else}}
+    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+  {{/if}}
 </div>

@@ -8,7 +8,7 @@
   {{#if (any system.mires)}}
     <div class="flexcol spaced item-list">
       {{#each system.mires as |mire|}}
-        {{> "systems/wildsea/templates/sheets/player/mire.hbs" mire type=type}}
+        {{> "systems/wildsea/templates/sheets/player/mire.hbs" mire type="mires"}}
       {{/each}}
     </div>
   {{else}}

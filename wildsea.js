@@ -4,6 +4,7 @@ import {
   loadHandlebarsPartials,
 } from './system/preload.js'
 import WildseaActor from './system/actor.js'
+import { addDiceColor } from './system/dice.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
 import WildseaAttributeSheet from './system/sheets/attribute.js'
 import WildseaDicePool from './system/applications/dice_pool.js'
@@ -32,9 +33,7 @@ Hooks.once('init', () => {
   Actors.unregisterSheet('core', ActorSheet)
   Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'] })
   Actors.registerSheet('wildsea', WildseaShipSheet, { types: ['ship'] })
-  Actors.registerSheet('wildsea', WildseaAdversarySheet, {types: ['hazard'] })
-
-	
+  Actors.registerSheet('wildsea', WildseaAdversarySheet, { types: ['hazard'] })
 
   Items.unregisterSheet('core', ItemSheet)
   Items.registerSheet('wildsea', WildseaAspectSheet, {
@@ -44,7 +43,9 @@ Hooks.once('init', () => {
   Items.registerSheet('wildsea', WildseaShipItemSheet, {
     types: ['design', 'fitting', 'undercrew'],
   })
-  Items.registerSheet('wildsea', WildseaAttributeSheet, { types: ['attribute'] })
+  Items.registerSheet('wildsea', WildseaAttributeSheet, {
+    types: ['attribute'],
+  })
 
   // Journal.unregisterSheet('core', JournalSheet)
   // Journal.registerSheet('dilemma', WildseaJournalSheet, { makeDefault: true })
@@ -74,4 +75,14 @@ Hooks.on('renderSceneControls', (_controls, html) => {
     .on('click', async () => {
       await game.wildsea.dicePool.toggle()
     })
+})
+
+Hooks.once('diceSoNiceReady', (dice3d) => {
+  const dark = '#2e2c20'
+  const mid = '#626256'
+  const light = '#858778'
+
+  addDiceColor(dice3d, 'wildsea-dark', 'Dark', dark)
+  addDiceColor(dice3d, 'wildsea-mid', 'Mid', mid)
+  addDiceColor(dice3d, 'wildsea-light', 'Light', light)
 })

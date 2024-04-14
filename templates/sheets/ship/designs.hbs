@@ -3,14 +3,19 @@
 
   <div id="designs" class="flexcol spaced">
     {{#each config.designTypes as |designType|}}
-      <h3 class="corners mid">{{localize (concat "wildsea." designType)}}</h3>
+      <h3 class="corners mid">
+        {{localize (concat "wildsea." designType)}}
+        <a class="addItem" data-item-type="design" data-item-subtype="{{designType}}">
+          <i class="fas fa-plus"></i>
+        </a>
+      </h3>
       <div class="bordered">
         {{#if (any (byKey @root.designs designType))}}
           {{#each (byKey @root.designs designType) as |design|}}
             {{> "systems/wildsea/templates/sheets/ship/design.hbs" design id=design.id}}
           {{/each}}
         {{else}}
-          <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+          <p class="center">{{localize "wildsea.none"}}</p>
         {{/if}}
       </div>
     {{/each}}

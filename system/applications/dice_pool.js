@@ -1,7 +1,7 @@
 import { WILDSEA } from '../config.js'
+import * as Dice from '../dice.js'
 
 const blankPool = {
-  uuid: null,
   edge: '',
   skillLanguage: '',
   advantage: 0,
@@ -9,11 +9,9 @@ const blankPool = {
 }
 
 export default class WildseaDicePool extends FormApplication {
-  constructor(uuid = null) {
+  constructor() {
     super()
-
-    this.dicePool = blankPool
-    this.dicePool.uuid = uuid || game.user.character?.uuid || null
+    this.dicePool = { ...blankPool }
   }
 
   static get defaultOptions() {
@@ -21,7 +19,6 @@ export default class WildseaDicePool extends FormApplication {
       id: 'user-dice-pool',
       template: 'systems/wildsea/templates/applications/dice_pool.hbs',
       title: game.i18n.localize('wildsea.dicePoolTitle'),
-      // classes: ['wildsea', 'user-dice-pool'],
       width: 400,
       height: 'auto',
       resizable: false,
@@ -35,8 +32,9 @@ export default class WildseaDicePool extends FormApplication {
     const context = { ...this.dicePool }
     context.config = WILDSEA
 
-    // Actor
-    this.actor = this.dicePool.uuid ? await fromUuid(this.dicePool.uuid) : null
+    this.actor = game.user.character?.uuid
+      ? await fromUuid(game.user.character?.uuid)
+      : null
 
     if (!this.actor) {
       const error = game.i18n.localize('wildsea.userNotFound')
@@ -84,7 +82,7 @@ export default class WildseaDicePool extends FormApplication {
     event.preventDefault()
     this.doRoll({ ...this.dicePool })
     this.close()
-    this.dicePool = blankPool
+    this.dicePool = { ...blankPool }
   }
 
   handleCancel(event) {
@@ -93,95 +91,43 @@ export default class WildseaDicePool extends FormApplication {
   }
 
   async doRoll(dicePool) {
-    console.log(dicePool)
     const system = this.actor.system
 
-    const edgeDice = system.edges[dicePool.edge] || 0
-    dicePool.edgeDice = edgeDice
-
+    dicePool.edgeDice = system.edges[dicePool.edge] || 0
     const [skillType, skillKey] = dicePool.skillLanguage.split('.')
     dicePool.skillType = skillType.slice(0, -1)
     dicePool.skillKey = skillKey
+    dicePool.skillDice = system[skillType]?.[skillKey] || 0
+    dicePool.advantageDice = parseInt(dicePool.advantage)
 
-    const skillDice = system[skillType]?.[skillKey] || 0
-    dicePool.skillDice = skillDice
-
-    const advantageDice = parseInt(dicePool.advantage)
-
-    const totalDice = edgeDice + skillDice + advantageDice
-    const cutDice = parseInt(dicePool.cut)
-
-    if (totalDice - cutDice <= 0) {
-      ui.notifications.error('No dice to roll!')
-      return
-    }
-
-    const roll = await new Roll(`${totalDice}d6`).roll({
-      async: true,
-    })
-
-    // sort results
-    const results = roll.terms[0].results
-      .map(({ active, ...keep }) => keep)
-      .sort((a, b) => (a.result < b.result ? -1 : 1))
-
-    const keptResults = cutDice > 0 ? results.slice(0, -cutDice) : results
-    for (const r of keptResults) r.cut = false
-
-    keptResults[keptResults.length - 1].max = true
-    const total = keptResults[keptResults.length - 1].result
-
-    // look for doubles
-    const keptNumbers = keptResults.map((r) => r.result)
-    const twist =
-      keptNumbers.filter((item, index) => keptNumbers.indexOf(item) !== index)
-        .length > 0
-
-    // get the cut results
-    let cutResults = []
-    if (cutDice > 0) {
-      cutResults = results.slice(-cutDice)
-      for (const r of cutResults) r.cut = true
-    }
-
-    let displayFormula = `${totalDice}d`
-    if (cutDice > 0) {
-      displayFormula += ` ${game.i18n.localize('wildsea.cut')} ${cutDice}`
-    }
-
-    let resultText = ''
-    switch (total) {
-      case 6:
-        resultText = 'triumph'
-        break
-      case 5:
-      case 4:
-        resultText = 'conflict'
-        break
-      default:
-        resultText = 'disaster'
-        break
-    }
-
-    const outcome = {
-      dicePool,
-      results: [...keptResults, ...cutResults],
-      twist,
-      total,
-      displayFormula,
-      resultText,
-    }
-
-    console.log(outcome)
-
-    const template = 'systems/wildsea/templates/chat/roll.hbs'
-    const html = await renderTemplate(template, outcome)
+    const [roll, outcome] = await Dice.rollPool(dicePool)
 
     const chatData = {
       user: game.user._id,
       speaker: ChatMessage.getSpeaker(),
-      content: html,
+      content: await renderTemplate(
+        'systems/wildsea/templates/chat/roll.hbs',
+        outcome,
+      ),
+      roll,
+      sound: CONFIG.sounds.dice,
+      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     }
     ChatMessage.create(chatData)
+  }
+
+  async setEdge(edge) {
+    this.dicePool.edge = edge
+    this.render(true)
+  }
+
+  async setSkill(skill) {
+    this.dicePool.skillLanguage = `skills.${skill}`
+    this.render(true)
+  }
+
+  async setLanguage(language) {
+    this.dicePool.skillLanguage = `languages.${language}`
+    this.render(true)
   }
 }

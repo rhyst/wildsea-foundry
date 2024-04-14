@@ -108,6 +108,13 @@ form button.default,
   color: #f9f9f9;
   border: none;
 }
+.prosemirror menu button {
+  clip-path: none;
+  color: #2d2a2b;
+}
+.tox button {
+  clip-path: none;
+}
 form button {
   background: #858778;
   color: #f9f9f9;
@@ -452,7 +459,10 @@ form label {
   background: #e2e2df;
 }
 .wildsea .padded {
-  padding: 0.5rem;
+  padding: 0.5rem !important;
+}
+.wildsea .no-margin {
+  margin: 0 !important;
 }
 .wildsea .list-track {
   margin-bottom: 0.25rem;
@@ -531,7 +541,7 @@ form label {
   margin: 0.5rem;
 }
 .wildsea .drawer {
-  margin-top: 0.5rem;
+  margin: 0;
 }
 .wildsea .drawer p {
   margin-top: 0;
