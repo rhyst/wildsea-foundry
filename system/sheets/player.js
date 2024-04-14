@@ -70,6 +70,9 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
 
         // Add item
         html.find('.addItem').click(this.addItem.bind(this))
+
+        // rollable links
+        html.find('.roll').click(this.updateRoll.bind(this))
       }
     }
 
@@ -243,5 +246,23 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     event.preventDefault()
     const itemId = event.currentTarget.dataset.itemId
     this.adjustSlimTrack(itemId, 'mires', -1)
+  }
+
+  async updateRoll(event) {
+    event.preventDefault()
+    const data = event.currentTarget.dataset
+    const dicePool = game.wildsea.dicePool
+
+    switch (data.type) {
+      case 'edge':
+        dicePool.setEdge(data.value)
+        break
+      case 'skill':
+        dicePool.setSkill(data.value)
+        break
+      case 'language':
+        dicePool.setLanguage(data.value)
+        break
+    }
   }
 }

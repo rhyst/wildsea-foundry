@@ -72,10 +72,10 @@ WILDSEA.slimDefaults = {
 }
 
 WILDSEA.adversarySizes = {
-  'small': 'wildsea.small',
-  'medium': 'wildsea.medium',
-  'large': 'wildsea.large',
-  'huge': 'wildsea.huge',
-  'variable': 'wildsea.variable',
-  'swarm': 'wildsea.swarm'
+  small: 'wildsea.small',
+  medium: 'wildsea.medium',
+  large: 'wildsea.large',
+  huge: 'wildsea.huge',
+  variable: 'wildsea.variable',
+  swarm: 'wildsea.swarm',
 }

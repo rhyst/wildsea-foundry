@@ -101,10 +101,13 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     const data = target.dataset
 
     switch (data.itemType) {
+      case 'cargoPassengers':
       case 'conditions':
       case 'reputations':
-      case 'cargoPassengers':
         this.addSlimItem(data.itemType)
+        break
+      case 'design':
+        this.addDesign(data.itemSubtype)
         break
       case 'fittings':
         this.addFitting()
@@ -120,33 +123,36 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     }
   }
 
-  async addUndercrew() {
-    const defaultData = {}
-
-    const itemData = {
-      name: game.i18n.localize('wildsea.newUndercrewName'),
-      type: 'undercrew',
+  async addDesign(subtype) {
+    this.addEmbeddedDocument({
+      name: game.i18n.format('wildsea.newDesignName', {
+        subtype: game.i18n.localize(`wildsea.${subtype}`),
+      }),
+      type: 'design',
       data: {
-        details: game.i18n.localize('wildsea.newUndercrewDetails'),
-        ...defaultData,
+        details: game.i18n.localize('wildsea.newDesignDetails'),
+        type: subtype,
       },
-    }
-
-    this.addEmbeddedDocument(itemData)
+    })
   }
 
   async addFitting() {
-    const defaultData = {}
-
-    const itemData = {
+    this.addEmbeddedDocument({
       name: game.i18n.localize('wildsea.newFittingName'),
       type: 'fitting',
       data: {
         details: game.i18n.localize('wildsea.newFittingDetail'),
-        ...defaultData,
       },
-    }
+    })
+  }
 
-    this.addEmbeddedDocument(itemData)
+  async addUndercrew() {
+    this.addEmbeddedDocument({
+      name: game.i18n.localize('wildsea.newUndercrewName'),
+      type: 'undercrew',
+      data: {
+        details: game.i18n.localize('wildsea.newUndercrewDetails'),
+      },
+    })
   }
 }

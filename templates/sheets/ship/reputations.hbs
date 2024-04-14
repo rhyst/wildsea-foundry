@@ -5,13 +5,13 @@
       <i class="fas fa-plus"></i>
     </a>
   </h2>
-  <div class="flexcol spaced">
-    {{#if (any system.reputations)}}
+  {{#if (any system.reputations)}}
+    <div class="flexcol spaced">
       {{#each system.reputations as |reputation|}}
         {{> "systems/wildsea/templates/sheets/player/mire.hbs" reputation type="reputations"}}
       {{/each}}
-    {{else}}
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
-    {{/if}}
-  </div>
+    </div>
+  {{else}}
+    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+  {{/if}}
 </div>

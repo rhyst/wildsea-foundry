@@ -5,9 +5,9 @@
   <div class="flexcol spaced">
     <div class="dice-roll">
       <div class="dice-result">
-        <div class="dice-formula">
+        <h4 class="corners dice-formula">
           {{displayFormula}}
-        </div>
+        </h4>
         <div class="dice-tooltip" style="display: none;">
           <div class="flexcol spaced">
             {{#if dicePool.edge}}
@@ -60,7 +60,7 @@
             {{/each}}
           </ol>
         </div>
-        <h4 class="dice-total corners padded">
+        <h4 class="corners dice-total">
           {{total}}
         </h4>
         <h3 class="corners dark padded center">
