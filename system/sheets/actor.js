@@ -24,6 +24,7 @@ export default class WildseaActorSheet extends ActorSheet {
         html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
       }
     }
+    super.activateListeners(html)
   }
 
   itemContextMenu = [
@@ -109,8 +110,14 @@ export default class WildseaActorSheet extends ActorSheet {
 
     if (itemSubtype) slimData['subtype'] = itemSubtype
 
-    const items = [...this.actor.system[itemType]]
-    items.push(slimData)
+    let items = []
+
+    if(this.actor.system[itemType] != null) {
+      items = [...this.actor.system[itemType]]
+      items.push(slimData)
+    } else {
+      items.push(slimData)
+    }
 
     this.actor.update({
       system: {

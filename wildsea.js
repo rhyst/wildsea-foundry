@@ -5,6 +5,7 @@ import {
 } from './system/preload.js'
 import WildseaActor from './system/actor.js'
 import WildseaAspectSheet from './system/sheets/aspect.js'
+import WildseaAttributeSheet from './system/sheets/attribute.js'
 import WildseaDicePool from './system/applications/dice_pool.js'
 import WildseaItem from './system/item.js'
 // import WildseaJournalSheet from './system/sheets/journal.js'
@@ -12,6 +13,7 @@ import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
 import WildseaShipSheet from './system/sheets/ship.js'
 import WildseaShipItemSheet from './system/sheets/ship_item.js'
+import WildseaAdversarySheet from './system/sheets/adversary.js'
 import { setupEnrichers } from './system/enrichers.js'
 
 Hooks.once('init', () => {
@@ -30,6 +32,9 @@ Hooks.once('init', () => {
   Actors.unregisterSheet('core', ActorSheet)
   Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'] })
   Actors.registerSheet('wildsea', WildseaShipSheet, { types: ['ship'] })
+  Actors.registerSheet('wildsea', WildseaAdversarySheet, {types: ['hazard'] })
+
+	
 
   Items.unregisterSheet('core', ItemSheet)
   Items.registerSheet('wildsea', WildseaAspectSheet, {
@@ -39,6 +44,7 @@ Hooks.once('init', () => {
   Items.registerSheet('wildsea', WildseaShipItemSheet, {
     types: ['design', 'fitting', 'undercrew'],
   })
+  Items.registerSheet('wildsea', WildseaAttributeSheet, { types: ['attribute'] })
 
   // Journal.unregisterSheet('core', JournalSheet)
   // Journal.registerSheet('dilemma', WildseaJournalSheet, { makeDefault: true })

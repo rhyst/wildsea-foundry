@@ -1,0 +1,49 @@
+<div id="presence" class="flex0">
+  <h2 class="corners dark">
+    {{localize "wildsea.presence"}}
+  </h2>
+  <div>
+    <h3 class="corners mid">
+      {{localize "wildsea.sight"}}
+      <a class="addItem" data-item-type="sight">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h3>
+    {{#each system.sight as |sight|}}
+      {{> "systems/wildsea/templates/shared/slim_item.hbs" sight type="sight"}}
+    {{/each}}
+  </div>
+  <div>
+    <h3 class="corners mid">
+      {{localize "wildsea.sound"}}
+      <a class="addItem" data-item-type="sound">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h3>
+    {{#each system.sound as |sound|}}
+      {{> "systems/wildsea/templates/shared/slim_item.hbs" sound type="sound"}}
+    {{/each}}
+  </div>
+  <div>
+    <h3 class="corners mid">
+      {{localize "wildsea.smell"}}
+      <a class="addItem" data-item-type="smell">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h3>
+    {{#each system.smell as |smell|}}
+      {{> "systems/wildsea/templates/shared/slim_item.hbs" smell type="smell"}}
+    {{/each}}
+  </div>
+  <div>
+    <h3 class="corners mid">
+      {{localize "wildsea.taste"}}
+      <a class="addItem" data-item-type="taste">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h3>
+    {{#each system.taste as |taste|}}
+      {{> "systems/wildsea/templates/shared/slim_item.hbs" taste type="taste"}}
+    {{/each}}
+  </div>
+</div>
