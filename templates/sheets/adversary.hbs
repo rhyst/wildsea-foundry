@@ -1,0 +1,33 @@
+<form class="wildsea">
+  <div class="flexrow spaced">
+    <div class="flexcol spaced">
+      <div class="flex flex0 flexrow spaced">
+        <div class="flex0 img"><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
+        <div>
+          <input id="name" class="corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
+        </div>
+      </div>
+      <div class="flex flex0 flexrow spaced">
+        <input id="type" class="corners" type="text" name="system.type" value="{{system.type}}" placeholder="{{localize "wildsea.type"}}" />
+      </div>
+      {{!-- We want the size and descriptors here. Dropdown for size, descriptors input. --}}
+      <div class="flex flex0 flexrow">
+        <select name="system.size" class="flex0 corners">
+          {{selectOptions config.adversarySizes selected=system.size localize=true}}
+        </select>
+        <div>
+          <input id="traits" class="corners" type="text" name="system.traits" value="{{system.traits}}" placeholder="{{localize "wildsea.traits"}}"/>
+        </div>
+      </div>
+      {{> "systems/wildsea/templates/sheets/adversary/drives.hbs"}}
+      {{> "systems/wildsea/templates/sheets/adversary/presence.hbs"}}
+      {{> "systems/wildsea/templates/sheets/adversary/resources.hbs"}}
+    </div>
+    <div class="flexcol spaced">
+      {{> "systems/wildsea/templates/sheets/adversary/aspects.hbs"}}
+      {{> "systems/wildsea/templates/sheets/adversary/quirks.hbs"}}
+      <h2 class="corners dark flex0">{{localize "wildsea.description"}}</h2>
+      {{> "systems/wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.description"}}
+    </div>
+  </div>
+</form>

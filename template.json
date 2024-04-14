@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["player", "ship"],
+    "types": ["player", "ship", "hazard"],
     "player": {
       "bloodline": "",
       "drives": [],
@@ -67,10 +67,16 @@
       "reputations": [],
       "rooms": [],
       "stakes": { "value": 0, "max": 0 }
+    },
+    "hazard": {
+      "type": "",
+      "size": "",
+      "traits": "",
+      "description": ""
     }
   },
   "Item": {
-    "types": ["aspect", "design", "fitting", "resource", "temporaryTrack", "undercrew"],
+    "types": ["aspect", "attribute", "design", "fitting", "resource", "temporaryTrack", "undercrew"],
     "templates": {
       "hasDetails": {
         "details": "",
@@ -113,6 +119,10 @@
       "templates": ["hasDetails", "hasTrack"],
       "stakes": 1,
       "track": { "max": 8 },
+      "type": ""
+    },
+    "attribute": {
+      "templates": ["hasDetails"],
       "type": ""
     }
   }

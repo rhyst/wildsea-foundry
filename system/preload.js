@@ -2,6 +2,7 @@ export const loadHandlebarsPartials = () => {
   const partials = [
     'systems/wildsea/templates/shared/aspect.hbs',
     'systems/wildsea/templates/shared/aspects.hbs',
+    'systems/wildsea/templates/shared/attribute.hbs',
     'systems/wildsea/templates/shared/description.hbs',
     'systems/wildsea/templates/shared/effects.hbs',
     'systems/wildsea/templates/shared/number_field.hbs',
@@ -28,6 +29,12 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/sheets/ship/rating.hbs',
     'systems/wildsea/templates/sheets/ship/ratings.hbs',
     'systems/wildsea/templates/sheets/ship/reputations.hbs',
+    'systems/wildsea/templates/sheets/adversary/drives.hbs',
+    'systems/wildsea/templates/sheets/adversary/aspects.hbs',
+    'systems/wildsea/templates/sheets/adversary/presence.hbs',
+    'systems/wildsea/templates/sheets/adversary/quirks.hbs',
+    'systems/wildsea/templates/sheets/adversary/resource.hbs',
+    'systems/wildsea/templates/sheets/adversary/resources.hbs',
   ]
 
   return loadTemplates(partials)

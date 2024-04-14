@@ -1,0 +1,17 @@
+<div id="quirks" class="flex0">
+  <h2 class="corners dark">
+    {{localize "wildsea.quirks"}}
+    <a class="addItem" data-item-type="quirk">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h2>
+    {{#if (any quirks)}}
+      <div class = "flexcol item-list spaced">
+        {{#each quirks as |quirk|}}
+          {{> "systems/wildsea/templates/shared/attribute.hbs" quirk id=quirk.id}}
+        {{/each}}
+      </div>
+    {{else}}
+      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+    {{/if}}
+</div>
