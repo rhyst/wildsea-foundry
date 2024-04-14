@@ -7,8 +7,12 @@
     {
       "name": "demondownload",
       "url": "https://dice.camp/@aniki21",
-      "discord": "demondownload#5359",
+      "discord": "demondownload",
       "ko-fi": "demondownload"
+    },
+    {
+      "name": "Max Schreifels",
+      "discord": "ShadowyXP"
     }
   ],
   "version": "0.0.2",
