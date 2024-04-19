@@ -69,29 +69,52 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
     switch (itemType) {
       case 'rating':
-        await this.adjustRating(itemId, change)
+        await this.adjustRating(itemId, change, event.shiftKey)
         break
       case 'reputations':
-        await this.adjustSlimTrack(itemId, itemType, change)
+        await this.adjustSlimTrack(itemId, itemType, event.shiftKey, change)
         break
       default:
         break
     }
   }
 
-  async adjustRating(rating, change = 1) {
-    const currentValue = this.actor.system.ratings[rating]?.value || 0
+  async adjustRating(rating, change = 1, isBurn) {
     const ratingMax = this.actor.system.ratings[rating]?.max || 6
+    const marks = this.actor.system.ratings[rating]?.value
+    const burns = this.actor.system.ratings[rating]?.burn
 
-    this.actor.update({
+
+    let update = {
       system: {
         ratings: {
           [rating]: {
-            value: clamp(currentValue + change, ratingMax),
+            'value': marks,
+            'burn': burns,
           },
         },
       },
-    })
+    }
+
+    if (isBurn) {
+      const newBurn = clamp(
+        burns + change,
+        ratingMax,
+      )
+      update.system.ratings[rating].burn = newBurn
+      if (marks <= burns) {
+        update.system.ratings[rating].value = newBurn
+      }
+    } else {
+      const newValue = clamp(
+        marks + change,
+        ratingMax,
+        burns
+      )
+      update.system.ratings[rating].value = newValue
+    }
+
+    this.actor.update({...update})
   }
 
   async addItem(event) {

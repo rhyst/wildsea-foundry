@@ -1,9 +1,10 @@
 {{#if (gt max 0)}}
-<ul class="track {{cssClass}}" data-item-id="{{id}}" data-item-type="{{type}}">
-  {{#times max}}
-    <li class="box {{#if (gte ../value @index)}}checked{{/if}}">
-      <a class="dot" data-index="{{@index}}"></a>
-    </li>
-  {{/times}}
-</ul>
+<a data-tooltip='Click: Update Marks, Shift Click: Update Burn'>
+  <ul class="track {{cssClass}}" data-item-id="{{id}}" data-item-type="{{type}}">
+    {{#times max}}
+      {{#trackCell @index ../value ../burn}}
+      {{/trackCell}}
+    {{/times}}
+  </ul>
+</a>
 {{/if}}

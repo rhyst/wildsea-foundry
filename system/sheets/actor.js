@@ -4,6 +4,7 @@ import { renderDialog } from '../dialog.js'
 
 export default class WildseaActorSheet extends ActorSheet {
   async getData() {
+
     const context = super.getData()
     context.config = WILDSEA
     return context
@@ -157,15 +158,33 @@ export default class WildseaActorSheet extends ActorSheet {
     return { text: form.text.value.trim() }
   }
 
-  async adjustSlimTrack(itemId, itemType, value = 1) {
+  async adjustSlimTrack(itemId, itemType, isBurn, value = 1) {
     const items = [...this.actor.system[itemType]]
     const item = items.filter((i) => i.id === itemId)[0]
 
     if (item) {
-      const currentValue = item.track.value
-      const newValue = clamp(currentValue + value, item.track.max)
 
-      item.track.value = newValue
+      const marks = item.track.value
+      const burns = item.track.burn 
+      const max = item.track.max
+
+      if (isBurn) {
+        const newBurn = clamp(
+          burns + value,
+          max
+        )
+        item.track.burn = newBurn
+
+        if (marks <= burns) {
+          item.track.value = newBurn
+        }
+      } else {
+        const newValue = clamp(marks + value,
+          max,
+          burns
+        )
+        item.track.value = newValue
+      }
 
       this.actor.update({
         system: {
@@ -223,18 +242,9 @@ export default class WildseaActorSheet extends ActorSheet {
     const target = event.currentTarget
     const itemId = target.dataset.itemId
     const item = this.actor.items.get(itemId)
-    const newValue = Math.min(
-      item.system.track.value + 1,
-      item.system.track.max,
-    )
+    
+    this.itemTrackUpdate(item, 1, event.shiftKey)
 
-    item.update({
-      system: {
-        track: {
-          value: newValue,
-        },
-      },
-    })
   }
 
   async reduceItemTrack(event) {
@@ -243,15 +253,46 @@ export default class WildseaActorSheet extends ActorSheet {
     const target = event.currentTarget
     const itemId = target.dataset.itemId
     const item = this.actor.items.get(itemId)
-    const newValue = Math.max(item.system.track.value - 1, 0)
 
-    item.update({
+    this.itemTrackUpdate(item, -1, event.shiftKey)
+
+  }
+
+  //updateValue is positive for add, negative for subtract.
+  async itemTrackUpdate(item, updateValue, isBurn) {
+
+    const marks = item.system.track.value
+    const burns = item.system.track.burn 
+    const max = item.system.track.max
+
+    let update = {
       system: {
         track: {
-          value: newValue,
+          'value': marks,
+          'burn': burns,
         },
       },
-    })
+    }
+
+    if (isBurn) {
+      const newBurn = clamp(
+        burns + updateValue,
+        max,
+      )
+
+      update.system.track.burn = newBurn
+      if (marks <= burns) {
+        update.system.track.value = newBurn
+      }
+    } else {
+      const newValue = clamp(
+        marks + updateValue,
+        max,
+        burns
+      )
+      update.system.track.value = newValue
+    }
+    item.update({...update})
   }
 
   async collapseItem(event) {

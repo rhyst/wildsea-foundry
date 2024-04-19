@@ -51,6 +51,20 @@ Hooks.once('init', () => {
   // Journal.registerSheet('dilemma', WildseaJournalSheet, { makeDefault: true })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
+  
+  // Returns a track cell which is either marked, burned, or empty based on the information provided.
+  Handlebars.registerHelper("trackCell", function (index, marks, burns) {
+
+    let css_class = ''
+
+    if (index <= burns) {
+      css_class = 'burned'
+    } else if (index <= marks) {
+      css_class = 'checked'
+    }
+    //class can be empty for an empty cell
+    return `<li class="box ${css_class}"><span class="dot" data-index=${index}"></span></li>`
+  });
 })
 
 Hooks.on('ready', async () => {

@@ -1,24 +1,24 @@
 @font-face {
   font-family: 'Teko';
-  src: url(fonts/Teko/Teko-VariableFont_wght.ttf);
+  src: url(./fonts/Teko/Teko-VariableFont_wght.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Regular.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Regular.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Italic.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Italic.ttf);
   font-style: italic;
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Bold.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Bold.ttf);
   font-weight: 600;
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-BoldItalic.ttf);
+  src: url(./fonts/Merriweather/Merriweather-BoldItalic.ttf);
   font-weight: 600;
   font-style: italic;
 }
@@ -489,20 +489,11 @@ form label {
   border: 1px solid #626256;
   position: relative;
 }
-.wildsea ul.track li .dot {
-  position: absolute;
-  background: #f9f9f9;
-  width: calc(100% - 3px);
-  height: calc(100% - 3px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 0.5px solid #626256;
-  border-radius: 50%;
-  display: block;
+.wildsea ul.track li.checked {
+  background: linear-gradient(to top left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) calc(50% - 2px), #000000 50%, rgba(0, 0, 0, 0) calc(50% + 2px), rgba(0, 0, 0, 0) 100%);
 }
-.wildsea ul.track li.checked .dot {
-  background: #626256;
+.wildsea ul.track li.burned {
+  background: linear-gradient(to top left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) calc(50% - 2px), #000000 50%, rgba(0, 0, 0, 0) calc(50% + 2px), rgba(0, 0, 0, 0) 100%), linear-gradient(to top right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) calc(50% - 2px), #000000 50%, rgba(0, 0, 0, 0) calc(50% + 2px), rgba(0, 0, 0, 0) 100%);
 }
 .wildsea .mire {
   border-radius: 0 2rem 2rem 0;

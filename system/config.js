@@ -61,6 +61,7 @@ WILDSEA.slimDefaults = {
     track: {
       max: 2,
       value: 0,
+      burn: 0,
     },
   },
   reputations: {
