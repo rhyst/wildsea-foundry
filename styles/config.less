@@ -64,5 +64,12 @@
   );
 }
 
+@slash: linear-gradient(to top left, @mark-line);
+
+@backslash: linear-gradient(to top right, @mark-line);
+
 @dot: 1rem;
 @editor-height: 8rem;
+
+@mark-line: transparent 0%, transparent calc(50% - 2px), @black 50%,
+  transparent calc(50% + 2px), transparent 100%;
