@@ -277,6 +277,11 @@ form {
     margin: 0 0 1rem;
   }
 
+  .rating {
+    padding: 0.25rem 0 0 0.5rem;
+    height: 2rem;
+  }
+
   .body-font();
   font-size: 0.8rem;
   background: @white;
@@ -545,31 +550,12 @@ form {
       border: 1px solid @mid-bg;
       position: relative;
 
-
       &.checked {
-        background:
-          linear-gradient(to top left,
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,0) calc(50% - 2px),
-            rgba(0,0,0,1) 50%,
-            rgba(0,0,0,0) calc(50% + 2px),
-            rgba(0,0,0,0) 100%);
+        background: @slash;
       }
 
       &.burned {
-        background:
-          linear-gradient(to top left,
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,0) calc(50% - 2px),
-            rgba(0,0,0,1) 50%,
-            rgba(0,0,0,0) calc(50% + 2px),
-            rgba(0,0,0,0) 100%),
-          linear-gradient(to top right,
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,0) calc(50% - 2px),
-            rgba(0,0,0,1) 50%,
-            rgba(0,0,0,0) calc(50% + 2px),
-            rgba(0,0,0,0) 100%);
+        background: @slash, @backslash;
       }
     }
   }
