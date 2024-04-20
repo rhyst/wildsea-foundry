@@ -3,7 +3,6 @@ import { enrich, clamp } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
 
 export default class WildseaAdversarySheet extends WildseaActorSheet {
-
   get template() {
     return `${WILDSEA.root_path}/templates/sheets/adversary.hbs`
   }
@@ -17,27 +16,24 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
     }
 
     context.system.enrichedDetails = await enrich(this.actor.system.description)
-
-    console.log(context.system)
-
     context.aspects = []
     context.drives = []
     context.quirks = []
 
     for (const attribute of this.actor.itemTypes.attribute) {
-      if(attribute.system.type === "aspect") {
+      if (attribute.system.type === 'aspect') {
         context.aspects.push(attribute)
       }
     }
 
     for (const attribute of this.actor.itemTypes.attribute) {
-      if(attribute.system.type === "drive") {
+      if (attribute.system.type === 'drive') {
         context.drives.push(attribute)
       }
     }
 
     for (const attribute of this.actor.itemTypes.attribute) {
-      if(attribute.system.type === "quirk") {
+      if (attribute.system.type === 'quirk') {
         context.quirks.push(attribute)
       }
     }
@@ -48,7 +44,7 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
 
     return context
   }
-  
+
   activateListeners(html) {
     // Add item
     html.find('.addItem').click(this.addItem.bind(this))
@@ -95,12 +91,12 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
         details: game.i18n.localize('wildsea.newAttributeDetails'),
         type: attributeType,
         ...defaultData,
-      }
+      },
     }
 
     this.addEmbeddedDocument(itemData)
   }
-  
+
   async addResource() {
     const defaultData = {}
 
@@ -114,5 +110,4 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
 
     this.addEmbeddedDocument(itemData)
   }
-
 }

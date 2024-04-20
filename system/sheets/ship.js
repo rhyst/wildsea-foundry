@@ -69,10 +69,10 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
     switch (itemType) {
       case 'rating':
-        await this.adjustRating(itemId, change, event.shiftKey)
+        await this.adjustRating(itemId, change, this.clickModifiers(event))
         break
       case 'reputations':
-        await this.adjustSlimTrack(itemId, itemType, event.shiftKey, change)
+        await this.adjustSlimTrack(itemId, itemType, this.clickModifiers(event), change)
         break
       default:
         break
