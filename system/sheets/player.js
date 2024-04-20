@@ -239,13 +239,13 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
   async increaseMireTrack(event) {
     event.preventDefault()
     const itemId = event.currentTarget.dataset.itemId
-    this.adjustSlimTrack(itemId, 'mires', event.shiftKey)
+    this.adjustSlimTrack(itemId, 'mires', this.clickModifiers(event))
   }
 
   async decreaseMireTrack(event) {
     event.preventDefault()
     const itemId = event.currentTarget.dataset.itemId
-    this.adjustSlimTrack(itemId, 'mires', event.shiftKey, -1)
+    this.adjustSlimTrack(itemId, 'mires', this.clickModifiers(event), -1)
   }
 
   async updateRoll(event) {

@@ -4,7 +4,6 @@ import { renderDialog } from '../dialog.js'
 
 export default class WildseaActorSheet extends ActorSheet {
   async getData() {
-
     const context = super.getData()
     context.config = WILDSEA
     return context
@@ -113,7 +112,7 @@ export default class WildseaActorSheet extends ActorSheet {
 
     let items = []
 
-    if(this.actor.system[itemType] != null) {
+    if (this.actor.system[itemType] != null) {
       items = [...this.actor.system[itemType]]
       items.push(slimData)
     } else {
@@ -163,26 +162,19 @@ export default class WildseaActorSheet extends ActorSheet {
     const item = items.filter((i) => i.id === itemId)[0]
 
     if (item) {
-
       const marks = item.track.value
-      const burns = item.track.burn 
+      const burns = item.track.burn
       const max = item.track.max
 
       if (isBurn) {
-        const newBurn = clamp(
-          burns + value,
-          max
-        )
+        const newBurn = clamp(burns + value, max)
         item.track.burn = newBurn
 
         if (marks <= burns) {
           item.track.value = newBurn
         }
       } else {
-        const newValue = clamp(marks + value,
-          max,
-          burns
-        )
+        const newValue = clamp(marks + value, max, burns)
         item.track.value = newValue
       }
 
@@ -242,9 +234,8 @@ export default class WildseaActorSheet extends ActorSheet {
     const target = event.currentTarget
     const itemId = target.dataset.itemId
     const item = this.actor.items.get(itemId)
-    
-    this.itemTrackUpdate(item, 1, event.shiftKey)
 
+    this.itemTrackUpdate(item, this.clickModifiers(event))
   }
 
   async reduceItemTrack(event) {
@@ -254,45 +245,36 @@ export default class WildseaActorSheet extends ActorSheet {
     const itemId = target.dataset.itemId
     const item = this.actor.items.get(itemId)
 
-    this.itemTrackUpdate(item, -1, event.shiftKey)
-
+    this.itemTrackUpdate(item, this.clickModifiers(event), -1)
   }
 
   //updateValue is positive for add, negative for subtract.
-  async itemTrackUpdate(item, updateValue, isBurn) {
-
+  async itemTrackUpdate(item, isBurn, updateValue = 1) {
     const marks = item.system.track.value
-    const burns = item.system.track.burn 
+    const burns = item.system.track.burn
     const max = item.system.track.max
 
     let update = {
       system: {
         track: {
-          'value': marks,
-          'burn': burns,
+          value: marks,
+          burn: burns,
         },
       },
     }
 
     if (isBurn) {
-      const newBurn = clamp(
-        burns + updateValue,
-        max,
-      )
+      const newBurn = clamp(burns + updateValue, max)
 
       update.system.track.burn = newBurn
       if (marks <= burns) {
         update.system.track.value = newBurn
       }
     } else {
-      const newValue = clamp(
-        marks + updateValue,
-        max,
-        burns
-      )
+      const newValue = clamp(marks + updateValue, max, burns)
       update.system.track.value = newValue
     }
-    item.update({...update})
+    item.update({ ...update })
   }
 
   async collapseItem(event) {
@@ -320,5 +302,9 @@ export default class WildseaActorSheet extends ActorSheet {
         },
       })
     }
+  }
+
+  clickModifiers(event) {
+    return event.shiftKey || event.ctrlKey
   }
 }
