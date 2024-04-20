@@ -161,6 +161,9 @@ form label {
 .dialog-content {
   font-family: 'Merriweather', serif;
 }
+.dialog-content form.wildsea {
+  margin-bottom: 0.5rem;
+}
 .dialog-content label {
   font-variant: small-caps;
 }
@@ -243,6 +246,7 @@ form label {
   font-size: 0.8rem;
   background: #f9f9f9;
   color: #2d2a2b;
+  --blockquote-border: #858778;
 }
 .wildsea #context-menu {
   font-family: 'Teko', sans-serif;
@@ -315,6 +319,36 @@ form label {
   font-size: 1.1rem;
   line-height: 1.1rem;
   text-transform: initial;
+}
+.wildsea blockquote {
+  background: none;
+  border: 3px solid var(--blockquote-border);
+  border-radius: 0.8rem;
+  padding: 0.8rem;
+  margin: 1rem 5rem;
+  font-style: normal;
+}
+.wildsea blockquote h2,
+.wildsea blockquote h3 {
+  color: var(--blockquote-border);
+}
+.wildsea blockquote.red {
+  --blockquote-border: #bb434e;
+}
+.wildsea blockquote.yellow {
+  --blockquote-border: #f8a923;
+}
+.wildsea blockquote.green {
+  --blockquote-border: #84966c;
+}
+.wildsea blockquote.sky {
+  --blockquote-border: #5c9abc;
+}
+.wildsea blockquote.blue {
+  --blockquote-border: #175d7e;
+}
+.wildsea blockquote.purple {
+  --blockquote-border: #a95c8d;
 }
 .wildsea table {
   border: none;
@@ -407,6 +441,27 @@ form label {
   font-size: 48px;
   text-transform: initial;
 }
+.wildsea .navigation nav.sheet-tabs {
+  border-top: none;
+  border-bottom: none;
+}
+.wildsea .navigation nav.sheet-tabs a {
+  display: block;
+  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  background: #e2e2df;
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  text-transform: initial;
+  padding: 0.5rem 0.5rem 0;
+  font-weight: 600;
+}
+.wildsea .navigation nav.sheet-tabs a.active {
+  background: #626256;
+  color: #f9f9f9;
+}
 .wildsea .description {
   --editor-height: 8rem;
   flex: 1;
@@ -494,10 +549,10 @@ form label {
   position: relative;
 }
 .wildsea ul.track li.checked {
-  background: linear-gradient(to top left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) calc(50% - 2px), #000000 50%, rgba(0, 0, 0, 0) calc(50% + 2px), rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top left, transparent 0%, transparent calc(50% - 2px), #2d2a2b 50%, transparent calc(50% + 2px), transparent 100%);
 }
 .wildsea ul.track li.burned {
-  background: linear-gradient(to top left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) calc(50% - 2px), #000000 50%, rgba(0, 0, 0, 0) calc(50% + 2px), rgba(0, 0, 0, 0) 100%), linear-gradient(to top right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) calc(50% - 2px), #000000 50%, rgba(0, 0, 0, 0) calc(50% + 2px), rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top left, transparent 0%, transparent calc(50% - 2px), #2d2a2b 50%, transparent calc(50% + 2px), transparent 100%), linear-gradient(to top right, transparent 0%, transparent calc(50% - 2px), #2d2a2b 50%, transparent calc(50% + 2px), transparent 100%);
 }
 .wildsea .mire {
   border-radius: 0 2rem 2rem 0;

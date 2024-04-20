@@ -6,6 +6,7 @@ export const loadHandlebarsPartials = () => {
     'systems/wildsea/templates/shared/description.hbs',
     'systems/wildsea/templates/shared/effects.hbs',
     'systems/wildsea/templates/shared/number_field.hbs',
+    'systems/wildsea/templates/shared/rating_mods.hbs',
     'systems/wildsea/templates/shared/select_field.hbs',
     'systems/wildsea/templates/shared/slim_item.hbs',
     'systems/wildsea/templates/shared/text_field.hbs',
@@ -59,6 +60,20 @@ export const loadHandlebarsHelpers = () => {
   Handlebars.registerHelper('byKey', (array, key) => {
     return array[key]
   })
-
   Handlebars.registerHelper('join', (array, glue) => array.join(glue))
+  Handlebars.registerHelper('displayNumber', (value) =>
+    value >= 0 ? `+${value}` : value,
+  )
+  // Returns a track cell which is either marked, burned, or empty based on the information provided.
+  Handlebars.registerHelper('trackCell', function (index, marks, burns) {
+    let css_class = ''
+
+    if (index <= burns) {
+      css_class = 'burned'
+    } else if (index <= marks) {
+      css_class = 'checked'
+    }
+    //class can be empty for an empty cell
+    return `<li class="box ${css_class}"><span class="dot" data-index=${index}"></span></li>`
+  })
 }
