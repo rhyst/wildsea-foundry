@@ -70,6 +70,10 @@ WILDSEA.slimDefaults = {
       value: 0,
     },
   },
+  designEffects: {
+    rating: '',
+    value: 0,
+  },
 }
 
 WILDSEA.adversarySizes = {

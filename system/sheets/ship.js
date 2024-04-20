@@ -1,6 +1,8 @@
 import { WILDSEA } from '../config.js'
+import { renderDialog } from '../dialog.js'
 import { enrich, clamp } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
+import * as Dice from '../dice.js'
 
 export default class WildseaShipSheet extends WildseaActorSheet {
   get template() {
@@ -56,6 +58,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
         html.find('.addItem').click(this.addItem.bind(this))
       }
+      html.find('.ratingRoll').click(this.ratingRoll.bind(this))
     }
     super.activateListeners(html)
   }
@@ -72,7 +75,12 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         await this.adjustRating(itemId, change, this.clickModifiers(event))
         break
       case 'reputations':
-        await this.adjustSlimTrack(itemId, itemType, this.clickModifiers(event), change)
+        await this.adjustSlimTrack(
+          itemId,
+          itemType,
+          this.clickModifiers(event),
+          change,
+        )
         break
       default:
         break
@@ -84,37 +92,29 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     const marks = this.actor.system.ratings[rating]?.value
     const burns = this.actor.system.ratings[rating]?.burn
 
-
     let update = {
       system: {
         ratings: {
           [rating]: {
-            'value': marks,
-            'burn': burns,
+            value: marks,
+            burn: burns,
           },
         },
       },
     }
 
     if (isBurn) {
-      const newBurn = clamp(
-        burns + change,
-        ratingMax,
-      )
+      const newBurn = clamp(burns + change, ratingMax)
       update.system.ratings[rating].burn = newBurn
       if (marks <= burns) {
         update.system.ratings[rating].value = newBurn
       }
     } else {
-      const newValue = clamp(
-        marks + change,
-        ratingMax,
-        burns
-      )
+      const newValue = clamp(marks + change, ratingMax, burns)
       update.system.ratings[rating].value = newValue
     }
 
-    this.actor.update({...update})
+    this.actor.update({ ...update })
   }
 
   async addItem(event) {
@@ -177,5 +177,59 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         details: game.i18n.localize('wildsea.newUndercrewDetails'),
       },
     })
+  }
+
+  async ratingRoll(event) {
+    event.preventDefault()
+    const rolling = event.currentTarget.dataset.rating
+
+    const ratings = {}
+    for (const rating of WILDSEA.shipRatings) {
+      const shipRating = this.actor.system.ratings[rating]
+      ratings[rating] = clamp(shipRating.max - shipRating.value, shipRating.max)
+    }
+
+    const data = await renderDialog(
+      game.i18n.localize('wildsea.ratingRoll'),
+      this.handleRatingRoll,
+      { rating: rolling, ratings },
+      '/systems/wildsea/templates/dialogs/rating_roll.hbs',
+    )
+
+    if (data.cancelled) return
+
+    const { rating, cut } = data
+
+    const ratingDice = this.actor.system.ratings[rating]
+
+    const dicePool = {
+      rating: rolling,
+      ratingDice: clamp(ratingDice.max - ratingDice.value, ratingDice.max),
+      cut,
+    }
+
+    const [roll, outcome] = await Dice.rollPool(dicePool)
+    console.log(roll, outcome)
+
+    const chatData = {
+      user: game.user._id,
+      speaker: ChatMessage.getSpeaker(),
+      content: await renderTemplate(
+        'systems/wildsea/templates/chat/roll.hbs',
+        outcome,
+      ),
+      roll,
+      sound: CONFIG.sounds.dice,
+      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+    }
+    ChatMessage.create(chatData)
+  }
+
+  handleRatingRoll(html) {
+    const form = html[0].querySelector('form')
+    return {
+      rating: form.rating.value,
+      cut: parseInt(form.cut.value || 0),
+    }
   }
 }

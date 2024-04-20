@@ -90,6 +90,9 @@
           "value": 0,
           "burn": 0
         }
+      },
+      "hasRatingMods": {
+        "ratingMods": []
       }
     },
     "aspect": {
@@ -98,12 +101,12 @@
       "type": ""
     },
     "design": {
-      "templates": ["hasDetails"],
+      "templates": ["hasDetails", "hasRatingMods"],
       "stakes": 1,
       "type": ""
     },
     "fitting": {
-      "templates": ["hasDetails", "hasTrack"],
+      "templates": ["hasDetails", "hasTrack", "hasRatingMods"],
       "stakes": 1,
       "track": { "max": 1 },
       "type": ""
@@ -117,7 +120,7 @@
       "type": ""
     },
     "undercrew": {
-      "templates": ["hasDetails", "hasTrack"],
+      "templates": ["hasDetails", "hasTrack", "hasRatingMods"],
       "stakes": 1,
       "track": { "max": 8 },
       "type": ""

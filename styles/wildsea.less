@@ -164,6 +164,10 @@ form {
 }
 
 .dialog-content {
+  form.wildsea {
+    margin-bottom: 0.5rem;
+  }
+
   .body-font();
 
   label {
@@ -333,6 +337,40 @@ form {
     text-transform: initial;
   }
 
+  --blockquote-border: @light-bg;
+  blockquote {
+    background: none;
+    border: 3px solid var(--blockquote-border);
+    border-radius: 0.8rem;
+    padding: 0.8rem;
+    margin: 1rem 5rem;
+    font-style: normal;
+
+    h2,
+    h3 {
+      color: var(--blockquote-border);
+    }
+
+    &.red {
+      --blockquote-border: @red;
+    }
+    &.yellow {
+      --blockquote-border: @yellow;
+    }
+    &.green {
+      --blockquote-border: @green;
+    }
+    &.sky {
+      --blockquote-border: @sky;
+    }
+    &.blue {
+      --blockquote-border: @blue;
+    }
+    &.purple {
+      --blockquote-border: @purple;
+    }
+  }
+
   table {
     border: none;
     background: none;
@@ -442,6 +480,31 @@ form {
     height: 64px;
     font-size: 48px;
     text-transform: initial;
+  }
+
+  .navigation {
+    nav.sheet-tabs {
+      border-top: none;
+      border-bottom: none;
+
+      a {
+        display: block;
+        .corners();
+        background: @light-transparent;
+        .title-font();
+        font-size: 1rem;
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        text-transform: initial;
+        padding: 0.5rem 0.5rem 0;
+        font-weight: 600;
+
+        &.active {
+          background: @mid-bg;
+          color: @white;
+        }
+      }
+    }
   }
 
   .description {

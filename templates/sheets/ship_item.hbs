@@ -21,10 +21,26 @@
     </div>
 
     <div id="body" class="flexcol spaced">
-      <h3 class="corners mid">{{localize "wildsea.details"}}</h3>
-      {{> "systems/wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.details"}}
+      <section class="navigation">
+        <nav class="sheet-tabs tabs flexrow spaced" data-group="primary">
+          <a data-tab="main">{{localize "wildsea.description"}}</a>
+          <a data-tab="ratingMods">{{localize "wildsea.ratingMods"}}</a>
+          <a data-tab="effects">{{localize "wildsea.effects"}}</a>
+        </nav>
+      </section>
 
-      {{> "systems/wildsea/templates/shared/effects.hbs"}}
+      <section class="sheet-body">
+        <div class="tab-main tab" data-group="primary" data-tab="main">
+          {{> "systems/wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.details"}}
+        </div>
+        <div class="tab-rating-mods tab" data-group="primary" data-tab="ratingMods">
+          {{> "systems/wildsea/templates/shared/rating_mods.hbs"}}
+        </div>
+
+        <div class="tab-effects tab" data-group="primary" data-tab="effects">
+          {{> "systems/wildsea/templates/shared/effects.hbs"}}
+        </div>
+      </section>
     </div>
   </div>
 </form>

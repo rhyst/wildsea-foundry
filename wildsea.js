@@ -9,7 +9,6 @@ import WildseaAspectSheet from './system/sheets/aspect.js'
 import WildseaAttributeSheet from './system/sheets/attribute.js'
 import WildseaDicePool from './system/applications/dice_pool.js'
 import WildseaItem from './system/item.js'
-// import WildseaJournalSheet from './system/sheets/journal.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
 import WildseaShipSheet from './system/sheets/ship.js'
@@ -21,6 +20,7 @@ Hooks.once('init', () => {
   console.log('wildsea | Initializing')
 
   CONFIG.wildsea = WILDSEA
+  CONFIG.ActiveEffect.legacyTransferral = false
   game.wildsea = {}
 
   loadHandlebarsPartials()
@@ -47,24 +47,7 @@ Hooks.once('init', () => {
     types: ['attribute'],
   })
 
-  // Journal.unregisterSheet('core', JournalSheet)
-  // Journal.registerSheet('dilemma', WildseaJournalSheet, { makeDefault: true })
-
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
-  
-  // Returns a track cell which is either marked, burned, or empty based on the information provided.
-  Handlebars.registerHelper("trackCell", function (index, marks, burns) {
-
-    let css_class = ''
-
-    if (index <= burns) {
-      css_class = 'burned'
-    } else if (index <= marks) {
-      css_class = 'checked'
-    }
-    //class can be empty for an empty cell
-    return `<li class="box ${css_class}"><span class="dot" data-index=${index}"></span></li>`
-  });
 })
 
 Hooks.on('ready', async () => {

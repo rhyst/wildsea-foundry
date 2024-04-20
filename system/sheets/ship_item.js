@@ -1,7 +1,9 @@
 import { WILDSEA } from '../config.js'
 import WildseaItemSheet from './item.js'
+import { renderDialog } from '../dialog.js'
+import { generateId } from '../helpers.js'
 
-export default class WildseaAspectSheet extends WildseaItemSheet {
+export default class WildseaShipItemSheet extends WildseaItemSheet {
   get template() {
     return `${WILDSEA.root_path}/templates/sheets/ship_item.hbs`
   }
@@ -9,7 +11,14 @@ export default class WildseaAspectSheet extends WildseaItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       width: 600,
-      height: 460,
+      height: 'auto',
+      tabs: [
+        {
+          navSelector: '.tabs',
+          contentSelector: '.sheet-body',
+          initial: 'main',
+        },
+      ],
     })
   }
 
@@ -22,7 +31,10 @@ export default class WildseaAspectSheet extends WildseaItemSheet {
   activateListeners(html) {
     if (this.isEditable) {
       if (this.item.isOwner) {
-        html.find('.addItem').click(this.addItem.bind(this))
+        html.find('.addRatingMod').click(this.addRatingMod.bind(this))
+        html.find('.editRatingMod').click(this.editRatingMod.bind(this))
+        html.find('.deleteRatingMod').click(this.deleteRatingMod.bind(this))
+
         html.find('.editEffect').click(this.editEffect.bind(this))
         html.find('.deleteEffect').click(this.deleteEffect.bind(this))
       }
@@ -30,41 +42,95 @@ export default class WildseaAspectSheet extends WildseaItemSheet {
     super.activateListeners(html)
   }
 
-  async addItem(event) {
+  async addRatingMod(event) {
     event.preventDefault()
+    console.log('todo')
 
-    const target = event.currentTarget
-    const data = target.dataset
+    const data = await renderDialog(
+      game.i18n.format('wildsea.newRatingMod', {
+        type: game.i18n.localize(`wildsea.ratingMod`),
+      }),
+      this.processRatingModDialog,
+      {
+        config: WILDSEA,
+      },
+      '/systems/wildsea/templates/dialogs/design_rating_mod.hbs',
+    )
 
-    switch (data.itemType) {
-      case 'effects':
-        this.addEffect()
-        break
-      default:
-        ui.notifications.warn(
-          `Type "${data.itemType}" not recognised or not implemented`,
-        )
-        break
+    if (data.cancelled) return
+
+    data.id = generateId()
+
+    const ratingMods =
+      this.item.system.ratingMods != null
+        ? [...this.item.system.ratingMods]
+        : []
+    ratingMods.push(data)
+
+    this.item.update({
+      system: {
+        ratingMods,
+      },
+    })
+  }
+
+  async editRatingMod(event) {
+    event.preventDefault()
+    const ratingModId = event.currentTarget.dataset.ratingModId
+    const ratingMods = this.item.system.ratingMods
+    const ratingMod = ratingMods.filter((e) => e.id === ratingModId)[0]
+
+    const data = await renderDialog(
+      game.i18n.format('wildsea.newRatingMod', {
+        type: game.i18n.localize(`wildsea.ratingMod`),
+      }),
+      this.processRatingModDialog,
+      {
+        config: WILDSEA,
+        ...ratingMod,
+      },
+      '/systems/wildsea/templates/dialogs/design_rating_mod.hbs',
+    )
+
+    if (data.cancelled) return
+
+    ratingMod.rating = data.rating
+    ratingMod.value = data.value
+
+    this.item.update({
+      system: {
+        ratingMods,
+      },
+    })
+  }
+
+  async deleteRatingMod(event) {
+    event.preventDefault()
+    const ratingModId = event.currentTarget.dataset.ratingModId
+    this.item.update({
+      system: {
+        ratingMods: this.item.system.ratingMods.filter(
+          (e) => e.id !== ratingModId,
+        ),
+      },
+    })
+  }
+
+  processRatingModDialog(html) {
+    const form = html[0].querySelector('form')
+    return {
+      rating: form.rating.value,
+      value: parseInt(form.value.value || 0),
     }
   }
 
-  async addEffect() {
-    const newEffect = await this.item.createEmbeddedDocuments('ActiveEffect', [
-      {
-        label: game.i18n.format('wildsea.newEffect', { type: 'ActiveEffect' }),
-        origin: this.item.uuid,
-      },
-    ])
-    newEffect[0].sheet.render(true)
-  }
-
-  async editEffect(event) {
+  editEffect(event) {
     event.preventDefault()
     const effectId = event.currentTarget.dataset.effectId
     this.item.effects.get(effectId).sheet.render(true)
   }
 
-  async deleteEffect(event) {
+  deleteEffect(event) {
     event.preventDefault()
     const effectId = event.currentTarget.dataset.effectId
     this.item.deleteEmbeddedDocuments('ActiveEffect', [effectId])

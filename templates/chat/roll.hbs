@@ -20,6 +20,16 @@
               </div>
             {{/if}}
 
+            {{#if dicePool.rating}}
+              <div class="flexrow spaced">
+                <label class="padded">{{localize "wildsea.rating"}}</label>
+                <div class="padded">{{localize (concat "wildsea." dicePool.rating)}}</div>
+                <div class="center corners light-transparent padded">
+                  +{{dicePool.ratingDice}}d
+                </div>
+              </div>
+            {{/if}}
+
             {{#if dicePool.skillType}}
               <div class="flexrow spaced">
                 <label class="padded">{{localize (concat "wildsea." dicePool.skillType)}}</label>

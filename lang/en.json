@@ -30,6 +30,7 @@
     "edge": "Edge",
     "edges": "Edges",
     "edit": "Edit",
+    "effect": "Effect",
     "effects": "Effects",
     "engine": "Engine",
     "fittings":"Fittings",
@@ -58,6 +59,7 @@
     "minor": "Minor",
     "mires": "Mires",
     "missing": "Missing",
+    "modifier": "Modifier",
     "name": "Name",
     "newAspectDetails": "<p>Aspect details.</p>",
     "newAspectName": "New Aspect",
@@ -84,6 +86,10 @@
     "presence": "Presence",
     "quirks": "Quirks",
     "rakaSpit": "Raka Spit",
+    "rating": "Rating",
+    "ratingMod": "Rating Modifier",
+    "ratingMods": "Rating Modifiers",
+    "ratingRoll": "Roll Ship Rating",
     "ratings": "Ratings",
     "rattle": "Rattle",
     "reputation": "Reputation",
@@ -131,12 +137,17 @@
     "twist": "Twist",
     "type": "Type",
     "undercrew": "Undercrew",
+    "value": "Value",
     "variable": "Variable",
     "vault": "Vault",
     "veils": "Veils",
     "wavewalk": "Wavewalk",
     "whisper": "Whisper",
-    "whispers": "Whispers"
+    "whispers": "Whispers",
+    "WARNINGS": {
+      "effectDeprecationTitle": "Effects are being deprecated",
+      "effectDeprecationBody": "ActiveEffects will no longer be the preferred method of modifying Ship Ratings, starting in the next release. You should migrate your Rating modifiers to the new Rating Modifiers tab."
+    }
   },
   "SETTINGS": {
     
