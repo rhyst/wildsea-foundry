@@ -47,20 +47,15 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
     console.log('todo')
 
     const data = await renderDialog(
-      game.i18n.format('wildsea.newRatingMod', {
-        type: game.i18n.localize(`wildsea.ratingMod`),
-      }),
+      game.i18n.localize('wildsea.ratingMod'),
       this.processRatingModDialog,
-      {
-        config: WILDSEA,
-      },
+      { config: WILDSEA },
       '/systems/wildsea/templates/dialogs/design_rating_mod.hbs',
     )
 
     if (data.cancelled) return
 
     data.id = generateId()
-
     const ratingMods =
       this.item.system.ratingMods != null
         ? [...this.item.system.ratingMods]
@@ -81,9 +76,7 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
     const ratingMod = ratingMods.filter((e) => e.id === ratingModId)[0]
 
     const data = await renderDialog(
-      game.i18n.format('wildsea.newRatingMod', {
-        type: game.i18n.localize(`wildsea.ratingMod`),
-      }),
+      game.i18n.localize('wildsea.ratingMod'),
       this.processRatingModDialog,
       {
         config: WILDSEA,
