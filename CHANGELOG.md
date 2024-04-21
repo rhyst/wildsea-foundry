@@ -1,5 +1,13 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.5
+
+- Add ship rating rolls
+- Update Ship rating modifiers
+- Fix burn in chat messages
+- Add outcome tooltips to chat messages
+- Add option to disable Burn tooltip message
+
 ## v0.0.4
 
 - Resolves shift click issue with burn in Firefox
