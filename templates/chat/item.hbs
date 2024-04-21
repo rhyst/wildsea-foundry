@@ -6,13 +6,11 @@
     {{/if}}
   </h3>
   {{#if system.track}}
-    <ul class="track">
-      {{#times system.track.max}}
-        <li class="box {{#if (gte ../system.track.value @index)}}checked{{/if}}">
-          <a class="dot"></a>
-        </li>
-      {{/times}}
-    </ul>
+  <ul class="track" data-item-id="{{id}}" data-item-type="{{type}}">
+    {{#times system.track.max}}
+      {{{trackCell @index ../system.track.value ../system.track.burn}}}
+    {{/times}}
+  </ul>
   {{/if}}
   {{#if system.details}}
     {{{system.details}}}
