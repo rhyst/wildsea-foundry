@@ -65,15 +65,8 @@ export const loadHandlebarsHelpers = () => {
     value >= 0 ? `+${value}` : value,
   )
   // Returns a track cell which is either marked, burned, or empty based on the information provided.
-  Handlebars.registerHelper('trackCell', function (index, marks, burns) {
-    let css_class = ''
-
-    if (index <= burns) {
-      css_class = 'burned'
-    } else if (index <= marks) {
-      css_class = 'checked'
-    }
-    //class can be empty for an empty cell
+  Handlebars.registerHelper('trackCell', (index, value, burn) => {
+    const css_class = index <= burn ? 'burned' : index <= value ? 'checked' : ''
     return `<li class="box ${css_class}"><span class="dot" data-index=${index}"></span></li>`
   })
 }
