@@ -73,11 +73,11 @@
         <h4 class="corners dice-total">
           {{total}}
         </h4>
-        <h3 class="corners dark padded center">
+        <h3 class="corners dark padded center" data-tooltip="{{localize (concat "wildsea." resultText "Description")}}">
           {{localize (concat "wildsea." resultText)}}
         </h3>
         {{#if twist}}
-        <h4 class="center corners mid padded">
+        <h4 class="center corners mid padded" data-tooltip="{{localize "wildsea.twistDescription"}}">
           {{localize "wildsea.twist"}}
         </h4>
         {{/if}}
