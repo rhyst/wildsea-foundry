@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.6
+
+- Fix dice roll outcomes
+
 ## v0.0.5
 
 - Add ship rating rolls

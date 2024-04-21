@@ -35,6 +35,8 @@ export const rollPool = async (dicePool) => {
     (dicePool.advantageDice || 0) +
     (dicePool.ratingDice || 0)
 
+  console.log(dicePool, totalDice)
+
   dicePool.cut = parseInt(dicePool.cut)
 
   let formula = `${totalDice}d6`
@@ -45,7 +47,6 @@ export const rollPool = async (dicePool) => {
     formula = '1d6'
   }
 
-  // let formula = `${totalDice}d6`
   if (dicePool.cut > 0) formula += `dh${dicePool.cut}`
   formula += 'kh'
 
@@ -76,7 +77,7 @@ export const rollPool = async (dicePool) => {
   const resultText = ((total) => {
     switch (total) {
       case 6:
-        zeroDice ? 'conflict' : 'triumph'
+        return zeroDice ? 'conflict' : 'triumph'
       case 5:
       case 4:
         return 'conflict'
