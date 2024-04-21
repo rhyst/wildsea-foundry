@@ -6,6 +6,7 @@ export default class WildseaActorSheet extends ActorSheet {
   async getData() {
     const context = super.getData()
     context.config = WILDSEA
+    context.showBurnTooltip = game.settings.get('wildsea', 'showBurnTooltip')
     return context
   }
 

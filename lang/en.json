@@ -146,10 +146,13 @@
     "whispers": "Whispers",
     "WARNINGS": {
       "effectDeprecationTitle": "Effects are being deprecated",
-      "effectDeprecationBody": "ActiveEffects will no longer be the preferred method of modifying Ship Ratings, starting in the next release. You should migrate your Rating modifiers to the new Rating Modifiers tab."
+      "effectDeprecationBody": "ActiveEffects will no longer be the preferred method of modifying Ship Ratings, starting in an upcoming release. You should remove any ActiveEffects from Ship Items and migrate your Rating modifiers to the new Rating Modifiers tab."
     }
   },
   "SETTINGS": {
-    
+    "showBurnTooltip": {
+      "label": "Burn Tooltup",
+      "hint": "Show the Track Burn tooltip on hover"
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { WILDSEA } from './system/config.js'
+import { WILDSEA, registerSystemSettings } from './system/config.js'
 import {
   loadHandlebarsHelpers,
   loadHandlebarsPartials,
@@ -23,6 +23,7 @@ Hooks.once('init', () => {
   CONFIG.ActiveEffect.legacyTransferral = false
   game.wildsea = {}
 
+  registerSystemSettings()
   loadHandlebarsPartials()
   loadHandlebarsHelpers()
   setupEnrichers()

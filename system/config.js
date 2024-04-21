@@ -84,3 +84,14 @@ WILDSEA.adversarySizes = {
   variable: 'wildsea.variable',
   swarm: 'wildsea.swarm',
 }
+
+export const registerSystemSettings = () => {
+  game.settings.register('wildsea', 'showBurnTooltip', {
+    config: true,
+    scope: 'client',
+    name: 'SETTINGS.showBurnTooltip.label',
+    hint: 'SETTINGS.showBurnTooltip.hint',
+    type: Boolean,
+    default: true,
+  })
+}
