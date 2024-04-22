@@ -1,24 +1,24 @@
 @font-face {
   font-family: 'Teko';
-  src: url(fonts/Teko/Teko-VariableFont_wght.ttf);
+  src: url(./fonts/Teko/Teko-VariableFont_wght.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Regular.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Regular.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Italic.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Italic.ttf);
   font-style: italic;
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Bold.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Bold.ttf);
   font-weight: 600;
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-BoldItalic.ttf);
+  src: url(./fonts/Merriweather/Merriweather-BoldItalic.ttf);
   font-weight: 600;
   font-style: italic;
 }
@@ -259,6 +259,18 @@ form label {
   font-size: 0.9rem;
   text-transform: initial;
   font-weight: 500;
+}
+.wildsea .damaged-true {
+  background: #bb434e;
+  display: inline-block;
+  padding-left: 0.45rem;
+  padding-right: 1.3rem;
+  padding-top: 0.15rem;
+  position: relative;
+  color: #f9f9f9;
+}
+.wildsea .damaged-false {
+  display: none;
 }
 .wildsea .block {
   display: block;

@@ -1,6 +1,13 @@
 <div class="item" data-item-id="{{id}}">
   <h4 class="no-margin">
     <span class="itemContextMenu">{{name}}</span>
+    {{#if (eq type "fitting")}}
+      <small class="damaged-{{system.damaged}} corners">
+        {{localize 'wildsea.damaged'}}
+      </small>
+      <small class="text-dark">{{system.type}}</small>
+      <a class="damage-button" data-fitting-id="{{id}}"><small><i class="fa-solid fa-heart-crack"></i></small></a>
+    {{/if}}
     <small class="text-light">{{system.stakes}}-stakes</small>
   </h4>
   <div class="drawer {{#if system.collapsed}}hidden{{/if}}">

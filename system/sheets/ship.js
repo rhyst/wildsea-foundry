@@ -57,6 +57,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         html.find('.track').contextmenu(this.adjustTrack.bind(this, -1))
 
         html.find('.addItem').click(this.addItem.bind(this))
+        html.find('.damage-button').click(this.toggleFittingDamaged.bind(this))
       }
       html.find('.ratingRoll').click(this.ratingRoll.bind(this))
     }
@@ -231,5 +232,14 @@ export default class WildseaShipSheet extends WildseaActorSheet {
       rating: form.rating.value,
       cut: parseInt(form.cut.value || 0),
     }
+  }
+
+  async toggleFittingDamaged(event) {
+    const target = event.currentTarget
+    const fittingID = target.dataset.fittingId
+
+    const fitting = this.actor.items.get(fittingID)
+    const prevStatus = fitting.system.damaged
+    fitting.update({"system.damaged": !prevStatus})
   }
 }
