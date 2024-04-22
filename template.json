@@ -106,10 +106,10 @@
       "type": ""
     },
     "fitting": {
-      "templates": ["hasDetails", "hasTrack", "hasRatingMods"],
+      "templates": ["hasDetails", "hasRatingMods"],
       "stakes": 1,
-      "track": { "max": 1 },
-      "type": ""
+      "type": "",
+      "damaged": false
     },
     "resource": {
       "templates": ["hasDetails", "hasTags"]

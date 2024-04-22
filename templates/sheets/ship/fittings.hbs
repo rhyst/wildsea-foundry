@@ -8,7 +8,7 @@
   {{#if (any system.fittings)}}
     <div class="flexcol item-list spaced">
       {{#each system.fittings as |fitting|}}
-        {{> "systems/wildsea/templates/shared/aspect.hbs" fitting id=fitting.id type="fittings"}}
+        {{> "systems/wildsea/templates/sheets/ship/design.hbs" fitting id=fitting.id type="fitting"}}
       {{/each}}
     </div>
   {{else}}
