@@ -1,0 +1,14 @@
+<section class="track-panel">
+  <div class="track-list">
+    {{#each tracks as |track|}}
+      {{#unless (and track.firefly (not ../options.editable))}}
+      {{> "systems/wildsea/templates/applications/tracks/track.hbs" track=track}}
+      {{/unless}}
+    {{/each}}
+  </div>
+  <div class="options text-right">
+    {{#if options.editable}}
+    <a class="addTrack"><i class="fas fa-plus"></i> {{localize "wildsea.TRACKS.addTrack"}}</a>
+    {{/if}}
+  </div>
+</section>

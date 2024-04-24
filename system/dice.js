@@ -35,8 +35,6 @@ export const rollPool = async (dicePool) => {
     (dicePool.advantageDice || 0) +
     (dicePool.ratingDice || 0)
 
-  console.log(dicePool, totalDice)
-
   dicePool.cut = parseInt(dicePool.cut)
 
   let formula = `${totalDice}d6`

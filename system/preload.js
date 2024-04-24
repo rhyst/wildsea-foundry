@@ -1,5 +1,6 @@
 export const loadHandlebarsPartials = () => {
   const partials = [
+    'systems/wildsea/templates/applications/tracks/track.hbs',
     'systems/wildsea/templates/shared/aspect.hbs',
     'systems/wildsea/templates/shared/aspects.hbs',
     'systems/wildsea/templates/shared/attribute.hbs',

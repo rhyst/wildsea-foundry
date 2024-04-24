@@ -1,5 +1,5 @@
 import { WILDSEA } from '../config.js'
-import { enrich, listToRows, clamp } from '../helpers.js'
+import { enrich, listToRows, clamp, clickModifiers } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
 
 export default class WildseaPlayerSheet extends WildseaActorSheet {
@@ -239,13 +239,13 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
   async increaseMireTrack(event) {
     event.preventDefault()
     const itemId = event.currentTarget.dataset.itemId
-    this.adjustSlimTrack(itemId, 'mires', this.clickModifiers(event))
+    this.adjustSlimTrack(itemId, 'mires', clickModifiers(event))
   }
 
   async decreaseMireTrack(event) {
     event.preventDefault()
     const itemId = event.currentTarget.dataset.itemId
-    this.adjustSlimTrack(itemId, 'mires', this.clickModifiers(event), -1)
+    this.adjustSlimTrack(itemId, 'mires', clickModifiers(event), -1)
   }
 
   async updateRoll(event) {
