@@ -1,0 +1,11 @@
+<div class="track {{#if track.firefly}}firefly{{/if}}" data-track-id="{{track.id}}">
+  <a class="label" {{#if track.firefly}}data-tooltip="{{localize "wildsea.TRACKS.fireflyOnly"}}"{{/if}}>{{label}}</a>
+  <div class="slots">
+    {{{renderTrack track}}}
+  </div>
+  {{#if @root.options.editable}}
+  <a class="delete">
+    <i class="fas fa-trash"></i>
+  </a>
+  {{/if}}
+</div>

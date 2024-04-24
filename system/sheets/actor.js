@@ -1,5 +1,5 @@
 import { WILDSEA } from '../config.js'
-import { clamp, generateId } from '../helpers.js'
+import { clamp, clickModifiers } from '../helpers.js'
 import { renderDialog } from '../dialog.js'
 
 export default class WildseaActorSheet extends ActorSheet {
@@ -102,7 +102,7 @@ export default class WildseaActorSheet extends ActorSheet {
 
     const text = data.text
 
-    const id = generateId()
+    const id = randomID()
     const slimData = {
       id,
       text,
@@ -236,7 +236,7 @@ export default class WildseaActorSheet extends ActorSheet {
     const itemId = target.dataset.itemId
     const item = this.actor.items.get(itemId)
 
-    this.itemTrackUpdate(item, this.clickModifiers(event))
+    this.itemTrackUpdate(item, clickModifiers(event))
   }
 
   async reduceItemTrack(event) {
@@ -246,7 +246,7 @@ export default class WildseaActorSheet extends ActorSheet {
     const itemId = target.dataset.itemId
     const item = this.actor.items.get(itemId)
 
-    this.itemTrackUpdate(item, this.clickModifiers(event), -1)
+    this.itemTrackUpdate(item, clickModifiers(event), -1)
   }
 
   //updateValue is positive for add, negative for subtract.
@@ -303,9 +303,5 @@ export default class WildseaActorSheet extends ActorSheet {
         },
       })
     }
-  }
-
-  clickModifiers(event) {
-    return event.shiftKey || event.ctrlKey
   }
 }

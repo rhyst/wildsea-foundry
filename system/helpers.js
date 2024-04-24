@@ -30,11 +30,10 @@ export const listToRows = (array, columns) => {
 export const clamp = (value, max, min = 0) =>
   Math.min(max, Math.max(min, value))
 
-export const generateId = () =>
-  Date.now().toString(36) + Math.random().toString(36).substring(2)
-
 export const deleteAndReturn = (map, key) => {
   var a = map[key]
   delete map[key]
   return a
 }
+
+export const clickModifiers = (event) => event.shiftKey || event.ctrlKey

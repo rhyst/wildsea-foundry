@@ -1,6 +1,6 @@
 import { WILDSEA } from '../config.js'
 import { renderDialog } from '../dialog.js'
-import { enrich, clamp } from '../helpers.js'
+import { clamp, clickModifiers, enrich } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
 import * as Dice from '../dice.js'
 
@@ -73,13 +73,13 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
     switch (itemType) {
       case 'rating':
-        await this.adjustRating(itemId, change, this.clickModifiers(event))
+        await this.adjustRating(itemId, change, clickModifiers(event))
         break
       case 'reputations':
         await this.adjustSlimTrack(
           itemId,
           itemType,
-          this.clickModifiers(event),
+          clickModifiers(event),
           change,
         )
         break
@@ -210,7 +210,6 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     }
 
     const [roll, outcome] = await Dice.rollPool(dicePool)
-    console.log(roll, outcome)
 
     const chatData = {
       user: game.user._id,
@@ -240,6 +239,6 @@ export default class WildseaShipSheet extends WildseaActorSheet {
 
     const fitting = this.actor.items.get(fittingID)
     const prevStatus = fitting.system.damaged
-    fitting.update({"system.damaged": !prevStatus})
+    fitting.update({ 'system.damaged': !prevStatus })
   }
 }

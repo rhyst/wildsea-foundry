@@ -1,7 +1,6 @@
 import { WILDSEA } from '../config.js'
 import WildseaItemSheet from './item.js'
 import { renderDialog } from '../dialog.js'
-import { generateId } from '../helpers.js'
 
 export default class WildseaShipItemSheet extends WildseaItemSheet {
   get template() {
@@ -44,7 +43,6 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
 
   async addRatingMod(event) {
     event.preventDefault()
-    console.log('todo')
 
     const data = await renderDialog(
       game.i18n.localize('wildsea.ratingMod'),
@@ -55,7 +53,7 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
 
     if (data.cancelled) return
 
-    data.id = generateId()
+    data.id = randomID()
     const ratingMods =
       this.item.system.ratingMods != null
         ? [...this.item.system.ratingMods]

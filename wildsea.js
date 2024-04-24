@@ -16,12 +16,16 @@ import WildseaShipItemSheet from './system/sheets/ship_item.js'
 import WildseaAdversarySheet from './system/sheets/adversary.js'
 import { setupEnrichers } from './system/enrichers.js'
 
+import * as WildseaTracks from './system/applications/tracks/index.js'
+
 Hooks.once('init', () => {
   console.log('wildsea | Initializing')
 
   CONFIG.wildsea = WILDSEA
   CONFIG.ActiveEffect.legacyTransferral = false
   game.wildsea = {}
+
+  WildseaTracks.setup()
 
   registerSystemSettings()
   loadHandlebarsPartials()
