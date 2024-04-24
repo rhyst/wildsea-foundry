@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.7
+
+- Add UI Tracks
+
 ## v0.0.6
 
 - Fix dice roll outcomes
