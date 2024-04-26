@@ -1,9 +1,9 @@
 <section class="track-panel">
   <div class="track-list">
     {{#each tracks as |track|}}
-      {{#unless (and track.firefly (not ../options.editable))}}
+      {{#if (or ../options.editable (ne track.visibility 'secret'))}}
       {{> "systems/wildsea/templates/applications/tracks/track.hbs" track=track}}
-      {{/unless}}
+      {{/if}}
     {{/each}}
   </div>
   <div class="options text-right">

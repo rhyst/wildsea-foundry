@@ -1,6 +1,7 @@
 import { renderDialog } from '../../dialog.js'
 import { clickModifiers } from '../../helpers.js'
 import WildseaTrack from './track.js'
+import SortableJS from '../../lib/sortable.complete.esm.js'
 
 export class WildseaTrackPanel extends Application {
   constructor(db, options) {
@@ -43,6 +44,21 @@ export class WildseaTrackPanel extends Application {
       html
         .find('.slots')
         .contextmenu(this.interactWithTrack.bind(this, 'unmark'))
+
+      // Drag/drop reordering
+      new SortableJS(html.find('.track-list').get(0), {
+        animation: 200,
+        direction: 'vertical',
+        draggable: '.track',
+        dragClass: 'drag-preview',
+        ghostClass: 'drag-gap',
+        onEnd: (event) => {
+          const id = event.item.dataset.trackId
+          const newIndex = event.newDraggableIndex
+          const numItems = html.find('.track').length
+          game.wildsea.trackDatabase.moveTrack(id, newIndex)
+        },
+      })
     }
   }
 
@@ -57,14 +73,10 @@ export class WildseaTrackPanel extends Application {
     )
     if (data.cancelled) return
 
-    const { label, groups, firefly } = data
+    const { label, groups } = data
     if (label.trim() === '' || groups === '') return
 
-    game.wildsea.trackDatabase.addTrack({
-      label,
-      groups,
-      firefly,
-    })
+    game.wildsea.trackDatabase.addTrack({ ...data })
   }
 
   async editTrack(event) {
@@ -92,7 +104,7 @@ export class WildseaTrackPanel extends Application {
     return {
       label: form.label.value.trim(),
       groups,
-      firefly: form.firefly.checked,
+      visibility: form.visibility.value,
     }
   }
 

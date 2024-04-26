@@ -39,6 +39,17 @@ export class WildseaTrackDatabase extends Collection {
     game.settings.set('wildsea', 'activeTracks', tracks)
   }
 
+  moveTrack(id, newIndex) {
+    const tracks = Object.values(this.getTrackData())
+    const item = tracks.find((c) => c.id === id)
+    if (!item) return
+
+    tracks.splice(tracks.indexOf(item), 1)
+    tracks.splice(newIndex, 0, item)
+    const newData = Object.fromEntries(tracks.map((c) => [c.id, c]))
+    game.settings.set('wildsea', 'activeTracks', newData)
+  }
+
   deleteTrack(id) {
     const tracks = this.getTrackData()
     delete tracks[id]

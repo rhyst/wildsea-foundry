@@ -15,9 +15,15 @@
   </div>
 
   <div class="form-group">
-    <label for="firefly">{{localize "wildsea.TRACKS.fireflyOnly"}}</label>
+    <label>{{localize "wildsea.TRACKS.visibility"}}</label>
     <div class="form-fields">
-      <input type="checkbox" name="firefly" id="firefly" {{checked firefly}} />
+      <select name="visibility" id="visibility">
+        {{#select visibility}}
+        <option value="open">{{localize "wildsea.TRACKS.open"}}</option>
+        <option value="hidden">{{localize "wildsea.TRACKS.hidden"}}</option>
+        <option value="secret">{{localize "wildsea.TRACKS.secret"}}</option>
+        {{/select}}
+      </select>
     </div>
   </div>
 </form>

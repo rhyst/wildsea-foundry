@@ -153,9 +153,13 @@
       "addTrack": "Add Track",
       "editTrack": "Edit Track",
       "fireflyOnly": "Firefly Only",
+      "hidden": "Hidden",
       "label": "Label",
+      "open": "Open",
+      "secret": "Secret",
       "trackGroups": "Track Groups",
-      "trackGroupsHelpText": "Comma-separated"
+      "trackGroupsHelpText": "Comma-separated",
+      "visibility": "Visibility"
     },
     "WARNINGS": {
       "effectDeprecationTitle": "Effects are being deprecated",

@@ -94,4 +94,11 @@ export const registerSystemSettings = () => {
     type: Boolean,
     default: true,
   })
+
+  game.settings.register('wildsea', 'systemMigrationVersion', {
+    config: false,
+    scope: 'world',
+    type: String,
+    default: '',
+  })
 }
