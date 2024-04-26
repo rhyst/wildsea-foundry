@@ -922,9 +922,17 @@ form {
 
   .track-list {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 0.5rem;
     max-width: 800px;
+
+    .drag-preview {
+      outline: 1px solid white;
+    }
+
+    .drag-gap {
+      visibility: hidden;
+    }
 
     .track {
       padding: 0.5rem;
@@ -944,9 +952,12 @@ form {
         flex: 1;
       }
 
-      &.firefly {
+      &.hidden,
+      &.secret {
         background: #e2e2df;
+      }
 
+      &.secret {
         .label {
           position: relative;
           padding-left: 1.3rem;

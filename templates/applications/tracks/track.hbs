@@ -1,7 +1,9 @@
-<div class="track {{#if track.firefly}}firefly{{/if}}" data-track-id="{{track.id}}">
-  <a class="label" {{#if track.firefly}}data-tooltip="{{localize "wildsea.TRACKS.fireflyOnly"}}"{{/if}}>{{label}}</a>
+<div class="track {{track.visibility}}" data-track-id="{{track.id}}">
+  <a class="label" {{#if (ne track.visibility 'open')}}data-tooltip="{{localize (concat "wildsea.TRACKS." track.visibility)}}"{{/if}}>{{label}}</a>
   <div class="slots">
+    {{#if (or @root.options.editable (eq track.visibility 'open'))}}
     {{{renderTrack track}}}
+    {{/if}}
   </div>
   {{#if @root.options.editable}}
   <a class="delete">

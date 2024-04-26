@@ -15,6 +15,7 @@ import WildseaShipSheet from './system/sheets/ship.js'
 import WildseaShipItemSheet from './system/sheets/ship_item.js'
 import WildseaAdversarySheet from './system/sheets/adversary.js'
 import { setupEnrichers } from './system/enrichers.js'
+import { runMigrations } from './system/migrations.js'
 
 import * as WildseaTracks from './system/applications/tracks/index.js'
 
@@ -53,6 +54,10 @@ Hooks.once('init', () => {
   })
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
+})
+
+Hooks.once('ready', () => {
+  runMigrations()
 })
 
 Hooks.on('ready', async () => {

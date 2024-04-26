@@ -4,7 +4,7 @@ export default class WildseaTrack {
     this.label = data.label
     this.value = data.value
     this.burn = data.burn
-    this.firefly = data.firefly
+    this.visibility = data.visibility
     this.slotGroups = data.groups
       .split(/[,\|]/)
       .map((group) => parseInt(group) || 0)
@@ -29,6 +29,14 @@ export default class WildseaTrack {
       slots.push(groupSlots.join(''))
     }
     return slots.join(this.breaker())
+  }
+
+  hidden() {
+    return visibility === 'hidden'
+  }
+
+  secret() {
+    return visibility === 'secret'
   }
 
   emptySlot() {

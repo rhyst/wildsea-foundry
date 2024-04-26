@@ -817,9 +817,15 @@ form label {
 }
 .track-panel .track-list {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 0.5rem;
   max-width: 800px;
+}
+.track-panel .track-list .drag-preview {
+  outline: 1px solid white;
+}
+.track-panel .track-list .drag-gap {
+  visibility: hidden;
 }
 .track-panel .track-list .track {
   padding: 0.5rem;
@@ -838,14 +844,15 @@ form label {
 .track-panel .track-list .track .label {
   flex: 1;
 }
-.track-panel .track-list .track.firefly {
+.track-panel .track-list .track.hidden,
+.track-panel .track-list .track.secret {
   background: #e2e2df;
 }
-.track-panel .track-list .track.firefly .label {
+.track-panel .track-list .track.secret .label {
   position: relative;
   padding-left: 1.3rem;
 }
-.track-panel .track-list .track.firefly .label::before {
+.track-panel .track-list .track.secret .label::before {
   content: '';
   background: url('../assets/firefly.webp') center center no-repeat;
   background-size: contain;
