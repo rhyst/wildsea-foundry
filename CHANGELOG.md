@@ -1,5 +1,10 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.8
+
+- Allow UI Tracks to be "Open", "Hidden" or "Secret"
+- Add drag-drop reordering for UI Tracks
+
 ## v0.0.7
 
 - Add UI Tracks

@@ -15,10 +15,10 @@
       "discord": "ShadowyXP"
     }
   ],
-  "version": "0.0.7",
+  "version": "0.0.8",
   "url": "https://gitlab.com/pacosgrove1/wildsea-foundry",
   "manifest": "https://gitlab.com/api/v4/projects/pacosgrove1%2Fwildsea-foundry/packages/generic/wildsea-foundry/latest/system.json",
-  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.0.7/downloads/wildsea-foundry-v0.0.7.zip",
+  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.0.8/downloads/wildsea-foundry-v0.0.8.zip",
 
   "compatibility": {
     "minimum": "11",
