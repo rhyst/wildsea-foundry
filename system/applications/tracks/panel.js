@@ -45,7 +45,6 @@ export class WildseaTrackPanel extends Application {
         .find('.slots')
         .contextmenu(this.interactWithTrack.bind(this, 'unmark'))
 
-      // Drag/drop reordering
       new SortableJS(html.find('.track-list').get(0), {
         animation: 200,
         direction: 'vertical',
@@ -74,7 +73,10 @@ export class WildseaTrackPanel extends Application {
     if (data.cancelled) return
 
     const { label, groups } = data
-    if (label.trim() === '' || groups === '') return
+    if (label.trim() === '' || groups === '')
+      return ui.notifications.warn(
+        game.i18n.localize('wildsea.TRACKS.requiredFields'),
+      )
 
     game.wildsea.trackDatabase.addTrack({ ...data })
   }
@@ -90,6 +92,12 @@ export class WildseaTrackPanel extends Application {
       '/systems/wildsea/templates/applications/tracks/dialog.hbs',
     )
     if (data.cancelled) return
+
+    const { label, groups } = data
+    if (label.trim() === '' || groups === '')
+      return ui.notifications.warn(
+        game.i18n.localize('wildsea.TRACKS.requiredFields'),
+      )
 
     game.wildsea.trackDatabase.updateTrack(id, data)
   }
@@ -122,7 +130,6 @@ export class WildseaTrackPanel extends Application {
       case 'delete':
         game.wildsea.trackDatabase.deleteTrack(id)
         break
-
       default:
         break
     }

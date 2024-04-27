@@ -156,6 +156,7 @@
       "hidden": "Hidden",
       "label": "Label",
       "open": "Open",
+      "requiredFields": "Name and Track Groups are required fields.",
       "secret": "Secret",
       "trackGroups": "Track Groups",
       "trackGroupsHelpText": "Comma-separated",
