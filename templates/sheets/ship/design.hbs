@@ -5,10 +5,12 @@
       <small class="damaged-{{system.damaged}} corners">
         {{localize 'wildsea.damaged'}}
       </small>
-      <small class="text-dark">{{system.type}}</small>
       <a class="damage-button" data-fitting-id="{{id}}"><small><i class="fa-solid fa-heart-crack"></i></small></a>
+      <small class="text-mid">{{system.type}}</small>
+    {{else}}
+      <small class="text-mid">{{localize (concat "wildsea." system.type)}}</small>
     {{/if}}
-    <small class="text-light">{{system.stakes}}-stakes</small>
+    <small class="text-light">{{pluralize "stakes" system.stakes}}</small>
   </h4>
   <div class="drawer {{#if system.collapsed}}hidden{{/if}}">
     {{{system.enrichedDetails}}}
