@@ -328,7 +328,7 @@ form label {
   border: 3px solid var(--blockquote-border);
   border-radius: 0.8rem;
   padding: 0.8rem;
-  margin: 1rem 5rem;
+  margin: 1rem;
   font-style: normal;
 }
 .wildsea blockquote h2,
@@ -352,6 +352,30 @@ form label {
 }
 .wildsea blockquote.purple {
   --blockquote-border: #a95c8d;
+}
+.wildsea blockquote.fiction,
+.wildsea blockquote.black {
+  border: none;
+  margin: 0.8rem 0;
+  padding: 0.8rem 0.8rem 0;
+}
+.wildsea blockquote.fiction p {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  text-transform: initial;
+}
+.wildsea blockquote.black {
+  border: 1px solid #2d2a2b;
+  background: #2d2a2b;
+}
+.wildsea blockquote.black p,
+.wildsea blockquote.black h1,
+.wildsea blockquote.black h2,
+.wildsea blockquote.black h3 {
+  color: #f9f9f9;
 }
 .wildsea table {
   border: none;
@@ -778,6 +802,7 @@ form label {
   margin: 1rem;
   font-style: normal;
 }
+.sheet.journal-entry .journal-entry-content .journal-page-content blockquote h2,
 .sheet.journal-entry .journal-entry-content .journal-page-content blockquote h3 {
   color: var(--blockquote-border);
 }

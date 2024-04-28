@@ -93,68 +93,7 @@
       border: 0;
     }
 
-    --blockquote-border: @light-bg;
-
-    blockquote {
-      background: none;
-      border: 3px solid var(--blockquote-border);
-      border-radius: 0.8rem;
-      padding: 0.8rem;
-      margin: 1rem;
-      font-style: normal;
-
-      h3 {
-        color: var(--blockquote-border);
-      }
-
-      &.red {
-        --blockquote-border: @red;
-      }
-      &.yellow {
-        --blockquote-border: @yellow;
-      }
-      &.green {
-        --blockquote-border: @green;
-      }
-      &.sky {
-        --blockquote-border: @sky;
-      }
-      &.blue {
-        --blockquote-border: @blue;
-      }
-      &.purple {
-        --blockquote-border: @purple;
-      }
-
-      &.fiction,
-      &.black {
-        border: none;
-        margin: 0.8rem 0;
-        padding: 0.8rem 0.8rem 0;
-      }
-
-      &.fiction {
-        p {
-          .title-font();
-          font-weight: 600;
-          font-size: 1.5rem;
-          line-height: 1.5rem;
-          text-transform: initial;
-        }
-      }
-
-      &.black {
-        border: 1px solid @black;
-        background: @black;
-
-        p,
-        h1,
-        h2,
-        h3 {
-          color: @white;
-        }
-      }
-    }
+    .blockquotes();
   }
 
   .journal-header {

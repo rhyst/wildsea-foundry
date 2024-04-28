@@ -64,6 +64,10 @@ Hooks.on('ready', async () => {
   game.wildsea.dicePool = new WildseaDicePool()
 })
 
+Hooks.on('renderJournalTextPageSheet', (_obj, html) => {
+  html.find('.editable').addClass('wildsea')
+})
+
 Hooks.on('renderSceneControls', (_controls, html) => {
   const dicePoolButton = $(
     `<li class="dice-pool-control" data-control="dice-pool" data-tooltip="${game.i18n.localize(

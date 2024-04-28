@@ -308,39 +308,7 @@ form {
     text-transform: initial;
   }
 
-  --blockquote-border: @light-bg;
-  blockquote {
-    background: none;
-    border: 3px solid var(--blockquote-border);
-    border-radius: 0.8rem;
-    padding: 0.8rem;
-    margin: 1rem 5rem;
-    font-style: normal;
-
-    h2,
-    h3 {
-      color: var(--blockquote-border);
-    }
-
-    &.red {
-      --blockquote-border: @red;
-    }
-    &.yellow {
-      --blockquote-border: @yellow;
-    }
-    &.green {
-      --blockquote-border: @green;
-    }
-    &.sky {
-      --blockquote-border: @sky;
-    }
-    &.blue {
-      --blockquote-border: @blue;
-    }
-    &.purple {
-      --blockquote-border: @purple;
-    }
-  }
+  .blockquotes();
 
   table {
     border: none;
