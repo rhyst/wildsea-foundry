@@ -70,4 +70,9 @@ export const loadHandlebarsHelpers = () => {
     const css_class = index <= burn ? 'burned' : index <= value ? 'checked' : ''
     return `<li class="box ${css_class}"><span class="dot" data-index=${index}"></span></li>`
   })
+  Handlebars.registerHelper('pluralize', (key, value) =>
+    game.i18n.format(value === 1 ? `wildsea.${key}One` : `wildsea.${key}Many`, {
+      value,
+    }),
+  )
 }
