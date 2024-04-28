@@ -529,6 +529,9 @@ form label {
 .wildsea .list-track {
   margin-bottom: 0.25rem;
 }
+.wildsea .prosemirror menu .pm-dropdown > ul li::before {
+  background: none !important;
+}
 .wildsea ul.track {
   display: flex;
   flex-direction: row;
