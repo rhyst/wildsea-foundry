@@ -89,7 +89,7 @@ export class WildseaTrackPanel extends Application {
     const data = await renderDialog(
       game.i18n.localize('wildsea.TRACKS.editTrack'),
       this.handleDialogData,
-      { ...track },
+      { ...track, config: WILDSEA },
       '/systems/wildsea/templates/applications/tracks/dialog.hbs',
     )
     if (data.cancelled) return
