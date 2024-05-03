@@ -5,7 +5,8 @@ export const runMigrations = () => {
   const NEEDS_MIGRATION_VERSION = '0.0.8'
 
   const needsMigration =
-    !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion)
+    !currentVersion ||
+    foundry.utils.isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion)
 
   if (needsMigration) {
     migrate()

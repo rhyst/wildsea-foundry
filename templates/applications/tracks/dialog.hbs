@@ -20,11 +20,7 @@
     <label>{{localize "wildsea.TRACKS.visibility"}}</label>
     <div class="form-fields">
       <select name="visibility" id="visibility">
-        {{#select visibility}}
-        <option value="open">{{localize "wildsea.TRACKS.open"}}</option>
-        <option value="hidden">{{localize "wildsea.TRACKS.hidden"}}</option>
-        <option value="secret">{{localize "wildsea.TRACKS.secret"}}</option>
-        {{/select}}
+        {{selectOptions @root.config.trackVisibilityOptions selected=visibility localize=true}}
       </select>
     </div>
   </div>

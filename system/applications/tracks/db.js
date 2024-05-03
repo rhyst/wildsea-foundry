@@ -11,7 +11,7 @@ export class WildseaTrackDatabase extends Collection {
       return total + parseInt(current)
     }, 0)
     const newTrack = {
-      id: randomID(),
+      id: foundry.utils.randomID(),
       ...data,
       value: 0,
       burn: 0,

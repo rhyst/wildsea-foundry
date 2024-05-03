@@ -15,7 +15,7 @@ export default class WildseaDicePool extends FormApplication {
   }
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       id: 'user-dice-pool',
       template: 'systems/wildsea/templates/applications/dice_pool.hbs',
       title: game.i18n.localize('wildsea.dicePoolTitle'),

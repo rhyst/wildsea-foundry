@@ -106,7 +106,8 @@ export default class WildseaActorSheet extends ActorSheet {
     if (data.cancelled) return
 
     const text = data.text
-    const id = randomID()
+
+    const id = foundry.utils.randomID()
     const slimData = {
       id,
       text,
@@ -137,10 +138,9 @@ export default class WildseaActorSheet extends ActorSheet {
 
     if (item) {
       const data = await renderDialog(
-        game.i18n.format(
-          'wildsea.editSlim',
-          game.i18n.localize(`wildsea.${itemType}`),
-        ),
+        game.i18n.format('wildsea.editSlim', {
+          type: game.i18n.localize(`wildsea.${itemType}`),
+        }),
         this.processSlimDialog,
         item,
       )
