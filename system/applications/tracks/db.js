@@ -7,7 +7,7 @@ export class WildseaTrackDatabase extends Collection {
 
   addTrack(data = {}) {
     const tracks = this.getTrackData()
-    const max = data.groups.split(',').reduce((total, current) => {
+    const max = data.groups.split(/[,\|]/).reduce((total, current) => {
       return total + parseInt(current)
     }, 0)
     const newTrack = {
@@ -23,7 +23,7 @@ export class WildseaTrackDatabase extends Collection {
 
   updateTrack(id, data = {}) {
     const tracks = this.getTrackData()
-    const max = data.groups.split(',').reduce((total, current) => {
+    const max = data.groups.split(/[,\|]/).reduce((total, current) => {
       return total + (parseInt(current) || 0)
     }, 0)
     const burn = clamp(tracks[id].burn, max)
