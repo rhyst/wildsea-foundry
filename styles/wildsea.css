@@ -74,7 +74,7 @@ a:hover,
   row-gap: 1rem;
 }
 .flex0 {
-  flex: 0;
+  flex: 0 !important;
 }
 .flex4 {
   flex: 4;

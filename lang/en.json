@@ -158,8 +158,8 @@
       "open": "Open",
       "requiredFields": "Name and Track Groups are required fields.",
       "secret": "Secret",
-      "trackGroups": "Track Groups",
-      "trackGroupsHelpText": "Comma-separated",
+      "trackGroups": "Length",
+      "trackGroupsHelpText": "Create breaks with ',' or '|'",
       "visibility": "Visibility"
     },
     "WARNINGS": {
