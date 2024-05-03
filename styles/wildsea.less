@@ -521,6 +521,10 @@ form {
     padding: 0.5rem !important;
   }
 
+  .padded-x {
+    padding: 0 0.5rem !important;
+  }
+
   .no-margin {
     margin: 0 !important;
   }
@@ -533,6 +537,24 @@ form {
     li::before {
       background: none !important;
     }
+  }
+
+  .slim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .slim-item {
+      background: @white;
+    }
+  }
+
+  .drag-preview {
+    outline: 1px solid white;
+  }
+
+  .drag-gap {
+    visibility: hidden;
   }
 
   ul.track {

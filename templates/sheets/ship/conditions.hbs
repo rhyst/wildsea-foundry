@@ -6,7 +6,7 @@
     </a>
   </h2>
   {{#if (any system.conditions)}}
-    <div class="flexcol item-list spaced">
+    <div class="flexcol slim-list spaced">
       {{#each system.conditions as |condition|}}
         {{> "systems/wildsea/templates/shared/slim_item.hbs" condition type="conditions"}}
       {{/each}}

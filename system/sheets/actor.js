@@ -1,6 +1,7 @@
 import { WILDSEA } from '../config.js'
 import { clamp, clickModifiers } from '../helpers.js'
 import { renderDialog } from '../dialog.js'
+import SortableJS from '../lib/sortable.complete.esm.js'
 
 export default class WildseaActorSheet extends ActorSheet {
   async getData() {
@@ -23,6 +24,10 @@ export default class WildseaActorSheet extends ActorSheet {
         // Item tracks
         html.find('.item .track').click(this.increaseItemTrack.bind(this))
         html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
+
+        //reorder slim items
+        for (const list of html.find('.slim-list'))
+          this.reorderSlimListHandler(list)
       }
     }
     super.activateListeners(html)
@@ -101,7 +106,6 @@ export default class WildseaActorSheet extends ActorSheet {
     if (data.cancelled) return
 
     const text = data.text
-
     const id = randomID()
     const slimData = {
       id,
@@ -144,7 +148,6 @@ export default class WildseaActorSheet extends ActorSheet {
       if (data.cancelled || !data.text) return
 
       item.text = data.text
-
       this.actor.update({
         system: {
           [itemType]: items,
@@ -175,8 +178,7 @@ export default class WildseaActorSheet extends ActorSheet {
           item.track.value = newBurn
         }
       } else {
-        const newValue = clamp(marks + value, max, burns)
-        item.track.value = newValue
+        item.track.value = clamp(marks + value, max, burns)
       }
 
       this.actor.update({
@@ -205,12 +207,11 @@ export default class WildseaActorSheet extends ActorSheet {
       const template = 'systems/wildsea/templates/chat/slim.hbs'
       const html = await renderTemplate(template, item)
 
-      const chatData = {
+      ChatMessage.create({
         user: game.user._id,
         speaker: ChatMessage.getSpeaker(),
         content: html,
-      }
-      ChatMessage.create(chatData)
+      })
     }
   }
 
@@ -220,12 +221,11 @@ export default class WildseaActorSheet extends ActorSheet {
       const template = 'systems/wildsea/templates/chat/item.hbs'
       const html = await renderTemplate(template, item)
 
-      const chatData = {
+      ChatMessage.create({
         user: game.user._id,
         speaker: ChatMessage.getSpeaker(),
         content: html,
-      }
-      ChatMessage.create(chatData)
+      })
     }
   }
 
@@ -303,5 +303,35 @@ export default class WildseaActorSheet extends ActorSheet {
         },
       })
     }
+  }
+
+  reorderSlimListHandler(list) {
+    new SortableJS(list, {
+      animation: 200,
+      direction: 'vertical',
+      draggable: '.slim-item',
+      dragClass: 'drag-preview',
+      ghostClass: 'drag-gap',
+      onEnd: (event) => {
+        const id = event.item.dataset.itemId
+        const itemType = event.item.dataset.itemType
+        const newIndex = event.newDraggableIndex
+        this.moveSlimItem(id, newIndex, itemType)
+      },
+    })
+  }
+
+  moveSlimItem(id, newIndex, itemType) {
+    const items = this.actor.system[itemType]
+
+    const item = items.find((i) => i.id === id)
+    items.splice(items.indexOf(item), 1)
+    items.splice(newIndex, 0, item)
+
+    this.actor.update({
+      system: {
+        [itemType]: items,
+      },
+    })
   }
 }

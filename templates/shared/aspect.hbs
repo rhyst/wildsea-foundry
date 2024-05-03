@@ -2,7 +2,7 @@
   <h3 class="light handle">
     <span class="itemContextMenu">{{name}}</span>
     {{#if system.stakes}}
-    <small data-tooltip="{{localize "wildsea.stakes"}}">[{{system.stakes}}]</small>
+    <small class="text-light-transparent">{{pluralize "stakes" system.stakes}}</small>
     {{/if}}
     <small class="text-light-transparent">{{system.type}}</small>
   </h3>
