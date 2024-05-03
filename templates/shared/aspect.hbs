@@ -1,7 +1,7 @@
 <div class="aspect item" data-item-id="{{id}}">
   <h3 class="light handle">
     <span class="itemContextMenu">{{name}}</span>
-    {{#if system.stakes}}
+    {{#if system.stakes includeZero=true}}
     <small class="text-light-transparent">{{pluralize "stakes" system.stakes}}</small>
     {{/if}}
     <small class="text-light-transparent">{{system.type}}</small>
