@@ -1,5 +1,14 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.9
+
+- Leaf bullet icon
+- Sortable slim items
+- Improve UI Track dialog
+- Add basic FoundryVTT v12 support
+- Use Prosemirror editor for rich text fields
+- Minimum Stake cost for ship items is now 0
+
 ## v0.0.8
 
 - Allow UI Tracks to be "Open", "Hidden" or "Secret"
