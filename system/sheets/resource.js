@@ -7,7 +7,7 @@ export default class WildseaResourceSheet extends WildseaItemSheet {
   }
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       width: 500,
       height: 165,
     })

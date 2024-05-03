@@ -2,6 +2,7 @@ import { renderDialog } from '../../dialog.js'
 import { clickModifiers } from '../../helpers.js'
 import WildseaTrack from './track.js'
 import SortableJS from '../../lib/sortable.complete.esm.js'
+import { WILDSEA } from '../../config.js'
 
 export class WildseaTrackPanel extends Application {
   constructor(db, options) {
@@ -67,7 +68,7 @@ export class WildseaTrackPanel extends Application {
     const data = await renderDialog(
       game.i18n.localize('wildsea.TRACKS.addTrack'),
       this.handleDialogData,
-      {},
+      { config: WILDSEA },
       '/systems/wildsea/templates/applications/tracks/dialog.hbs',
     )
     if (data.cancelled) return

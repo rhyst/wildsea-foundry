@@ -33,6 +33,7 @@
     "edge": "Edge",
     "edges": "Edges",
     "edit": "Edit",
+    "editSlim": "Edit {type}",
     "effect": "Effect",
     "effects": "Effects",
     "engine": "Engine",

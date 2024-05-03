@@ -8,7 +8,7 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
   }
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       width: 600,
       height: 'auto',
       tabs: [
@@ -53,7 +53,7 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
 
     if (data.cancelled) return
 
-    data.id = randomID()
+    data.id = foundry.utils.randomID()
     const ratingMods =
       this.item.system.ratingMods != null
         ? [...this.item.system.ratingMods]

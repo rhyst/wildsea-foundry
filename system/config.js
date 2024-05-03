@@ -75,6 +75,11 @@ WILDSEA.slimDefaults = {
     value: 0,
   },
 }
+WILDSEA.trackVisibilityOptions = {
+  open: 'wildsea.TRACKS.open',
+  hidden: 'wildsea.TRACKS.hidden',
+  secret: 'wildsea.TRACKS.secret',
+}
 
 WILDSEA.adversarySizes = {
   small: 'wildsea.small',
