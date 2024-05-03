@@ -547,6 +547,9 @@ form label {
 .wildsea .padded {
   padding: 0.5rem !important;
 }
+.wildsea .padded-x {
+  padding: 0 0.5rem !important;
+}
 .wildsea .no-margin {
   margin: 0 !important;
 }
@@ -555,6 +558,20 @@ form label {
 }
 .wildsea .prosemirror menu .pm-dropdown > ul li::before {
   background: none !important;
+}
+.wildsea .slim-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.wildsea .slim-list .slim-item {
+  background: #f9f9f9;
+}
+.wildsea .drag-preview {
+  outline: 1px solid white;
+}
+.wildsea .drag-gap {
+  visibility: hidden;
 }
 .wildsea ul.track {
   display: flex;
