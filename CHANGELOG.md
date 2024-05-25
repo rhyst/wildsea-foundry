@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.13
+
+- Apply ratingMods for non-design ship items
+
 ## v0.0.12
 
 - Fix errors in compendium pack entries
