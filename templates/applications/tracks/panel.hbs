@@ -1,4 +1,4 @@
-<section class="track-panel">
+<section class="track-panel {{position}}">
   <div class="track-list">
     {{#each tracks as |track|}}
       {{#if (or ../options.editable (ne track.visibility 'secret'))}}

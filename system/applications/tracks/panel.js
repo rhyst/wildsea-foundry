@@ -28,6 +28,7 @@ export class WildseaTrackPanel extends Application {
         editable: game.user.isGM,
       },
       tracks,
+      position: game.settings.get('wildsea', 'trackPosition'),
     }
   }
 
