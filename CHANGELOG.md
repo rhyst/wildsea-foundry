@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.11
+
+- Add compendium packs to the CI
+
 ## v0.0.10
 
 - Add compendium packs of character and ship aspects
