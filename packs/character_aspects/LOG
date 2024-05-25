@@ -1,0 +1,8 @@
+2024/05/25-10:19:58.404 1e0c Recovering log #11
+2024/05/25-10:19:58.409 1e0c Delete type=0 #11
+2024/05/25-10:19:58.409 1e0c Delete type=3 #10
+2024/05/25-10:21:33.034 5dcc Level-0 table #15: started
+2024/05/25-10:21:33.034 5dcc Level-0 table #15: 0 bytes OK
+2024/05/25-10:21:33.037 5dcc Delete type=0 #13
+2024/05/25-10:21:33.043 5dcc Manual compaction at level-0 from '!folders!0MNLHnrdaKABl8k3' @ 72057594037927935 : 1 .. '!items!zotS6Vxg1STMT8qL' @ 0 : 0; will stop at (end)
+2024/05/25-10:21:33.047 5dcc Manual compaction at level-1 from '!folders!0MNLHnrdaKABl8k3' @ 72057594037927935 : 1 .. '!items!zotS6Vxg1STMT8qL' @ 0 : 0; will stop at (end)

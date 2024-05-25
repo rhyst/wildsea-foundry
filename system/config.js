@@ -1,13 +1,10 @@
 export const WILDSEA = {}
 WILDSEA.root_path = 'systems/wildsea'
-
 WILDSEA.defaultTokens = {
   player: `${WILDSEA.root_path}/assets/tokens/person.png`,
   ship: `${WILDSEA.root_path}/assets/tokens/iron-hulled-warship.png`,
 }
-
 WILDSEA.designTypes = ['size', 'frame', 'hull', 'bite', 'engine']
-
 WILDSEA.edgeMax = 1
 WILDSEA.edges = [
   'grace',
@@ -98,6 +95,16 @@ export const registerSystemSettings = () => {
     hint: 'SETTINGS.showBurnTooltip.hint',
     type: Boolean,
     default: true,
+  })
+
+  game.settings.register('wildsea', 'showDepth', {
+    config: true,
+    scope: 'client',
+    name: 'SETTINGS.showDepth.label',
+    hint: 'SETTINGS.showDepth.hint',
+    type: Boolean,
+    default: false,
+    requiresReload: true,
   })
 
   game.settings.register('wildsea', 'systemMigrationVersion', {

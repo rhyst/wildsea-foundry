@@ -22,13 +22,17 @@ import * as WildseaTracks from './system/applications/tracks/index.js'
 Hooks.once('init', () => {
   console.log('wildsea | Initializing')
 
+  registerSystemSettings()
+
+  if (game.settings.get('wildsea', 'showDepth'))
+    WILDSEA.shipRatings.push('depth')
+
   CONFIG.wildsea = WILDSEA
   CONFIG.ActiveEffect.legacyTransferral = false
   game.wildsea = {}
 
   WildseaTracks.setup()
 
-  registerSystemSettings()
   loadHandlebarsPartials()
   loadHandlebarsHelpers()
   setupEnrichers()

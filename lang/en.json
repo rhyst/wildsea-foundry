@@ -10,7 +10,7 @@
     "brasstongue": "Brasstongue",
     "break": "Break",
     "cancel": "Cancel",
-    "cargoPassengers":"Cargo & Passengers",
+    "cargoPassengers": "Cargo & Passengers",
     "chart": "Chart",
     "charts": "Charts",
     "conconct": "Concoct",
@@ -23,6 +23,7 @@
     "damaged": "Damaged",
     "delete": "Delete",
     "delve": "Delve",
+    "depth": "Depth",
     "description": "Description",
     "design": "Design",
     "details": "Details",
@@ -37,7 +38,7 @@
     "effect": "Effect",
     "effects": "Effects",
     "engine": "Engine",
-    "fittings":"Fittings",
+    "fittings": "Fittings",
     "flourish": "Flourish",
     "frame": "Frame",
     "free": "Free",
@@ -135,7 +136,7 @@
     "tilt": "Tilt",
     "toChat": "To Chat",
     "track_max": "Track",
-    "track_update": "Click: Update Marks, Shift/Ctrl Click: Update Burn", 
+    "track_update": "Click: Update Marks, Shift/Ctrl Click: Update Burn",
     "traits": "Traits",
     "triumph": "Triumph",
     "triumphDescription": "A complete success with no drawbacks. If you’re affecting a track, this lets you mark or clear a box.",
@@ -171,7 +172,11 @@
   "SETTINGS": {
     "showBurnTooltip": {
       "label": "Burn Tooltup",
-      "hint": "Show the Track Burn tooltip on hover"
+      "hint": "Show the Track Burn tooltip on hover."
+    },
+    "showDepth": {
+      "label": "Show Depth",
+      "hint": "Display the Depth rating on Ship sheets. Requires reload."
     }
   }
 }
