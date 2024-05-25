@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0,0,14
+
+- Add setting to change UI Track position
+
 ## v0.0.13
 
 - Apply ratingMods for non-design ship items
