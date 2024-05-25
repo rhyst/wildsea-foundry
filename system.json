@@ -15,10 +15,10 @@
       "discord": "ShadowyXP"
     }
   ],
-  "version": "0.0.9",
+  "version": "0.0.10",
   "url": "https://gitlab.com/pacosgrove1/wildsea-foundry",
   "manifest": "https://gitlab.com/api/v4/projects/pacosgrove1%2Fwildsea-foundry/packages/generic/wildsea-foundry/latest/system.json",
-  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.0.9/downloads/wildsea-foundry-v0.0.9.zip",
+  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.0.10/downloads/wildsea-foundry-v0.0.10.zip",
 
   "compatibility": {
     "minimum": "11",
@@ -34,7 +34,24 @@
   ],
   "esmodules": ["wildsea.js"],
   "styles": ["styles/wildsea.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "character_aspects",
+      "label": "Character Aspects",
+      "system": "wildsea",
+      "path": "packs/character_aspects",
+      "type": "Item",
+      "banner": "systems/wildsea/assets/banners/character_aspects.webp"
+    },
+    {
+      "name": "ship_aspects",
+      "label": "Ship Aspects",
+      "system": "wildsea",
+      "path": "packs/ship_aspects",
+      "type": "Item",
+      "banner": "systems/wildsea/assets/banners/ship_aspects.webp"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

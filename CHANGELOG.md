@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.10
+
+- Add compendium packs of character and ship aspects
+
 ## v0.0.9
 
 - Leaf bullet icon

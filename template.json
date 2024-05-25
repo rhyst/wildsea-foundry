@@ -57,12 +57,13 @@
       "conditions": [],
       "outriders": [],
       "ratings": {
-        "armour": { "value": 0, "burn": 0,  "max": 1 },
+        "armour": { "value": 0, "burn": 0, "max": 1 },
         "saws": { "value": 0, "burn": 0, "max": 1 },
         "seals": { "value": 0, "burn": 0, "max": 1 },
         "speed": { "value": 0, "burn": 0, "max": 1 },
         "stealth": { "value": 0, "burn": 0, "max": 1 },
-        "tilt": { "value": 0, "burn": 0, "max": 1 }
+        "tilt": { "value": 0, "burn": 0, "max": 1 },
+        "depth": { "value": 0, "burn": 0, "max": 1 }
       },
       "reputations": [],
       "rooms": [],
@@ -76,7 +77,15 @@
     }
   },
   "Item": {
-    "types": ["aspect", "attribute", "design", "fitting", "resource", "temporaryTrack", "undercrew"],
+    "types": [
+      "aspect",
+      "attribute",
+      "design",
+      "fitting",
+      "resource",
+      "temporaryTrack",
+      "undercrew"
+    ],
     "templates": {
       "hasDetails": {
         "details": "",
