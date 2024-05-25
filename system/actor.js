@@ -15,8 +15,10 @@ export default class WildseaActor extends Actor {
   }
 
   prepareShipBaseData() {
-    for (const design of this.items.filter((i) => i.type === 'design')) {
-      for (const ratingMod of design.system.ratingMods) {
+    for (const item of this.items.filter((i) =>
+      ['design', 'fitting', 'undercrew'].includes(i.type),
+    )) {
+      for (const ratingMod of item.system.ratingMods) {
         const max = this.system.ratings[ratingMod.rating].max
 
         this.system.ratings[ratingMod.rating].max = clamp(
