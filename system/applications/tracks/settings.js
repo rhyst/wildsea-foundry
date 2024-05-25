@@ -7,4 +7,18 @@ export const registerWildseaTrackSettings = () => {
     config: false,
     onChange: () => game.wildsea.trackDatabase.refresh(),
   })
+
+  game.settings.register('wildsea', 'trackPosition', {
+    config: true,
+    scope: 'world',
+    name: 'SETTINGS.trackPosition.label',
+    hint: 'SETTINGS.trackPosition.hint',
+    type: String,
+    choices: {
+      bottom: 'SETTINGS.trackPosition.bottom',
+      top: 'SETTINGS.trackPosition.top',
+    },
+    default: 'bottom',
+    requiresReload: true,
+  })
 }

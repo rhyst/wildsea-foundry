@@ -891,6 +891,11 @@ form label {
   font-family: 'Merriweather', serif;
   font-size: 0.9rem;
 }
+.track-panel.top {
+  bottom: initial;
+  top: 12px;
+  flex-direction: column-reverse;
+}
 .track-panel .options {
   display: flex;
   flex-direction: row-reverse;

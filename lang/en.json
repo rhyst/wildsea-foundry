@@ -177,6 +177,12 @@
     "showDepth": {
       "label": "Show Depth",
       "hint": "Display the Depth rating on Ship sheets. Requires reload."
+    },
+    "trackPosition": {
+      "label": "Track Position",
+      "hint": "Where to display the UI Track Panel. Requires reload.",
+      "bottom": "Bottom",
+      "top": "Top"
     }
   }
 }

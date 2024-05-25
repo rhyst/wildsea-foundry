@@ -1,8 +1,4 @@
-2024/05/25-13:55:41.376 6178 Recovering log #28
-2024/05/25-13:55:41.381 6178 Delete type=0 #28
-2024/05/25-13:55:41.381 6178 Delete type=3 #26
-2024/05/25-13:56:52.036 2b6c Level-0 table #33: started
-2024/05/25-13:56:52.036 2b6c Level-0 table #33: 0 bytes OK
-2024/05/25-13:56:52.037 2b6c Delete type=0 #31
-2024/05/25-13:56:52.043 2b6c Manual compaction at level-0 from '!folders!0MNLHnrdaKABl8k3' @ 72057594037927935 : 1 .. '!items!zotS6Vxg1STMT8qL' @ 0 : 0; will stop at (end)
-2024/05/25-13:56:52.045 2b6c Manual compaction at level-1 from '!folders!0MNLHnrdaKABl8k3' @ 72057594037927935 : 1 .. '!items!zotS6Vxg1STMT8qL' @ 0 : 0; will stop at (end)
+2024/05/25-19:39:09.916108 313cd2000 Log #40: 0 ops saved to Table #43 OK
+2024/05/25-19:39:09.916310 313cd2000 Archiving /Users/paulcosgrove/Documents/FoundryVTT/Data/systems/wildsea/packs/character_aspects/000040.log: OK
+2024/05/25-19:39:09.917820 313cd2000 Table #42: 953 entries OK
+2024/05/25-19:39:09.918493 313cd2000 **** Repaired leveldb /Users/paulcosgrove/Documents/FoundryVTT/Data/systems/wildsea/packs/character_aspects; recovered 1 files; 250474 bytes. Some data may have been lost. ****
