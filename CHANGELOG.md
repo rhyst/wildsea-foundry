@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.0.12
+
+- Fix errors in compendium pack entries
+
 ## v0.0.11
 
 - Add compendium packs to the CI

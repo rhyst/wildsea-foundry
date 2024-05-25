@@ -20,7 +20,7 @@ export default class WildseaActor extends Actor {
         const max = this.system.ratings[ratingMod.rating].max
 
         this.system.ratings[ratingMod.rating].max = clamp(
-          max + ratingMod.value,
+          max + parseInt(ratingMod.value),
           8,
         )
       }
