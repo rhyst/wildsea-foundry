@@ -48,7 +48,7 @@ export const rollPool = async (dicePool) => {
   if (dicePool.cut > 0) formula += `dh${dicePool.cut}`
   formula += 'kh'
 
-  const roll = await new Roll(formula).roll({ async: true })
+  const roll = await new Roll(formula).roll()
 
   const results = roll.dice
     .flatMap((die) => die.results)

@@ -28,4 +28,15 @@ export default class WildseaActor extends Actor {
       }
     }
   }
+
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user)
+    if (data.type === 'player' || data.type === 'ship') {
+      const prototypeToken = {
+        sight: { enabled: true },
+        actorLink: true,
+      }
+      return this.updateSource({ prototypeToken })
+    }
+  }
 }

@@ -12,8 +12,8 @@
           <div class="flexcol spaced">
             {{#if dicePool.edge}}
               <div class="flexrow spaced">
-                <label class="padded">{{localize "wildsea.edge"}}</label>
-                <div class="padded">{{localize (concat "wildsea." dicePool.edge)}}</div>
+                <label class="padded flex2">{{localize "wildsea.edge"}}</label>
+                <div class="padded flex2">{{localize (concat "wildsea." dicePool.edge)}}</div>
                 <div class="center corners light-transparent padded">
                   +{{dicePool.edgeDice}}d
                 </div>
@@ -22,8 +22,8 @@
 
             {{#if dicePool.rating}}
               <div class="flexrow spaced">
-                <label class="padded">{{localize "wildsea.rating"}}</label>
-                <div class="padded">{{localize (concat "wildsea." dicePool.rating)}}</div>
+                <label class="padded flex2">{{localize "wildsea.rating"}}</label>
+                <div class="padded flex2">{{localize (concat "wildsea." dicePool.rating)}}</div>
                 <div class="center corners light-transparent padded">
                   +{{dicePool.ratingDice}}d
                 </div>
@@ -32,8 +32,8 @@
 
             {{#if dicePool.skillType}}
               <div class="flexrow spaced">
-                <label class="padded">{{localize (concat "wildsea." dicePool.skillType)}}</label>
-                <div class="padded">{{localize (concat "wildsea." dicePool.skillKey)}}</div>
+                <label class="padded flex2">{{localize (concat "wildsea." dicePool.skillType)}}</label>
+                <div class="padded flex2">{{localize (concat "wildsea." dicePool.skillKey)}}</div>
                 <div class="center corners light-transparent padded">
                   +{{dicePool.skillDice}}d
                 </div>
@@ -42,8 +42,8 @@
 
             {{#if (gt dicePool.advantage 0)}}
               <div class="flexrow spaced">
-                <label class="padded">{{localize "wildsea.advantage"}}</label>
-                <div class="padded"></div>
+                <label class="padded flex2">{{localize "wildsea.advantage"}}</label>
+                <div class="padded flex2"></div>
                 <div class="center corners light-transparent padded">
                   +{{dicePool.advantage}}d
                 </div>
@@ -52,8 +52,8 @@
             
             {{#if (gt dicePool.cut 0)}}
               <div class="flexrow spaced">
-                <label class="padded">{{localize "wildsea.cut"}}</label>
-                <div class="padded"></div>
+                <label class="padded flex2">{{localize "wildsea.cut"}}</label>
+                <div class="padded flex2"></div>
                 <div class="center corners light-transparent padded">
                   {{dicePool.cut}}
                 </div>

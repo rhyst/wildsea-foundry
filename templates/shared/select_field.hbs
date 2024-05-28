@@ -2,14 +2,12 @@
   <label class="flex1">{{localize label}}</label>
   <div class="form-fields flex3">
     <select name="{{field}}" class="corners">
-      {{#select value}}
-        {{#if includeEmpty}}
-          <option value="">&mdash;</option>
-        {{/if}}
-        {{#each selectOptions as |option|}}
-          <option value="{{option}}">{{localize (concat "wildsea." option) }}</option>
-        {{/each}}
-      {{/select}}
+      {{#if includeEmpty}}
+        <option value="">&mdash;</option>
+      {{/if}}
+      {{#each selectOptions as |option|}}
+        <option value="{{option}}" {{#if (eq option ../value)}}selected{{/if}}>{{localize (concat "wildsea." option) }}</option>
+      {{/each}}
     </select>
   </div>
 </div>

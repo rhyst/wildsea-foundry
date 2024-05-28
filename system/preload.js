@@ -75,4 +75,15 @@ export const loadHandlebarsHelpers = () => {
       value,
     }),
   )
+  Handlebars.registerHelper('selectOptGroup', (values, options) => {
+    const { label, selected } = options?.hash
+    let html = `<optgroup label="${label}">`
+    for (const key of Object.keys(values)) {
+      html += `<option value="${key}"`
+      if (selected === key) html += ` selected`
+      html += `>${values[key]}</option>`
+    }
+    html += '</optgroup>'
+    return html
+  })
 }
