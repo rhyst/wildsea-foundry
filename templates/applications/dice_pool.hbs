@@ -3,12 +3,7 @@
     <label>{{localize "wildsea.edge"}}</label>
     <div class="form-fields">
       <select id="edge" name="edge" class="corners">
-        {{#select edge}}
-          <option value="">{{localize "wildsea.none"}}</option>
-          {{#each edges as |value label|}}
-            <option value="{{label}}" {{#if (eq value 0)}}disabled{{/if}}>{{localize (concat "wildsea." label)}}{{#if (gt value 0)}} (+{{value}}d){{/if}}</option>
-          {{/each}}
-        {{/select}}
+          {{selectOptions edgeOptions selected=edge blank=(localize "wildsea.none")}}
       </select>
     </div>
   </div>
@@ -17,19 +12,9 @@
     <label>{{localize "wildsea.skillLanguage"}}</label>
     <div class="form-fields">
       <select id="skillLanguage" name="skillLanguage" class="corners">
-        {{#select skillLanguage}}
-          <option value="">{{localize "wildsea.none"}}</option>
-          <optgroup label="{{localize "wildsea.skills"}}">
-            {{#each skills as |value label|}}
-              <option value="skills.{{label}}" {{#if (eq value 0)}}disabled{{/if}}>{{localize (concat "wildsea." label)}}{{#if (gt value 0)}} (+{{value}}d){{/if}}</option>
-            {{/each}}
-          </optgroup>
-          <optgroup label="{{localize "wildsea.languages"}}">
-            {{#each languages as |value label|}}
-              <option value="languages.{{label}}" {{#if (eq value 0)}}disabled{{/if}}>{{localize (concat "wildsea." label)}}{{#if (gt value 0)}} (+{{value}}d){{/if}}</option>
-            {{/each}}
-          </optgroup>
-        {{/select}}
+        <option value="">{{localize "wildsea.none"}}</option>
+        {{{selectOptGroup skillOptions selected=skillLanguage label=(localize "wildsea.skill")}}}
+        {{{selectOptGroup languageOptions selected=skillLanguage label=(localize "wildsea.language")}}}
       </select>
     </div>
   </div>
@@ -39,12 +24,7 @@
     <label>{{localize "wildsea.advantage"}}</label>
     <div class="form-fields">
       <select id="advantage" name="advantage" class="corners">
-        {{#select advantage}}
-          <option value="0">+0d</option>
-          {{#times 2}}
-            <option value="{{@index}}">+{{@index}}d</option>
-          {{/times}}
-        {{/select}}
+      {{selectOptions advantageOptions selected=advantage}}
       </select>
     </div>
   </div>

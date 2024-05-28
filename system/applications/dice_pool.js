@@ -48,9 +48,39 @@ export default class WildseaDicePool extends FormApplication {
       throw new Error(error)
     }
 
-    context.edges = this.actor.system.edges
-    context.skills = this.actor.system.skills
-    context.languages = this.actor.system.languages
+    const edgeOptions = {}
+    for (const edge of WILDSEA.edges) {
+      edgeOptions[edge] = game.i18n.format('wildsea.diceRating', {
+        label: game.i18n.localize(`wildsea.${edge}`),
+        value: this.actor.system.edges[edge] || 0,
+      })
+    }
+    context.edgeOptions = edgeOptions
+
+    const skillOptions = {}
+    for (const skill of WILDSEA.skills) {
+      skillOptions[`skills.${skill}`] = game.i18n.format('wildsea.diceRating', {
+        label: game.i18n.localize(`wildsea.${skill}`),
+        value: this.actor.system.skills[skill] || 0,
+      })
+    }
+    context.skillOptions = skillOptions
+
+    const languageOptions = {}
+    for (const language of WILDSEA.languages) {
+      languageOptions[`languages.${language}`] = game.i18n.format(
+        'wildsea.diceRating',
+        {
+          label: game.i18n.localize(`wildsea.${language}`),
+          value: this.actor.system.languages[language] || 0,
+        },
+      )
+    }
+    context.languageOptions = languageOptions
+
+    context.advantageOptions = Object.fromEntries(
+      [0, 1, 2].map((n) => [n, `+${n}d`]),
+    )
 
     return context
   }

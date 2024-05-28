@@ -488,6 +488,7 @@ form label {
 .wildsea .navigation nav.sheet-tabs a.active {
   background: #626256;
   color: #f9f9f9;
+  text-shadow: none;
 }
 .wildsea .description {
   --editor-height: 8rem;

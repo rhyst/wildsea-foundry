@@ -28,6 +28,7 @@
     "design": "Design",
     "details": "Details",
     "dicePoolTitle": "Dice Pool",
+    "diceRating": "{label} (+{value}d)",
     "disaster": "Disaster",
     "disasterDescription": "A failure that also introduces a narrative complication or drawback of some kind. If you’re affecting a track, this usually doesn’t let you mark or clear at all.",
     "drives": "Drives",
@@ -183,6 +184,22 @@
       "hint": "Where to display the UI Track Panel. Requires reload.",
       "bottom": "Bottom",
       "top": "Top"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "hazard": "Hazard",
+      "player": "Wildsailor",
+      "ship": "Ship"
+    },
+    "Item": {
+      "aspect": "Aspect",
+      "attribute": "Ship Attribute",
+      "design": "Ship Design",
+      "fitting": "Ship Fitting",
+      "resource": "Resource",
+      "temporaryTrack": "Temporary Aspect Track",
+      "undercrew": "Undercrew"
     }
   }
 }
