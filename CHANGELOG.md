@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.1.0
+
+- FoundryVTT v12 support
+
 ## v0.0.14
 
 - Add setting to change UI Track position
