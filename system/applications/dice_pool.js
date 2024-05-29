@@ -140,6 +140,7 @@ export default class WildseaDicePool extends FormApplication {
         outcome,
       ),
       roll,
+      rolls: [roll],
       sound: CONFIG.sounds.dice,
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     }
