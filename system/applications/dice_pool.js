@@ -39,7 +39,9 @@ export default class WildseaDicePool extends FormApplication {
     if (!this.actor) {
       const error = game.i18n.localize('wildsea.userNotFound')
       ui.notifications.error(error)
-      throw new Error(error)
+      // throw new Error(error)
+      game.user.sheet.render(true)
+      return
     }
 
     if (!this.actor.isOwner) {
