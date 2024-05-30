@@ -55,7 +55,7 @@ const trackText = (track) => {
   return `${track.max}-Track`
 }
 
-const stakesText = (s) => {
+export const stakesText = (s) => {
   const stakes = parseInt(s)
   if (stakes === 0) return game.i18n.localize('wildsea.free')
   if (stakes === 1) return game.i18n.localize('wildsea.stakesOne')
