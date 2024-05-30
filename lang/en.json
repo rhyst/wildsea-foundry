@@ -145,6 +145,8 @@
     "twistDescription": "An unexpected outcome in addition to the usual result, often something small but potentially useful. This twist can be suggested by any player at the table, but the Firefly has the final say.",
     "type": "Type",
     "undercrew": "Undercrew",
+    "userNotFound": "You don't have an Actor assigned.",
+    "userNotPermitted": "You can only roll for actors you own",
     "value": "Value",
     "variable": "Variable",
     "vault": "Vault",
