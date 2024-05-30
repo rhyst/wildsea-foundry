@@ -1,3 +1,5 @@
+import { stakesText } from './enrichers.js'
+
 export const loadHandlebarsPartials = () => {
   const partials = [
     'systems/wildsea/templates/applications/tracks/track.hbs',
@@ -70,11 +72,7 @@ export const loadHandlebarsHelpers = () => {
     const css_class = index <= burn ? 'burned' : index <= value ? 'checked' : ''
     return `<li class="box ${css_class}"><span class="dot" data-index=${index}"></span></li>`
   })
-  Handlebars.registerHelper('pluralize', (key, value) =>
-    game.i18n.format(value === 1 ? `wildsea.${key}One` : `wildsea.${key}Many`, {
-      value,
-    }),
-  )
+  Handlebars.registerHelper('stakesText', (stakes) => stakesText(stakes))
   Handlebars.registerHelper('selectOptGroup', (values, options) => {
     const { label, selected } = options?.hash
     let html = `<optgroup label="${label}">`
