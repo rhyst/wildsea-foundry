@@ -108,7 +108,7 @@ export const registerSystemSettings = () => {
 
   game.settings.register('wildsea', 'showDepth', {
     config: true,
-    scope: 'client',
+    scope: 'world',
     name: 'SETTINGS.showDepth.label',
     hint: 'SETTINGS.showDepth.hint',
     type: Boolean,
