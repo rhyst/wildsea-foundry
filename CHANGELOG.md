@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.1.1
+
+- Add Quick Reference rules Journal
+
 ## v0.1.0
 
 - FoundryVTT v12 support
