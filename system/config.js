@@ -36,7 +36,7 @@ WILDSEA.skillMax = 3
 WILDSEA.skills = [
   'brace',
   'break',
-  'conconct',
+  'concoct',
   'cook',
   'delve',
   'flourish',
@@ -93,6 +93,15 @@ export const registerSystemSettings = () => {
     scope: 'client',
     name: 'SETTINGS.showBurnTooltip.label',
     hint: 'SETTINGS.showBurnTooltip.hint',
+    type: Boolean,
+    default: true,
+  })
+
+  game.settings.register('wildsea', 'showAttributeTooltip', {
+    config: true,
+    scope: 'client',
+    name: 'SETTINGS.showAttributeTooltip.label',
+    hint: 'SETTINGS.showAttributeTooltip.hint',
     type: Boolean,
     default: true,
   })
