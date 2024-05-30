@@ -5,6 +5,7 @@
 - Add Quick Reference rules Journal
 - Attribute tooltips (Mutex)
 - Fix access to Depth setting (#37)
+- Fix display of ship aspect stake values
 
 ## v0.1.0
 
