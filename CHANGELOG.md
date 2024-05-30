@@ -3,8 +3,8 @@
 ## v0.1.1
 
 - Add Quick Reference rules Journal
-- Attribute tooltips
-- Fix access to Depth setting
+- Attribute tooltips (Mutex)
+- Fix access to Depth setting (#37)
 
 ## v0.1.0
 
