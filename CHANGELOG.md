@@ -3,6 +3,8 @@
 ## v0.1.1
 
 - Add Quick Reference rules Journal
+- Attribute tooltips
+- Fix access to Depth setting
 
 ## v0.1.0
 
