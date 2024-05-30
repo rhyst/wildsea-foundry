@@ -45,12 +45,16 @@
 
   .journal-page-content {
     p {
-      margin: 0 0 0.8rem;
+      margin: 0 0 0.5rem;
       font-size: 0.8rem;
 
       &:empty {
         display: none;
       }
+    }
+
+    ul {
+      margin: 0 0 0.5rem;
     }
 
     .wildsea-item {
@@ -68,25 +72,54 @@
       font-size: 0.7em;
       text-transform: none;
       color: @light-bg;
+    }
 
-      &.red {
-        color: @red;
-      }
-      &.yellow {
-        color: @yellow;
-      }
-      &.green {
-        color: @green;
-      }
-      &.blue {
-        color: @blue;
-      }
-      &.sky {
-        color: @sky;
-      }
-      &.purple {
-        color: @purple;
-      }
+    .text-red,
+    .highlight-red .small,
+    .highlight-red small {
+      color: @red;
+    }
+    .text-yellow,
+    .highlight-yellow .small,
+    .highlight-yellow small {
+      color: @yellow;
+    }
+    .text-green,
+    .highlight-green .small,
+    .highlight-green small {
+      color: @green;
+    }
+    .text-blue,
+    .highlight-blue .small,
+    .highlight-blue small {
+      color: @blue;
+    }
+    .text-sky,
+    .highlight-sky .small,
+    .highlight-sky small {
+      color: @sky;
+    }
+    .text-purple,
+    .highlight-purple .small,
+    .highlight-purple small {
+      color: @purple;
+    }
+    .text-mid,
+    .highlight-mid .small,
+    .highlight-mid small {
+      color: @mid-bg;
+    }
+
+    .text-white {
+      color: @white;
+    }
+
+    .upcase {
+      text-transform: uppercase;
+    }
+
+    .text-light {
+      color: @light-bg;
     }
 
     img {
@@ -94,6 +127,62 @@
     }
 
     .blockquotes();
+
+    table {
+      border-bottom: none;
+
+      tr {
+        vertical-align: top;
+      }
+      &.middle {
+        tr {
+          vertical-align: middle;
+        }
+      }
+
+      thead {
+        background: @table-head;
+        text-shadow: none;
+        border-bottom: none;
+
+        h2 {
+          color: @white;
+        }
+        h3 {
+          color: @table-light;
+        }
+        p {
+          margin: 0;
+        }
+
+        tr {
+          vertical-align: middle;
+        }
+
+        th {
+          padding: 0.5rem;
+        }
+      }
+      tbody {
+        tr {
+          background-color: @white;
+
+          &:nth-child(even) {
+            background-color: @table-light;
+            td:nth-child(even) {
+              background-color: @table-dark;
+            }
+            td:first-child {
+              background-color: @white;
+            }
+          }
+
+          td {
+            padding: 0.5rem 0.5rem 0;
+          }
+        }
+      }
+    }
   }
 
   .journal-header {

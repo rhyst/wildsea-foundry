@@ -118,7 +118,7 @@
     "sound": "Sound",
     "speed": "Speed",
     "stakes": "Stakes",
-    "stakesMany": "{value} Stakes",
+    "stakesMany": "{stakes} Stakes",
     "stakesOne": "1 Stake",
     "stealth": "Stealth",
     "study": "Study",

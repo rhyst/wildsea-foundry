@@ -9,6 +9,7 @@ import WildseaAspectSheet from './system/sheets/aspect.js'
 import WildseaAttributeSheet from './system/sheets/attribute.js'
 import WildseaDicePool from './system/applications/dice_pool.js'
 import WildseaItem from './system/item.js'
+import WildseaJournalSheet from './system/sheets/journal.js'
 import WildseaPlayerSheet from './system/sheets/player.js'
 import WildseaResourceSheet from './system/sheets/resource.js'
 import WildseaShipSheet from './system/sheets/ship.js'
@@ -56,6 +57,9 @@ Hooks.once('init', () => {
   Items.registerSheet('wildsea', WildseaAttributeSheet, {
     types: ['attribute'],
   })
+
+  Journal.unregisterSheet('core', JournalSheet)
+  Journal.registerSheet('wildsea', WildseaJournalSheet)
 
   CONFIG.TinyMCE.content_css = `${WILDSEA.root_path}/styles/tinymce.css`
 })

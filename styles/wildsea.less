@@ -17,6 +17,32 @@ a,
   }
 }
 
+a.content-link,
+a.inline-roll {
+  i {
+    color: @dark-bg;
+    font-weight: bold;
+  }
+
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: unset;
+  font-weight: 500;
+  color: inherit;
+
+  &.unstyled {
+    font-weight: inherit;
+    white-space: unset;
+    word-break: unset;
+
+    i {
+      color: inherit;
+      margin-right: 0.25rem;
+    }
+  }
+}
+
 .window-app {
   .window-content {
     background: @white;
@@ -80,6 +106,10 @@ a,
 
 .flex {
   display: flex !important;
+}
+
+.left {
+  text-align: left;
 }
 
 .center {

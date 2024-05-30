@@ -1,4 +1,2 @@
-2024/05/25-19:39:09.916108 313cd2000 Log #40: 0 ops saved to Table #43 OK
-2024/05/25-19:39:09.916310 313cd2000 Archiving /Users/paulcosgrove/Documents/FoundryVTT/Data/systems/wildsea/packs/character_aspects/000040.log: OK
-2024/05/25-19:39:09.917820 313cd2000 Table #42: 953 entries OK
-2024/05/25-19:39:09.918493 313cd2000 **** Repaired leveldb /Users/paulcosgrove/Documents/FoundryVTT/Data/systems/wildsea/packs/character_aspects; recovered 1 files; 250474 bytes. Some data may have been lost. ****
+2024/05/27-13:04:20.284 64dc Delete type=0 #4
+2024/05/27-13:04:20.284 64dc Delete type=3 #6
