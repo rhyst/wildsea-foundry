@@ -5,7 +5,7 @@
       <select id="rating" name="rating" class="corners">
         <option value="">{{localize "wildsea.none"}}</option>
         {{#each ratings as |value label|}}
-          <option value="{{label}}" {{#if (eq rating label)}}selected{{/if}}>{{localize (concat "wildsea." label)}} (+{{value}}d)</option>
+          <option value="{{label}}" {{#if (eq ../rating label)}}selected{{/if}}>{{localize (concat "wildsea." label)}} (+{{value}}d)</option>
         {{/each}}
       </select>
     </div>
