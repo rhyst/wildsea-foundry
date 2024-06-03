@@ -530,6 +530,9 @@ form label {
   min-height: var(--editor-height);
   width: 100%;
 }
+.wildsea .description .editor .editor-edit {
+  z-index: 1000;
+}
 .wildsea .description .editor .editor-content {
   min-height: var(--editor-height);
 }
