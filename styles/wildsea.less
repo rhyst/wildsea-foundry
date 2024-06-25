@@ -20,8 +20,9 @@ a,
 a.content-link,
 a.inline-roll {
   i {
-    color: @dark-bg;
+    color: @mid-bg;
     font-weight: bold;
+    font-style: normal !important;
   }
 
   background: none;
@@ -35,10 +36,19 @@ a.inline-roll {
     font-weight: inherit;
     white-space: unset;
     word-break: unset;
+  }
+}
+
+#tooltip.link-matches,
+.locked-tooltip.link-matches {
+  .body-font();
+  font-size: 0.8rem;
+
+  a.content-link {
+    color: @white;
 
     i {
-      color: inherit;
-      margin-right: 0.25rem;
+      color: @light-bg;
     }
   }
 }
@@ -295,8 +305,7 @@ form {
   h1,
   h2,
   h3,
-  h4,
-  h5 {
+  h4 {
     .title-font();
     border-bottom: none;
     margin: 0 0 0.25rem;
@@ -336,6 +345,13 @@ form {
     font-size: 1.1rem;
     line-height: 1.1rem;
     text-transform: initial;
+  }
+
+  h5 {
+    .body-font();
+    font-weight: bold;
+    margin: 0 0 0.25rem;
+    font-size: 0.8rem;
   }
 
   .blockquotes();

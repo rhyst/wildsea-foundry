@@ -1,8 +1,6 @@
-import { renderDialog } from '../../dialog.js'
 import { clickModifiers } from '../../helpers.js'
 import WildseaTrack from './track.js'
 import SortableJS from '../../lib/sortable.complete.esm.js'
-import { WILDSEA } from '../../config.js'
 
 export class WildseaTrackPanel extends Application {
   constructor(db, options) {
@@ -56,7 +54,6 @@ export class WildseaTrackPanel extends Application {
         onEnd: (event) => {
           const id = event.item.dataset.trackId
           const newIndex = event.newDraggableIndex
-          const numItems = html.find('.track').length
           game.wildsea.trackDatabase.moveTrack(id, newIndex)
         },
       })
@@ -66,19 +63,10 @@ export class WildseaTrackPanel extends Application {
   async addTrack(event) {
     event.preventDefault()
 
-    const data = await renderDialog(
-      game.i18n.localize('wildsea.TRACKS.addTrack'),
-      this.handleDialogData,
-      { config: WILDSEA },
-      '/systems/wildsea/templates/applications/tracks/dialog.hbs',
+    const data = await game.wildsea.trackDatabase.showTrackDialog(
+      'wildsea.TRACKS.addTrack',
     )
     if (data.cancelled) return
-
-    const { label, groups } = data
-    if (label.trim() === '' || groups === '')
-      return ui.notifications.warn(
-        game.i18n.localize('wildsea.TRACKS.requiredFields'),
-      )
 
     game.wildsea.trackDatabase.addTrack({ ...data })
   }
@@ -87,19 +75,11 @@ export class WildseaTrackPanel extends Application {
     event.preventDefault()
     const id = event.currentTarget.closest('.track').dataset.trackId
     const track = game.wildsea.trackDatabase.get(id)
-    const data = await renderDialog(
-      game.i18n.localize('wildsea.TRACKS.editTrack'),
-      this.handleDialogData,
-      { ...track, config: WILDSEA },
-      '/systems/wildsea/templates/applications/tracks/dialog.hbs',
+    const data = await game.wildsea.trackDatabase.showTrackDialog(
+      'wildsea.TRACKS.editTrack',
+      track,
     )
     if (data.cancelled) return
-
-    const { label, groups } = data
-    if (label.trim() === '' || groups === '')
-      return ui.notifications.warn(
-        game.i18n.localize('wildsea.TRACKS.requiredFields'),
-      )
 
     game.wildsea.trackDatabase.updateTrack(id, data)
   }

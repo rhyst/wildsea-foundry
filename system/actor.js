@@ -35,6 +35,7 @@ export default class WildseaActor extends Actor {
       const prototypeToken = {
         sight: { enabled: true },
         actorLink: true,
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
       }
       return this.updateSource({ prototypeToken })
     }
