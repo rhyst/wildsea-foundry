@@ -1,11 +1,42 @@
+import { renderDialog } from '../../dialog.js'
 import { clamp } from '../../helpers.js'
+import { WILDSEA } from '../../config.js'
 
 export class WildseaTrackDatabase extends Collection {
   getTrackData() {
     return game.settings.get('wildsea', 'activeTracks')
   }
 
+  async showTrackDialog(title, data = {}) {
+    return await renderDialog(
+      game.i18n.localize(title),
+      this.handleDialogData,
+      { ...data, config: WILDSEA },
+      '/systems/wildsea/templates/applications/tracks/dialog.hbs',
+    )
+  }
+
+  handleDialogData(html) {
+    const form = html[0].querySelector('form')
+    const groups = form.groups.value
+      .trim()
+      .split(',')
+      .map((v) => v.trim())
+      .join(',')
+    return {
+      label: form.label.value.trim(),
+      groups,
+      visibility: form.visibility.value,
+    }
+  }
+
   addTrack(data = {}) {
+    const { label, groups } = data
+    if (label.trim() === '' || groups === '')
+      return ui.notifications.warn(
+        game.i18n.localize('wildsea.TRACKS.requiredFields'),
+      )
+
     const tracks = this.getTrackData()
     const max = data.groups.split(/[,\|]/).reduce((total, current) => {
       return total + parseInt(current)
@@ -22,6 +53,12 @@ export class WildseaTrackDatabase extends Collection {
   }
 
   updateTrack(id, data = {}) {
+    const { label, groups } = data
+    if (label.trim() === '' || groups === '')
+      return ui.notifications.warn(
+        game.i18n.localize('wildsea.TRACKS.requiredFields'),
+      )
+
     const tracks = this.getTrackData()
     const max = data.groups.split(/[,\|]/).reduce((total, current) => {
       return total + (parseInt(current) || 0)

@@ -1,19 +1,42 @@
 import { enrich } from './helpers.js'
+import WildseaTrack from './applications/tracks/track.js'
 
 export const setupEnrichers = () => {
   CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
     {
-      // RollTable
+      // DisplayItem - uuid, name
       pattern: /@DisplayItem\[(.+?)\](?:{(.+?)})?/gm,
       enricher: async (match) => await enrichItem(match),
+    },
+    {
+      //Track - groups, label
+      pattern: /@Track\[(.+?)\](?:{(.+?)})?/gm,
+      enricher: async (match) => await enrichTrack(match),
     },
   ])
 }
 
+const enrichTrack = async (match) => {
+  const [_m, groups, label] = match
+  const trackLabel = label ?? game.i18n.localize('wildsea.track')
+  const track = new WildseaTrack({ label: trackLabel, groups })
+  const container = document.createElement('span')
+  container.className = 'track'
+  foundry.utils.mergeObject(container.dataset, { label: trackLabel, groups })
+
+  if (game.user.isGM) {
+    const tooltip = game.i18n.localize('wildsea.track_tooltip')
+    foundry.utils.mergeObject(container.dataset, { tooltip })
+  }
+
+  container.innerHTML = `<a class="label">${trackLabel}</a> <span class="slots">${track.render()}</span>`
+  return container
+}
+
 const enrichItem = async (match) => {
-  const uuid = match[1]
+  const [_m, uuid, name] = match
   const item = await fromUuid(uuid)
-  const itemName = match[2] ?? item.name
+  const itemName = name ?? item.name
 
   const container = document.createElement('div')
   container.className = 'wildsea-item'

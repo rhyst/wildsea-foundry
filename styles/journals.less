@@ -2,7 +2,8 @@
 
 @import url(./config.less);
 
-.sheet.journal-entry .journal-entry-content {
+.sheet.journal-entry .journal-entry-content,
+.prosemirror .editor-container {
   background: @white;
   .body-font();
   color: @black;
@@ -40,6 +41,13 @@
     h4 {
       font-size: 1.25rem;
       line-height: 1.25rem;
+    }
+
+    h5 {
+      .body-font();
+      font-weight: bold;
+      margin: 0 0 0.25rem;
+      font-size: 0.8rem;
     }
   }
 
@@ -179,6 +187,48 @@
 
           td {
             padding: 0.5rem 0.5rem 0;
+          }
+        }
+      }
+    }
+
+    .track {
+      display: inline-flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+
+      .slots {
+        display: flex;
+        flex: 0;
+        column-gap: 0.25rem;
+        flex-direction: row;
+        height: 1rem;
+        background: linear-gradient(
+          to top,
+          transparent 0%,
+          transparent calc(50% - 1px),
+          @black calc(50% - 1px),
+          @black calc(50% + 1px),
+          transparent calc(50% + 1px),
+          transparent 100%
+        );
+
+        .slot {
+          border: 2px solid @black;
+          border-radius: 50%;
+          height: 1rem;
+          width: 1rem;
+          background: @white;
+        }
+
+        .break {
+          height: 1rem;
+          width: 2px;
+          background: @black;
+
+          &:last-child {
+            display: none;
           }
         }
       }

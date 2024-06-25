@@ -72,8 +72,20 @@ Hooks.on('ready', async () => {
   game.wildsea.dicePool = new WildseaDicePool()
 })
 
-Hooks.on('renderJournalTextPageSheet', (_obj, html) => {
-  html.find('.editable').addClass('wildsea')
+Hooks.on('renderJournalPageSheet', (_obj, html) => {
+  if (game.user.isGM) {
+    html.on('click', '.track', async (event) => {
+      const data = event.currentTarget.dataset
+      console.log(data)
+
+      const result = await game.wildsea.trackDatabase.showTrackDialog(
+        'wildsea.TRACKS.addTrack',
+        data,
+      )
+      if (result.cancelled) return
+      game.wildsea.trackDatabase.addTrack({ ...result })
+    })
+  }
 })
 
 Hooks.on('renderSceneControls', (_controls, html) => {

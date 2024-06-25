@@ -40,18 +40,18 @@ export default class WildseaTrack {
   }
 
   emptySlot() {
-    return `<div class="slot"></div>`
+    return `<span class="slot"></span>`
   }
 
   markedSlot() {
-    return `<div class="slot marked"></div>`
+    return `<span class="slot marked"></span>`
   }
 
   burnedSlot() {
-    return `<div class="slot burned"></div>`
+    return `<span class="slot burned"></span>`
   }
 
   breaker() {
-    return `<div class="break"></div>`
+    return `<span class="break"></span>`
   }
 }
