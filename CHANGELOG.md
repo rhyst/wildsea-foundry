@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.1.2
+
+- Add enricher for adding placeholder Tracks to journal entries
+
 ## v0.1.1
 
 - Add Quick Reference rules Journal
