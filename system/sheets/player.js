@@ -198,7 +198,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     const itemData = {
       name: game.i18n.localize('wildsea.newAspectName'),
       type: 'aspect',
-      data: {
+      system: {
         details: game.i18n.localize('wildsea.newAspectDetails'),
         ...defaultData,
       },
@@ -213,7 +213,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     const itemData = {
       name: game.i18n.localize('wildsea.newResourceName'),
       type: 'resource',
-      data: {
+      system: {
         ...defaultData,
       },
     }
@@ -227,7 +227,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     const itemData = {
       name: game.i18n.localize('wildsea.newTemporaryTrackName'),
       type: 'temporaryTrack',
-      data: {
+      system: {
         details: game.i18n.localize('wildsea.newTemporaryTrackDetails'),
         ...defaultData,
       },

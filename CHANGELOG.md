@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.1.3
+
+- Fix Hazard Attribute type on creation
+
 ## v0.1.2
 
 - Add enricher for adding placeholder Tracks to journal entries

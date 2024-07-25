@@ -87,7 +87,7 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
     const itemData = {
       name: game.i18n.localize('wildsea.newAttributeName'),
       type: 'attribute',
-      data: {
+      system: {
         details: game.i18n.localize('wildsea.newAttributeDetails'),
         type: attributeType,
         ...defaultData,
@@ -103,7 +103,7 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
     const itemData = {
       name: game.i18n.localize('wildsea.newResourceName'),
       type: 'resource',
-      data: {
+      system: {
         ...defaultData,
       },
     }
