@@ -153,7 +153,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         subtype: game.i18n.localize(`wildsea.${subtype}`),
       }),
       type: 'design',
-      data: {
+      system: {
         details: game.i18n.localize('wildsea.newDesignDetails'),
         type: subtype,
       },
@@ -164,7 +164,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     this.addEmbeddedDocument({
       name: game.i18n.localize('wildsea.newFittingName'),
       type: 'fitting',
-      data: {
+      system: {
         details: game.i18n.localize('wildsea.newFittingDetail'),
       },
     })
@@ -174,7 +174,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     this.addEmbeddedDocument({
       name: game.i18n.localize('wildsea.newUndercrewName'),
       type: 'undercrew',
-      data: {
+      system: {
         details: game.i18n.localize('wildsea.newUndercrewDetails'),
       },
     })
