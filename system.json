@@ -69,6 +69,11 @@
       "lang": "en",
       "name": "English (US)",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "uk",
+      "name": "Ukraine (UK)",
+      "path": "lang/uk.json"
     }
   ],
   "initiative": "1d20"
