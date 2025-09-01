@@ -54,4 +54,13 @@ export default class WildseaTrack {
   breaker() {
     return `<span class="break"></span>`
   }
+
+  displayVisibility() {
+    switch (this.visibility) {
+      case 'hidden':
+        return 'hidden-track'
+      default:
+        return this.visibility
+    }
+  }
 }

@@ -18,7 +18,7 @@ export const registerWildseaTrackSettings = () => {
       bottom: 'SETTINGS.trackPosition.bottom',
       top: 'SETTINGS.trackPosition.top',
     },
-    default: 'bottom',
+    default: 'top',
     requiresReload: true,
   })
 }

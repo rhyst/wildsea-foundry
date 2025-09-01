@@ -73,6 +73,7 @@ Hooks.on('ready', async () => {
 })
 
 Hooks.on('renderJournalPageSheet', (_obj, html) => {
+  html = $(html)
   if (game.user.isGM) {
     html.on('click', '.track', async (event) => {
       const data = event.currentTarget.dataset
@@ -89,6 +90,7 @@ Hooks.on('renderJournalPageSheet', (_obj, html) => {
 })
 
 Hooks.on('renderSceneControls', (_controls, html) => {
+  html = $(html)
   const dicePoolButton = $(
     `<li class="dice-pool-control" data-control="dice-pool" data-tooltip="${game.i18n.localize(
       'wildsea.dicePoolTitle',
