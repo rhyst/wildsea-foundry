@@ -19,10 +19,10 @@
       "discord": "Mutex"
     }
   ],
-  "version": "0.2.0",
+  "version": "0.2.1",
   "url": "https://gitlab.com/pacosgrove1/wildsea-foundry",
   "manifest": "https://gitlab.com/api/v4/projects/pacosgrove1%2Fwildsea-foundry/packages/generic/wildsea-foundry/latest/system.json",
-  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.2.0/downloads/wildsea-foundry-v0.2.0.zip",
+  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.2.1/downloads/wildsea-foundry-v0.2.1.zip",
 
   "compatibility": {
     "minimum": "11",
