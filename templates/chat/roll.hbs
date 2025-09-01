@@ -3,12 +3,12 @@
     Roll
   </h3>
   <div class="flexcol spaced">
-    <div class="dice-roll">
+    <div class="dice-roll" data-action="expandRoll">
       <div class="dice-result">
         <h4 class="corners dice-formula">
           {{displayFormula}}
         </h4>
-        <div class="dice-tooltip" style="display: none;">
+        <div class="dice-tooltip">
           <div class="flexcol spaced">
             {{#if dicePool.edge}}
               <div class="flexrow spaced">
