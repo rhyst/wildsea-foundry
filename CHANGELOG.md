@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.2.0
+
+- Basic FoundryVTT v13 compatibility
+
 ## v0.1.3
 
 - Fix Hazard Attribute type on creation

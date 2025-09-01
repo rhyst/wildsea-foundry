@@ -23,8 +23,12 @@
   font-style: italic;
 }
 body {
-  font-family: 'Merriweather', serif;
+  --font-sans: 'Merriweather', serif;
+  --font-body: 'Merriweather', serif;
   font-size: 0.8rem;
+}
+body.game .app {
+  --font-primary: 'Merriweather', serif;
 }
 input[type='checkbox']:checked,
 input[type='radio']:checked {
@@ -88,7 +92,7 @@ a.inline-roll.unstyled {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   font-size: 3rem;
-  text-shadow: 0 1px 6px #2e2c20;
+  color: rgba(255, 255, 255, 0.25);
 }
 #tooltip {
   font-family: 'Merriweather', serif;
@@ -125,25 +129,25 @@ a.inline-roll.unstyled {
 .right {
   text-align: right;
 }
-button:focus,
-input[type='text']:focus,
-input[type='number']:focus,
-input[type='password']:focus,
-input[type='date']:focus,
-input[type='time']:focus,
-input[type='search']:focus,
-button:hover,
-input[type='text']:hover,
-input[type='number']:hover,
-input[type='password']:hover,
-input[type='date']:hover,
-input[type='time']:hover,
-input[type='search']:hover {
+.wildsea button:focus,
+.wildsea input[type='text']:focus,
+.wildsea input[type='number']:focus,
+.wildsea input[type='password']:focus,
+.wildsea input[type='date']:focus,
+.wildsea input[type='time']:focus,
+.wildsea input[type='search']:focus,
+.wildsea button:hover,
+.wildsea input[type='text']:hover,
+.wildsea input[type='number']:hover,
+.wildsea input[type='password']:hover,
+.wildsea input[type='date']:hover,
+.wildsea input[type='time']:hover,
+.wildsea input[type='search']:hover {
   box-shadow: 0 0 5px #626256;
 }
-button,
-form button,
-.dialog .dialog-buttons button {
+.wildsea button,
+.wildsea form button,
+.wildsea .dialog .dialog-buttons button {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
@@ -151,9 +155,9 @@ form button,
   border-radius: 0;
   background: #e2e2df;
 }
-button.default,
-form button.default,
-.dialog .dialog-buttons button.default {
+.wildsea button.default,
+.wildsea form button.default,
+.wildsea .dialog .dialog-buttons button.default {
   background: #858778;
   color: #f9f9f9;
   border: none;
@@ -165,23 +169,23 @@ form button.default,
 .tox button {
   clip-path: none;
 }
-form button {
+.wildsea form button {
   background: #858778;
   color: #f9f9f9;
 }
-form input[type='text'],
-form input[type='number'],
-form input[type='password'],
-form input[type='date'],
-form input[type='time'],
-form input[type='search'],
-form select {
+.wildsea form input[type='text'],
+.wildsea form input[type='number'],
+.wildsea form input[type='password'],
+.wildsea form input[type='date'],
+.wildsea form input[type='time'],
+.wildsea form input[type='search'],
+.wildsea form select {
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
   background: #e2e2df;
   border: none;
   padding: 0 0.5rem;
 }
-form label {
+.wildsea form label {
   font-variant: small-caps;
 }
 .directory .directory-header .header-search input {
@@ -208,40 +212,38 @@ form label {
   border: none;
   border-radius: 0;
 }
-.dialog-content {
-  font-family: 'Merriweather', serif;
-}
 .dialog-content form.wildsea {
   margin-bottom: 0.5rem;
+  font-family: 'Merriweather', serif;
 }
-.dialog-content label {
+.dialog-content form.wildsea label {
   font-variant: small-caps;
 }
-.dialog-content h4 {
+.dialog-content form.wildsea h4 {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   font-size: 1rem;
 }
-.dialog-content p {
+.dialog-content form.wildsea p {
   font-size: 0.8rem;
 }
-.dialog-content input[type='text'],
-.dialog-content input[type='number'],
-.dialog-content input[type='password'],
-.dialog-content input[type='date'],
-.dialog-content input[type='time'],
-.dialog-content input[type='search'] {
+.dialog-content form.wildsea input[type='text'],
+.dialog-content form.wildsea input[type='number'],
+.dialog-content form.wildsea input[type='password'],
+.dialog-content form.wildsea input[type='date'],
+.dialog-content form.wildsea input[type='time'],
+.dialog-content form.wildsea input[type='search'] {
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
   border: none;
   background: #e2e2df;
   padding: 0 0.5rem;
 }
-.dialog-content input[type='text']:focus,
-.dialog-content input[type='number']:focus,
-.dialog-content input[type='password']:focus,
-.dialog-content input[type='date']:focus,
-.dialog-content input[type='time']:focus,
-.dialog-content input[type='search']:focus {
+.dialog-content form.wildsea input[type='text']:focus,
+.dialog-content form.wildsea input[type='number']:focus,
+.dialog-content form.wildsea input[type='password']:focus,
+.dialog-content form.wildsea input[type='date']:focus,
+.dialog-content form.wildsea input[type='time']:focus,
+.dialog-content form.wildsea input[type='search']:focus {
   box-shadow: none;
 }
 .wildsea {
@@ -297,7 +299,7 @@ form label {
 .wildsea .block {
   display: block;
 }
-.wildsea .hidden {
+.wildsea .hidden-track {
   display: none;
 }
 .wildsea .wildsea-item {
@@ -751,6 +753,10 @@ form label {
   font-family: 'Merriweather', serif;
   color: #2d2a2b;
 }
+.sheet.journal-entry .journal-entry-content .flexrow,
+.prosemirror .editor-container .flexrow {
+  align-items: start;
+}
 .sheet.journal-entry .journal-entry-content .journal-page-header h1,
 .prosemirror .editor-container .journal-page-header h1,
 .sheet.journal-entry .journal-entry-content .journal-page-content h1,
@@ -1134,6 +1140,9 @@ form label {
   font-weight: 600;
   font-size: 2.5rem;
   padding: 2rem;
+  background: transparent;
+  border: none;
+  box-shadow: inset 0 0 5px #858778;
 }
 .track-panel {
   position: absolute;
@@ -1196,7 +1205,7 @@ form label {
 .track-panel .track-list .track .label {
   flex: 1;
 }
-.track-panel .track-list .track.hidden,
+.track-panel .track-list .track.hidden-track,
 .track-panel .track-list .track.secret {
   background: #e2e2df;
 }
