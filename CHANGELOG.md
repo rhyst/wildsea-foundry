@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v0.2.1
+
+- Fix expanding dice tooltips
+
 ## v0.2.0
 
 - Basic FoundryVTT v13 compatibility
