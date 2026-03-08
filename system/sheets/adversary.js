@@ -1,14 +1,23 @@
 import { WILDSEA } from '../config.js'
-import { enrich, clamp } from '../helpers.js'
+import { enrich } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
 
 export default class WildseaAdversarySheet extends WildseaActorSheet {
-  get template() {
-    return `${WILDSEA.root_path}/templates/sheets/adversary.hbs`
+  static DEFAULT_OPTIONS = {
+    classes: ['wildsea', 'actor-sheet', 'adversary-sheet'],
+    actions: {
+      addItem: WildseaAdversarySheet._onAddItem,
+    },
   }
 
-  async getData() {
-    const context = await super.getData()
+  static PARTS = {
+    form: {
+      template: `${WILDSEA.root_path}/templates/sheets/adversary.hbs`,
+    },
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
     context.system = this.actor.system
 
     for (const item of this.actor.items) {
@@ -23,17 +32,9 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
     for (const attribute of this.actor.itemTypes.attribute) {
       if (attribute.system.type === 'aspect') {
         context.aspects.push(attribute)
-      }
-    }
-
-    for (const attribute of this.actor.itemTypes.attribute) {
-      if (attribute.system.type === 'drive') {
+      } else if (attribute.system.type === 'drive') {
         context.drives.push(attribute)
-      }
-    }
-
-    for (const attribute of this.actor.itemTypes.attribute) {
-      if (attribute.system.type === 'quirk') {
+      } else if (attribute.system.type === 'quirk') {
         context.quirks.push(attribute)
       }
     }
@@ -45,17 +46,9 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
     return context
   }
 
-  activateListeners(html) {
-    // Add item
-    html.find('.addItem').click(this.addItem.bind(this))
-
-    super.activateListeners(html)
-  }
-
-  async addItem(event) {
+  static _onAddItem(event, target) {
     event.preventDefault()
 
-    const target = event.currentTarget
     const data = target.dataset
 
     switch (data.itemType) {
@@ -82,15 +75,12 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
   }
 
   async addAttribute(attributeType) {
-    const defaultData = {}
-
     const itemData = {
       name: game.i18n.localize('wildsea.newAttributeName'),
       type: 'attribute',
       system: {
         details: game.i18n.localize('wildsea.newAttributeDetails'),
         type: attributeType,
-        ...defaultData,
       },
     }
 
@@ -98,14 +88,10 @@ export default class WildseaAdversarySheet extends WildseaActorSheet {
   }
 
   async addResource() {
-    const defaultData = {}
-
     const itemData = {
       name: game.i18n.localize('wildsea.newResourceName'),
       type: 'resource',
-      system: {
-        ...defaultData,
-      },
+      system: {},
     }
 
     this.addEmbeddedDocument(itemData)

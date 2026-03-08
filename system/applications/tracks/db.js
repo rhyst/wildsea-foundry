@@ -2,17 +2,72 @@ import { renderDialog } from '../../dialog.js'
 import { clamp } from '../../helpers.js'
 import { WILDSEA } from '../../config.js'
 
+const { createFormGroup, createSelectInput } = foundry.applications.fields
+
+const createTextInput = ({ name, value = '', placeholder = '' }) => {
+  const input = document.createElement('input')
+  input.type = 'text'
+  input.name = name
+  input.value = value
+  input.placeholder = placeholder
+  return input
+}
+
+const createTrackFormGroup = ({ rootId, label, input, hint }) =>
+  createFormGroup({
+    rootId,
+    label,
+    input,
+    hint,
+  }).outerHTML
+
 export class WildseaTrackDatabase extends Collection {
   getTrackData() {
     return game.settings.get('wildsea', 'activeTracks')
   }
 
   async showTrackDialog(title, data = {}) {
+    const rootId = 'wildsea-track-dialog'
+    const visibilityOptions = Object.entries(WILDSEA.trackVisibilityOptions).map(
+      ([value, label]) => ({ value, label }),
+    )
+
     return await renderDialog(
       game.i18n.localize(title),
       this.handleDialogData,
-      { ...data, config: WILDSEA },
-      '/systems/wildsea/templates/applications/tracks/dialog.hbs',
+      {
+        ...data,
+        labelField: createTrackFormGroup({
+          rootId,
+          label: game.i18n.localize('wildsea.TRACKS.label'),
+          input: createTextInput({
+            name: 'label',
+            value: data.label ?? '',
+            placeholder: game.i18n.localize('wildsea.TRACKS.label'),
+          }),
+        }),
+        groupsField: createTrackFormGroup({
+          rootId,
+          label: game.i18n.localize('wildsea.TRACKS.trackGroups'),
+          hint: game.i18n.localize('wildsea.TRACKS.trackGroupsHelpText'),
+          input: createTextInput({
+            name: 'groups',
+            value: data.groups ?? '',
+            placeholder: game.i18n.localize('wildsea.TRACKS.trackGroups'),
+          }),
+        }),
+        visibilityField: createTrackFormGroup({
+          rootId,
+          label: game.i18n.localize('wildsea.TRACKS.visibility'),
+          input: createSelectInput({
+            name: 'visibility',
+            value: data.visibility ?? 'open',
+            options: visibilityOptions,
+            localize: true,
+          }),
+        }),
+      },
+      '/systems/the-wildsea/templates/applications/tracks/dialog.hbs',
     )
   }
 
@@ -111,7 +166,7 @@ export class WildseaTrackDatabase extends Collection {
       this.set(track.id, track)
 
     if (canvas.ready) {
-      game.wildsea.trackPanel.render(true)
+      game.wildsea.trackPanel.render({ force: true })
     }
   }
 }

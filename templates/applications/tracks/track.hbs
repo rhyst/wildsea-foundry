@@ -1,12 +1,12 @@
 <div class="track {{track.displayVisibility}}" data-track-id="{{track.id}}">
-  <a class="label" {{#if (ne track.visibility 'open')}}data-tooltip="{{localize (concat "wildsea.TRACKS." track.visibility)}}"{{/if}}>{{label}}</a>
+  <a class="label" {{#if @root.options.editable}}data-action="editTrack"{{/if}} {{#if (ne track.visibility 'open')}}data-tooltip="{{localize (concat "wildsea.TRACKS." track.visibility)}}"{{/if}}>{{label}}</a>
   <div class="slots">
     {{#if (or @root.options.editable (eq track.visibility 'open'))}}
     {{{renderTrack track}}}
     {{/if}}
   </div>
   {{#if @root.options.editable}}
-  <a class="delete">
+  <a class="delete" data-action="deleteTrack">
     <i class="fas fa-trash"></i>
   </a>
   {{/if}}

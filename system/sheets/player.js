@@ -3,19 +3,26 @@ import { enrich, listToRows, clamp, clickModifiers } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
 
 export default class WildseaPlayerSheet extends WildseaActorSheet {
-  get template() {
-    return `${WILDSEA.root_path}/templates/sheets/player.hbs`
-  }
-
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+  static DEFAULT_OPTIONS = {
+    classes: ['wildsea', 'actor-sheet', 'player-sheet'],
+    position: {
       width: 1000,
       height: 750,
-    })
+    },
+    actions: {
+      addItem: WildseaPlayerSheet._onAddItem,
+      updateRoll: WildseaPlayerSheet._onUpdateRoll,
+    },
   }
 
-  async getData() {
-    const context = await super.getData()
+  static PARTS = {
+    form: {
+      template: `${WILDSEA.root_path}/templates/sheets/player.hbs`,
+    },
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
     context.edgesList = listToRows(WILDSEA.edges, 3)
     context.skillsList = listToRows(WILDSEA.skills, 2)
     context.languagesList = listToRows(WILDSEA.languages, 2)
@@ -44,8 +51,8 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
       a.sort < b.sort ? -1 : 1,
     )
 
-    context.temporaryTracks = this.actor.itemTypes.temporaryTrack.sort((a, b) =>
-      a.sort < b.sort ? -1 : 1,
+    context.temporaryTracks = this.actor.itemTypes.temporaryTrack.sort(
+      (a, b) => (a.sort < b.sort ? -1 : 1),
     )
 
     context.system.resources = this.actor.itemTypes.resource.sort((a, b) =>
@@ -55,28 +62,22 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     return context
   }
 
-  activateListeners(html) {
-    if (this.isEditable) {
-      if (this.actor.isOwner) {
-        // Mire tracks
-        html.find('.mire .track').click(this.increaseMireTrack.bind(this))
-        html.find('.mire .track').contextmenu(this.decreaseMireTrack.bind(this))
+  _onRender(context, options) {
+    super._onRender(context, options)
 
-        // other tracks
-        html.find('.list-track .track').click(this.increaseListTrack.bind(this))
-        html
-          .find('.list-track .track')
-          .contextmenu(this.decreaseListTrack.bind(this))
+    if (!this.isEditable || !this.actor.isOwner) return
 
-        // Add item
-        html.find('.addItem').click(this.addItem.bind(this))
-
-        // rollable links
-        html.find('.roll').click(this.updateRoll.bind(this))
-      }
+    // Mire tracks
+    for (const el of this.element.querySelectorAll('.mire .track')) {
+      el.addEventListener('click', this.increaseMireTrack.bind(this))
+      el.addEventListener('contextmenu', this.decreaseMireTrack.bind(this))
     }
 
-    super.activateListeners(html)
+    // List tracks (edges, skills, languages)
+    for (const el of this.element.querySelectorAll('.list-track .track')) {
+      el.addEventListener('click', this.increaseListTrack.bind(this))
+      el.addEventListener('contextmenu', this.decreaseListTrack.bind(this))
+    }
   }
 
   async increaseListTrack(event) {
@@ -158,10 +159,9 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     })
   }
 
-  async addItem(event) {
+  static _onAddItem(event, target) {
     event.preventDefault()
 
-    const target = event.currentTarget
     const data = target.dataset
 
     switch (data.itemType) {
@@ -193,14 +193,11 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
   }
 
   async addAspect() {
-    const defaultData = {}
-
     const itemData = {
       name: game.i18n.localize('wildsea.newAspectName'),
       type: 'aspect',
       system: {
         details: game.i18n.localize('wildsea.newAspectDetails'),
-        ...defaultData,
       },
     }
 
@@ -208,28 +205,21 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
   }
 
   async addResource() {
-    const defaultData = {}
-
     const itemData = {
       name: game.i18n.localize('wildsea.newResourceName'),
       type: 'resource',
-      system: {
-        ...defaultData,
-      },
+      system: {},
     }
 
     this.addEmbeddedDocument(itemData)
   }
 
   async addTemporaryTrack() {
-    const defaultData = {}
-
     const itemData = {
       name: game.i18n.localize('wildsea.newTemporaryTrackName'),
       type: 'temporaryTrack',
       system: {
         details: game.i18n.localize('wildsea.newTemporaryTrackDetails'),
-        ...defaultData,
       },
     }
 
@@ -248,9 +238,9 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     this.adjustSlimTrack(itemId, 'mires', clickModifiers(event), -1)
   }
 
-  async updateRoll(event) {
+  static _onUpdateRoll(event, target) {
     event.preventDefault()
-    const data = event.currentTarget.dataset
+    const data = target.dataset
     const dicePool = game.wildsea.dicePool
 
     switch (data.type) {

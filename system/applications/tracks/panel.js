@@ -2,26 +2,41 @@ import { clickModifiers } from '../../helpers.js'
 import WildseaTrack from './track.js'
 import SortableJS from '../../lib/sortable.complete.esm.js'
 
-export class WildseaTrackPanel extends Application {
-  constructor(db, options) {
+const { HandlebarsApplicationMixin } = foundry.applications.api
+
+export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+  constructor(db, options = {}) {
     super(options)
     this.db = db
+    this.sortable = null
   }
 
-  static get defaultOptions() {
-    return {
-      ...super.defaultOptions,
-      id: 'wildsea-tracks-panel',
-      popOut: false,
-      template: 'systems/wildsea/templates/applications/tracks/panel.hbs',
+  static DEFAULT_OPTIONS = {
+    id: 'wildsea-tracks-panel',
+    classes: ['wildsea', 'track-panel'],
+    window: {
+      frame: false,
+    },
+  }
+
+  _insertElement(element) {
+    const top = document.querySelector('#ui-top')
+    if (top) {
+      top.insertAdjacentElement('afterend', element)
+    } else {
+      document.body.appendChild(element)
     }
   }
 
-  async getData(options) {
-    const data = await super.getData(options)
+  static PARTS = {
+    panel: {
+      template: 'systems/the-wildsea/templates/applications/tracks/panel.hbs',
+    },
+  }
+
+  async _prepareContext(options) {
     const tracks = await this.prepareTracks()
     return {
-      ...data,
       options: {
         editable: game.user.isGM,
       },
@@ -35,17 +50,18 @@ export class WildseaTrackPanel extends Application {
     return tracks.map((track) => new WildseaTrack(track))
   }
 
-  activateListeners(html) {
-    if (game.user.isGM) {
-      html.find('.addTrack').click(this.addTrack.bind(this))
-      html.find('.label').click(this.editTrack.bind(this))
-      html.find('.delete').click(this.interactWithTrack.bind(this, 'delete'))
-      html.find('.slots').click(this.interactWithTrack.bind(this, 'mark'))
-      html
-        .find('.slots')
-        .contextmenu(this.interactWithTrack.bind(this, 'unmark'))
+  _onRender(context, options) {
+    super._onRender(context, options)
 
-      new SortableJS(html.find('.track-list').get(0), {
+    this.sortable?.destroy()
+    this.sortable = null
+
+    if (!game.user.isGM) return
+
+    // SortableJS for reordering tracks
+    const trackList = this.element.querySelector('.track-list')
+    if (trackList) {
+      this.sortable = new SortableJS(trackList, {
         animation: 200,
         direction: 'vertical',
         draggable: '.track',
@@ -60,60 +76,74 @@ export class WildseaTrackPanel extends Application {
     }
   }
 
-  async addTrack(event) {
+  async _onClickAction(event, target) {
     event.preventDefault()
 
-    const data = await game.wildsea.trackDatabase.showTrackDialog(
-      'wildsea.TRACKS.addTrack',
-    )
-    if (data.cancelled) return
-
-    game.wildsea.trackDatabase.addTrack({ ...data })
+    switch (target.dataset.action) {
+      case 'addTrack':
+        return this._onAddTrack()
+      case 'editTrack':
+        return this._onEditTrack(target)
+      case 'deleteTrack':
+        return this._onDeleteTrack(target)
+      case 'toggleTrackSlot':
+        return this._onToggleTrackSlot(event, target)
+      default:
+        return super._onClickAction(event, target)
+    }
   }
 
-  async editTrack(event) {
-    event.preventDefault()
-    const id = event.currentTarget.closest('.track').dataset.trackId
-    const track = game.wildsea.trackDatabase.get(id)
-    const data = await game.wildsea.trackDatabase.showTrackDialog(
+  _onClose(options) {
+    this.sortable?.destroy()
+    this.sortable = null
+    super._onClose(options)
+  }
+
+  async _onAddTrack() {
+    if (!game.user.isGM) return
+
+    const data = await this.db.showTrackDialog('wildsea.TRACKS.addTrack')
+    if (data.cancelled) return
+
+    this.db.addTrack({ ...data })
+  }
+
+  async _onEditTrack(target) {
+    if (!game.user.isGM) return
+
+    const id = target.closest('.track')?.dataset.trackId
+    if (!id) return
+
+    const track = this.db.get(id)
+    const data = await this.db.showTrackDialog(
       'wildsea.TRACKS.editTrack',
       track,
     )
     if (data.cancelled) return
 
-    game.wildsea.trackDatabase.updateTrack(id, data)
+    this.db.updateTrack(id, data)
   }
 
-  handleDialogData(html) {
-    const form = html[0].querySelector('form')
-    const groups = form.groups.value
-      .trim()
-      .split(',')
-      .map((v) => v.trim())
-      .join(',')
-    return {
-      label: form.label.value.trim(),
-      groups,
-      visibility: form.visibility.value,
-    }
+  _onDeleteTrack(target) {
+    if (!game.user.isGM) return
+
+    const id = target.closest('.track')?.dataset.trackId
+    if (!id) return
+
+    this.db.deleteTrack(id)
   }
 
-  async interactWithTrack(action, event) {
-    event.preventDefault()
-    const id = event.currentTarget.closest('.track').dataset.trackId
+  _onToggleTrackSlot(event, target) {
+    if (!game.user.isGM) return
 
-    switch (action) {
-      case 'mark':
-        game.wildsea.trackDatabase.markTrack(id, clickModifiers(event))
-        break
-      case 'unmark':
-        game.wildsea.trackDatabase.markTrack(id, clickModifiers(event), -1)
-        break
-      case 'delete':
-        game.wildsea.trackDatabase.deleteTrack(id)
-        break
-      default:
-        break
-    }
+    const id = target.closest('.track')?.dataset.trackId
+    if (!id) return
+
+    const slotState = target.dataset.slotState ?? 'empty'
+    const filledSlot = slotState !== 'empty'
+    const burnAction =
+      slotState === 'burned' || (!filledSlot && clickModifiers(event))
+
+    this.db.markTrack(id, burnAction, filledSlot ? -1 : 1)
   }
 }

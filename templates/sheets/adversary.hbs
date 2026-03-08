@@ -1,9 +1,9 @@
-<form class="wildsea">
+<form>
   <div class="flexrow spaced">
     <div class="flexcol spaced">
-      <div class="flex flex0 flexrow spaced">
-        <div class="flex0 img"><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
-        <div>
+      <div class="sheet-header flex flex0 flexrow spaced">
+        <div class="flex0 img"><img src="{{portraitSrc}}" data-action="editImage" data-edit="img" title="{{actor.name}}" /></div>
+        <div class="sheet-name">
           <input id="name" class="corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
         </div>
       </div>
@@ -19,15 +19,15 @@
           <input id="traits" class="corners" type="text" name="system.traits" value="{{system.traits}}" placeholder="{{localize "wildsea.traits"}}"/>
         </div>
       </div>
-      {{> "systems/wildsea/templates/sheets/adversary/drives.hbs"}}
-      {{> "systems/wildsea/templates/sheets/adversary/presence.hbs"}}
-      {{> "systems/wildsea/templates/sheets/adversary/resources.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/adversary/drives.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/adversary/presence.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/adversary/resources.hbs"}}
     </div>
     <div class="flexcol spaced">
-      {{> "systems/wildsea/templates/sheets/adversary/aspects.hbs"}}
-      {{> "systems/wildsea/templates/sheets/adversary/quirks.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/adversary/aspects.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/adversary/quirks.hbs"}}
       <h2 class="corners dark flex0">{{localize "wildsea.description"}}</h2>
-      {{> "systems/wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.description"}}
+      {{> "systems/the-wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.description"}}
     </div>
   </div>
 </form>

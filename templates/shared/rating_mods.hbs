@@ -5,7 +5,7 @@
         <tr>
           <th>{{localize "wildsea.rating"}}</th>
           <th class="right">
-            <a class="addRatingMod"><i class="fas fa-plus"></i></a>
+            <a class="addRatingMod" data-action="addRatingMod"><i class="fas fa-plus"></i></a>
           </th>
         </tr>
       </thead>
@@ -14,13 +14,13 @@
           {{#each system.ratingMods as |ratingMod|}}
             <tr>
               <td>
-                <a class="editRatingMod" data-rating-mod-id="{{ratingMod.id}}">
+                <a class="editRatingMod" data-action="editRatingMod" data-rating-mod-id="{{ratingMod.id}}">
                   {{localize (concat "wildsea." ratingMod.rating)}}
                   {{displayNumber ratingMod.value}}
                 </a>
               </td>
               <td class="right">
-                <a class="deleteRatingMod" data-rating-mod-id="{{ratingMod.id}}"><i class="fas fa-trash"></i></a>
+                <a class="deleteRatingMod" data-action="deleteRatingMod" data-rating-mod-id="{{ratingMod.id}}"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
           {{/each}}

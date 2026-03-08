@@ -1,14 +1,14 @@
 <div id="mires" class="flex0">
   <h2 class="corners dark">
     {{localize "wildsea.mires"}}
-    <a class="addItem" data-item-type="{{type}}">
+    <a class="addItem" data-action="addItem" data-item-type="{{type}}">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any system.mires)}}
     <div class="flexcol spaced slim-list">
       {{#each system.mires as |mire|}}
-        {{> "systems/wildsea/templates/sheets/player/mire.hbs" mire type="mires"}}
+        {{> "systems/the-wildsea/templates/sheets/player/mire.hbs" mire type="mires"}}
       {{/each}}
     </div>
   {{else}}

@@ -1,14 +1,14 @@
 <div id="aspects" class="flex0">
   <h2 class="corners dark">
     {{title}}
-    <a class="addItem" data-item-type="{{type}}">
+    <a class="addItem" data-action="addItem" data-item-type="{{type}}">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any aspects)}}
     <div class="flexcol item-list spaced">
       {{#each aspects as |aspect|}}
-        {{> "systems/wildsea/templates/shared/aspect.hbs" aspect id=aspect.id type=type}}
+        {{> "systems/the-wildsea/templates/shared/aspect.hbs" aspect id=aspect.id type=type}}
       {{/each}}
     </div>
   {{else}}

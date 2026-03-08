@@ -5,7 +5,7 @@
       <div class="flexrow spaced wide">
         {{#each row as |edge|}}
           {{#if edge}}
-            {{> "systems/wildsea/templates/sheets/player/list_track.hbs"
+            {{> "systems/the-wildsea/templates/sheets/player/list_track.hbs"
               name=(localize (concat "wildsea." edge))
               value=(byKey @root.system.edges edge)
               max=1

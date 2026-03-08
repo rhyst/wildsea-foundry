@@ -6,7 +6,7 @@
       <div class="flexrow spaced wide">
         {{#each row as |language|}}
           {{#if language}}
-            {{> "systems/wildsea/templates/sheets/player/list_track.hbs"
+            {{> "systems/the-wildsea/templates/sheets/player/list_track.hbs"
               name=(localize (concat "wildsea." language))
               value=(byKey @root.system.languages language)
               max=@root.config.languageMax

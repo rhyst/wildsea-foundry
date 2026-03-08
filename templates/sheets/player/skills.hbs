@@ -6,7 +6,7 @@
       <div class="flexrow spaced wide">
         {{#each row as |skill|}}
           {{#if skill}}
-            {{> "systems/wildsea/templates/sheets/player/list_track.hbs"
+            {{> "systems/the-wildsea/templates/sheets/player/list_track.hbs"
               name=(localize (concat "wildsea." skill))
               value=(byKey @root.system.skills skill)
               max=3

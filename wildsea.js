@@ -41,6 +41,11 @@ Hooks.once('init', () => {
   CONFIG.Actor.documentClass = WildseaActor
   CONFIG.Item.documentClass = WildseaItem
 
+  const { Actors, Items, Journal } = foundry.documents.collections
+  const ActorSheet = foundry.appv1.sheets.ActorSheet
+  const ItemSheet = foundry.appv1.sheets.ItemSheet
+  const JournalSheet = foundry.appv1.sheets.JournalSheet
+
   Actors.unregisterSheet('core', ActorSheet)
   Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'] })
   Actors.registerSheet('wildsea', WildseaShipSheet, { types: ['ship'] })
@@ -73,11 +78,13 @@ Hooks.on('ready', async () => {
 })
 
 Hooks.on('renderJournalPageSheet', (_obj, html) => {
-  html = $(html)
+  const container = html instanceof HTMLElement ? html : html[0]
   if (game.user.isGM) {
-    html.on('click', '.track', async (event) => {
-      const data = event.currentTarget.dataset
-      console.log(data)
+    container.addEventListener('click', async (event) => {
+      const trackEl = event.target.closest('.track')
+      if (!trackEl) return
+
+      const data = trackEl.dataset
 
       const result = await game.wildsea.trackDatabase.showTrackDialog(
         'wildsea.TRACKS.addTrack',
@@ -89,25 +96,17 @@ Hooks.on('renderJournalPageSheet', (_obj, html) => {
   }
 })
 
-Hooks.on('renderSceneControls', (_controls, html) => {
-  html = $(html)
-  const dicePoolButton = $(
-    `<li class="dice-pool-control" data-control="dice-pool" data-tooltip="${game.i18n.localize(
-      'wildsea.dicePoolTitle',
-    )}">
-        <i class="fas fa-dice"></i>
-        <ol class="control-tools">
-        </ol>
-    </li>`,
-  )
-
-  html.find('.main-controls').append(dicePoolButton)
-  html
-    .find('.dice-pool-control')
-    .removeClass('control-tool')
-    .on('click', async () => {
+Hooks.on('getSceneControlButtons', (controls) => {
+  controls.tokens.tools.dicePool = {
+    name: 'dicePool',
+    title: 'wildsea.dicePoolTitle',
+    icon: 'fas fa-dice',
+    order: Object.keys(controls.tokens.tools).length,
+    button: true,
+    onChange: async () => {
       await game.wildsea.dicePool.toggle()
-    })
+    },
+  }
 })
 
 Hooks.once('diceSoNiceReady', (dice3d) => {

@@ -1,7 +1,7 @@
 {
-  "id": "wildsea",
+  "id": "the-wildsea",
   "name": "wildsea",
-  "title": "The Wildsea (Unofficial)",
+  "title": "The Wildsea",
   "description": "Character sheets and dice rolling for The Wildsea",
   "authors": [
     {
@@ -19,21 +19,20 @@
       "discord": "Mutex"
     }
   ],
-  "version": "0.2.1",
-  "url": "https://gitlab.com/pacosgrove1/wildsea-foundry",
-  "manifest": "https://gitlab.com/api/v4/projects/pacosgrove1%2Fwildsea-foundry/packages/generic/wildsea-foundry/latest/system.json",
-  "download": "https://gitlab.com/pacosgrove1/wildsea-foundry/-/releases/v0.2.1/downloads/wildsea-foundry-v0.2.1.zip",
+  "version": "0.3.0",
+  "url": "https://github.com/rhyst/wildsea-foundry",
+  "manifest": "https://github.com/rhyst/wildsea-foundry/releases/latest/download/system.json",
+  "download": "https://github.com/rhyst/wildsea-foundry/releases/download/v0.3.0/wildsea-foundry-v0.3.0.zip",
 
   "compatibility": {
-    "minimum": "11",
-    "verified": "12",
-    "maximum": "13"
+    "minimum": "12",
+    "verified": "13"
   },
   "media": [
     {
       "type": "setup",
-      "url": "systems/wildsea/assets/setup.webp",
-      "thumbnail": "systems/wildsea/assets/setup.webp"
+      "url": "systems/the-wildsea/assets/setup.webp",
+      "thumbnail": "systems/the-wildsea/assets/setup.webp"
     }
   ],
   "esmodules": ["wildsea.js"],
@@ -45,7 +44,7 @@
       "system": "wildsea",
       "path": "packs/character_aspects",
       "type": "Item",
-      "banner": "systems/wildsea/assets/banners/character_aspects.webp"
+      "banner": "systems/the-wildsea/assets/banners/character_aspects.webp"
     },
     {
       "name": "ship_aspects",
@@ -53,7 +52,7 @@
       "system": "wildsea",
       "path": "packs/ship_aspects",
       "type": "Item",
-      "banner": "systems/wildsea/assets/banners/ship_aspects.webp"
+      "banner": "systems/the-wildsea/assets/banners/ship_aspects.webp"
     },
     {
       "name": "journals",
@@ -61,7 +60,7 @@
       "system": "wildsea",
       "path": "packs/journals",
       "type": "JournalEntry",
-      "banner": "systems/wildsea/assets/banners/journals.webp"
+      "banner": "systems/the-wildsea/assets/banners/journals.webp"
     }
   ],
   "languages": [

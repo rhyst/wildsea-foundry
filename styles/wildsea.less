@@ -58,15 +58,52 @@ a.inline-roll {
   }
 }
 
-.window-app {
-  .window-content {
-    background: @white;
+.application.wildsea,
+.window-app.wildsea,
+.wildsea-sheet-app {
+  --wildsea-surface: @white;
+  --wildsea-surface-alt: @light-transparent;
+  --wildsea-surface-strong: @light-bg;
+  --wildsea-surface-contrast: @dark-bg;
+  --wildsea-text: @black;
+  --wildsea-text-muted: fade(@mid-bg, 75%);
+  --wildsea-border: @light-bg;
+
+  .window-content,
+  &.wildsea-sheet-app,
+  .wildsea-sheet-content {
+    background: var(--wildsea-surface);
+    background-image: none;
+    color: var(--wildsea-text);
     .body-font();
     font-size: 0.8rem;
   }
 
-  .window-header {
+  .window-header,
+  .wildsea-sheet-window-header {
     .title-font();
+    background: transparent !important;
+    background-image: none !important;
+  }
+}
+
+.wildsea-sheet-form {
+  min-height: 100%;
+  background: var(--wildsea-surface);
+  color: var(--wildsea-text);
+}
+
+body.theme-dark {
+  .application.wildsea,
+  .window-app.wildsea,
+  .wildsea-sheet-app {
+    --wildsea-surface: #15181d;
+    --wildsea-surface-alt: #252830;
+    --wildsea-surface-strong: #8f8a74;
+    --wildsea-surface-contrast: #2f3126;
+    --wildsea-text: #f2efe8;
+    --wildsea-text-muted: rgba(242, 239, 232, 0.72);
+    --wildsea-border: #8f8a74;
   }
 }
 
@@ -135,8 +172,8 @@ a.inline-roll {
   text-align: right;
 }
 
-.wildsea {
-  button,
+.wildsea-sheet-form,
+.dialog-content form.wildsea {
   input[type='text'],
   input[type='number'],
   input[type='password'],
@@ -148,20 +185,79 @@ a.inline-roll {
       box-shadow: 0 0 5px @mid-bg;
     }
   }
+}
 
-  button,
-  form button,
-  .dialog .dialog-buttons button {
-    .title-font();
-    .corners();
+.dialog .dialog-buttons button {
+  .title-font();
+  .corners();
+  border: none;
+  border-radius: 0;
+  background: @light-transparent;
+
+  &.default {
+    background: @light-bg;
+    color: @white;
     border: none;
-    border-radius: 0;
-    background: @light-transparent;
+  }
+}
 
-    &.default {
-      background: @light-bg;
-      color: @white;
-      border: none;
+.application.wildsea,
+.window-app.wildsea,
+.wildsea-sheet-app {
+  .window-header,
+  .wildsea-sheet-window-header {
+    ul,
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li::before {
+      display: none !important;
+      content: none !important;
+      background: none !important;
+    }
+
+    button,
+    a,
+    .header-control {
+      clip-path: none !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      color: inherit !important;
+      text-transform: none !important;
+      padding: 0 !important;
+    }
+
+    button:hover,
+    a:hover,
+    .header-control:hover,
+    button:focus,
+    a:focus,
+    .header-control:focus {
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    i,
+    span {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
   }
 }
@@ -175,29 +271,23 @@ a.inline-roll {
   clip-path: none;
 }
 
-.wildsea {
-  form {
-    button {
-      background: @light-bg;
-      color: @white;
-    }
+.wildsea-sheet-form,
+.dialog-content form.wildsea {
+  input[type='text'],
+  input[type='number'],
+  input[type='password'],
+  input[type='date'],
+  input[type='time'],
+  input[type='search'],
+  select {
+    .corners();
+    background: var(--wildsea-surface-alt, @light-transparent);
+    border: none;
+    padding: 0 0.5rem;
+  }
 
-    input[type='text'],
-    input[type='number'],
-    input[type='password'],
-    input[type='date'],
-    input[type='time'],
-    input[type='search'],
-    select {
-      .corners();
-      background: @light-transparent;
-      border: none;
-      padding: 0 0.5rem;
-    }
-
-    label {
-      font-variant: small-caps;
-    }
+  label {
+    font-variant: small-caps;
   }
 }
 
@@ -266,6 +356,14 @@ a.inline-roll {
 }
 
 .wildsea {
+  > .flexrow,
+  > div.flexrow,
+  form > .flexrow,
+  .wildsea-sheet-form > .flexrow,
+  .wildsea-sheet-form > div {
+    align-items: flex-start;
+  }
+
   .leaf-bullet();
 
   #context-menu {
@@ -308,8 +406,8 @@ a.inline-roll {
 
   .body-font();
   font-size: 0.8rem;
-  background: @white;
-  color: @black;
+  background: var(--wildsea-surface);
+  color: var(--wildsea-text);
 
   h1,
   h2,
@@ -392,7 +490,7 @@ a.inline-roll {
     tbody {
       tr {
         &:nth-child(odd) {
-          background: @light-transparent;
+          background: var(--wildsea-surface-alt);
         }
 
         td {
@@ -419,7 +517,7 @@ a.inline-roll {
   }
 
   .text-dark {
-    color: @dark-bg;
+    color: var(--wildsea-surface-contrast);
   }
 
   .text-mid {
@@ -431,7 +529,7 @@ a.inline-roll {
   }
 
   .text-light-transparent {
-    color: @light-transparent;
+    color: var(--wildsea-text-muted);
   }
 
   .img {
@@ -449,18 +547,62 @@ a.inline-roll {
     }
   }
 
+  .sheet-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .img {
+      min-width: 64px;
+      width: 64px;
+      flex: 0 0 64px;
+
+      img {
+        display: block;
+        width: 64px;
+        height: 64px;
+        max-width: 64px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
+
+    .sheet-name {
+      flex: 1 1 auto;
+      min-width: 0;
+      align-self: flex-start;
+    }
+  }
+
   label {
     font-weight: bold;
     font-variant: small-caps;
   }
 
+  .form-group {
+    min-height: 1.5rem;
+    align-items: center;
+  }
+
   input,
   select {
     border: none;
-    background: @light-transparent;
+    background: var(--wildsea-surface-alt);
+    color: var(--wildsea-text, @black);
     text-transform: initial;
     padding: 0 0.5rem;
     border-radius: 0;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--wildsea-text-muted);
+  }
+
+  option,
+  optgroup {
+    color: @black;
+    background: var(--wildsea-surface);
   }
 
   select {
@@ -484,7 +626,7 @@ a.inline-roll {
       a {
         display: block;
         .corners();
-        background: @light-transparent;
+        background: var(--wildsea-surface-alt);
         .title-font();
         font-size: 1rem;
         font-size: 1.3rem;
@@ -509,6 +651,7 @@ a.inline-roll {
     display: flex;
     min-height: var(--editor-height);
     border: 1px solid @light-bg;
+    border-color: var(--wildsea-border);
     border-radius: 0.5rem;
     padding: 0.5rem;
 
@@ -574,7 +717,7 @@ a.inline-roll {
   }
 
   .light-transparent {
-    background: @light-transparent;
+    background: var(--wildsea-surface-alt);
   }
 
   .padded {
@@ -605,7 +748,7 @@ a.inline-roll {
     gap: 0.25rem;
 
     .slim-item {
-      background: @white;
+      background: var(--wildsea-surface);
     }
   }
 
@@ -657,6 +800,7 @@ a.inline-roll {
   .mire {
     border-radius: 0 2rem 2rem 0;
     border: 2px solid @light-bg;
+    border-color: var(--wildsea-border);
     padding: 0.25rem 0.5rem;
     position: relative;
 
@@ -670,18 +814,23 @@ a.inline-roll {
 
   .bordered {
     border: 2px solid @mid-bg;
+    border-color: var(--wildsea-surface-strong);
     border-radius: 1rem;
     padding: 0.75rem 0.5rem 0.5rem;
     margin: -0.75rem 0 0;
     min-height: 3rem;
+
+    .flexcol {
+      row-gap: 0.25rem;
+    }
   }
 
   h3 + .bordered {
-    border-color: @light-bg;
+    border-color: var(--wildsea-border);
   }
 
   .aspect {
-    border: 2px solid @light-bg;
+    border: 2px solid var(--wildsea-border);
     border-radius: 0 1rem 1rem 0;
 
     h3 {
@@ -708,6 +857,44 @@ a.inline-roll {
   #resources .item {
     h3 {
       margin-bottom: 0;
+    }
+  }
+}
+
+body.theme-dark {
+  .application.wildsea,
+  .window-app.wildsea,
+  .wildsea-sheet-app {
+    .window-header,
+    .wildsea-sheet-window-header {
+      color: @white;
+    }
+
+    .wildsea {
+      input,
+      select,
+      textarea {
+        color: var(--wildsea-text);
+        background: var(--wildsea-surface-alt);
+      }
+
+      option,
+      optgroup {
+        color: var(--wildsea-text);
+        background: var(--wildsea-surface);
+      }
+
+      .img img {
+        background: var(--wildsea-surface-strong);
+      }
+
+      .description {
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      ul.track li {
+        border-color: var(--wildsea-surface-strong);
+      }
     }
   }
 }

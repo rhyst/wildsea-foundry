@@ -5,19 +5,27 @@ import WildseaActorSheet from './actor.js'
 import * as Dice from '../dice.js'
 
 export default class WildseaShipSheet extends WildseaActorSheet {
-  get template() {
-    return `${WILDSEA.root_path}/templates/sheets/ship.hbs`
-  }
-
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+  static DEFAULT_OPTIONS = {
+    classes: ['wildsea', 'actor-sheet', 'ship-sheet'],
+    position: {
       width: 1000,
       height: 750,
-    })
+    },
+    actions: {
+      addItem: WildseaShipSheet._onAddItem,
+      ratingRoll: WildseaShipSheet._onRatingRoll,
+      toggleFittingDamaged: WildseaShipSheet._onToggleFittingDamaged,
+    },
   }
 
-  async getData() {
-    const context = await super.getData()
+  static PARTS = {
+    form: {
+      template: `${WILDSEA.root_path}/templates/sheets/ship.hbs`,
+    },
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
     context.system = this.actor.system
 
     context.stakesUsed = 0
@@ -50,18 +58,16 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     return context
   }
 
-  activateListeners(html) {
-    if (this.isEditable) {
-      if (this.actor.isOwner) {
-        html.find('.track').click(this.adjustTrack.bind(this, 1))
-        html.find('.track').contextmenu(this.adjustTrack.bind(this, -1))
+  _onRender(context, options) {
+    super._onRender(context, options)
 
-        html.find('.addItem').click(this.addItem.bind(this))
-        html.find('.damage-button').click(this.toggleFittingDamaged.bind(this))
-      }
-      html.find('.ratingRoll').click(this.ratingRoll.bind(this))
+    if (!this.isEditable || !this.actor.isOwner) return
+
+    // Track click and contextmenu handlers for rating and reputation tracks
+    for (const el of this.element.querySelectorAll('.track')) {
+      el.addEventListener('click', this.adjustTrack.bind(this, 1))
+      el.addEventListener('contextmenu', this.adjustTrack.bind(this, -1))
     }
-    super.activateListeners(html)
   }
 
   async adjustTrack(change, event) {
@@ -118,10 +124,9 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     this.actor.update({ ...update })
   }
 
-  async addItem(event) {
+  static _onAddItem(event, target) {
     event.preventDefault()
 
-    const target = event.currentTarget
     const data = target.dataset
 
     switch (data.itemType) {
@@ -180,21 +185,24 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     })
   }
 
-  async ratingRoll(event) {
+  static async _onRatingRoll(event, target) {
     event.preventDefault()
-    const rolling = event.currentTarget.dataset.rating
+    const rolling = target.dataset.rating
 
     const ratings = {}
     for (const rating of WILDSEA.shipRatings) {
       const shipRating = this.actor.system.ratings[rating]
-      ratings[rating] = clamp(shipRating.max - shipRating.value, shipRating.max)
+      ratings[rating] = clamp(
+        shipRating.max - shipRating.value,
+        shipRating.max,
+      )
     }
 
     const data = await renderDialog(
       game.i18n.localize('wildsea.ratingRoll'),
-      this.handleRatingRoll,
+      WildseaShipSheet._handleRatingRoll,
       { rating: rolling, ratings },
-      '/systems/wildsea/templates/dialogs/rating_roll.hbs',
+      '/systems/the-wildsea/templates/dialogs/rating_roll.hbs',
     )
 
     if (data.cancelled) return
@@ -215,7 +223,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
       user: game.user._id,
       speaker: ChatMessage.getSpeaker(),
       content: await renderTemplate(
-        'systems/wildsea/templates/chat/roll.hbs',
+        'systems/the-wildsea/templates/chat/roll.hbs',
         outcome,
       ),
       roll,
@@ -225,7 +233,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     ChatMessage.create(chatData)
   }
 
-  handleRatingRoll(html) {
+  static _handleRatingRoll(html) {
     const form = html[0].querySelector('form')
     return {
       rating: form.rating.value,
@@ -233,8 +241,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     }
   }
 
-  async toggleFittingDamaged(event) {
-    const target = event.currentTarget
+  static _onToggleFittingDamaged(event, target) {
     const fittingID = target.dataset.fittingId
 
     const fitting = this.actor.items.get(fittingID)

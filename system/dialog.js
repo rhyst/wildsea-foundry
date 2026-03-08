@@ -1,33 +1,35 @@
+const { renderTemplate } = foundry.applications.handlebars
+
 export const renderDialog = async (
   title,
   handler = (_html = '') => {},
   data = {},
-  template = '/systems/wildsea/templates/dialogs/simple.hbs',
+  template = '/systems/the-wildsea/templates/dialogs/simple.hbs',
 ) => {
   const content = await renderTemplate(template, data)
 
-  return new Promise((resolve) => {
-    const dialog = {
+  const result = await foundry.applications.api.DialogV2.wait({
+    window: {
       title,
-      content,
-      buttons: {
-        yes: {
-          label: `<i class="fas fa-check"></i> ${game.i18n.localize(
-            'wildsea.submit',
-          )}`,
-          callback: (html) => resolve(handler(html)),
-        },
-        cancel: {
-          label: `<i class="fas fa-times"></i> ${game.i18n.localize(
-            'wildsea.cancel',
-          )}`,
-          callback: (_html) => resolve({ cancelled: true }),
-        },
+    },
+    content,
+    rejectClose: false,
+    modal: true,
+    buttons: [
+      {
+        action: 'yes',
+        label: game.i18n.localize('wildsea.submit'),
+        icon: 'fas fa-check',
+        default: true,
+        callback: (_event, _button, dialog) => handler([dialog.element]),
       },
-      default: 'yes',
-      close: (_html) => resolve({ cancelled: true }),
-    }
-
-    new Dialog(dialog).render(true)
+      {
+        action: 'cancel',
+        label: game.i18n.localize('wildsea.cancel'),
+        icon: 'fas fa-times',
+      },
+    ],
   })
+
+  return result ?? { cancelled: true }
 }

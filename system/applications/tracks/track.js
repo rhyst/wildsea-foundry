@@ -19,10 +19,10 @@ export default class WildseaTrack {
       for (let i = 0; i < group; i++) {
         groupSlots.push(
           index < this.burn
-            ? this.burnedSlot()
+            ? this.burnedSlot(index)
             : index < this.value
-            ? this.markedSlot()
-            : this.emptySlot(),
+            ? this.markedSlot(index)
+            : this.emptySlot(index),
         )
         index += 1
       }
@@ -39,16 +39,23 @@ export default class WildseaTrack {
     return visibility === 'secret'
   }
 
-  emptySlot() {
-    return `<span class="slot"></span>`
+  slot(index, state = 'empty') {
+    const classes = ['slot']
+    if (state !== 'empty') classes.push(state)
+
+    return `<span class="${classes.join(' ')}" data-action="toggleTrackSlot" data-slot-index="${index}" data-slot-state="${state}"></span>`
   }
 
-  markedSlot() {
-    return `<span class="slot marked"></span>`
+  emptySlot(index) {
+    return this.slot(index)
   }
 
-  burnedSlot() {
-    return `<span class="slot burned"></span>`
+  markedSlot(index) {
+    return this.slot(index, 'marked')
+  }
+
+  burnedSlot(index) {
+    return this.slot(index, 'burned')
   }
 
   breaker() {

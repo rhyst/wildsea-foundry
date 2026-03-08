@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate version
+        run: |
+          TAG_NAME="${GITHUB_REF_NAME}"
+          PACKAGE_VERSION=$(node -p "require('./system.json').version")
+          PACKAGE_DOWNLOAD=$(node -p "require('./system.json').download")
+          EXPECTED_DOWNLOAD="https://github.com/${{ github.repository }}/releases/download/${TAG_NAME}/wildsea-foundry-${TAG_NAME}.zip"
+
+          if [[ "${TAG_NAME}" != "v${PACKAGE_VERSION}" ]]; then
+            echo "::error::system.json version (${PACKAGE_VERSION}) does not match tag (${TAG_NAME})"
+            exit 1
+          fi
+
+          if [[ "${PACKAGE_DOWNLOAD}" != "${EXPECTED_DOWNLOAD}" ]]; then
+            echo "::error::system.json download URL does not match expected release asset URL"
+            echo "  system.json: ${PACKAGE_DOWNLOAD}"
+            echo "  expected:    ${EXPECTED_DOWNLOAD}"
+            exit 1
+          fi
+
+      - name: Create ZIP
+        run: |
+          ZIP_NAME="wildsea-foundry-${GITHUB_REF_NAME}.zip"
+          zip "${ZIP_NAME}" -r \
+            assets lang styles/*.css styles/fonts packs system templates \
+            CHANGELOG.md LICENSE README.md system.json template.json wildsea.js
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            wildsea-foundry-${{ github.ref_name }}.zip
+            system.json
+          generate_release_notes: true

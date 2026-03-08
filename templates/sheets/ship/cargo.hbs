@@ -1,14 +1,14 @@
 <div id="cargoPassenger" class="flex0">
   <h2 class="corners dark">
     {{localize "wildsea.cargoPassengers"}}
-    <a class="addItem" data-item-type="cargoPassengers">
+    <a class="addItem" data-action="addItem" data-item-type="cargoPassengers">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any system.cargoPassengers)}}
     <div class="flexcol slim-list spaced">
       {{#each system.cargoPassengers as |cargoPassenger|}}
-        {{> "systems/wildsea/templates/shared/slim_item.hbs" cargoPassenger type="cargoPassengers"}}
+        {{> "systems/the-wildsea/templates/shared/slim_item.hbs" cargoPassenger type="cargoPassengers"}}
       {{/each}}
     </div>
   {{else}}

@@ -1,24 +1,24 @@
 @font-face {
   font-family: 'Teko';
-  src: url(fonts/Teko/Teko-VariableFont_wght.ttf);
+  src: url(./fonts/Teko/Teko-VariableFont_wght.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Regular.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Regular.ttf);
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Italic.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Italic.ttf);
   font-style: italic;
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-Bold.ttf);
+  src: url(./fonts/Merriweather/Merriweather-Bold.ttf);
   font-weight: 600;
 }
 @font-face {
   font-family: 'Merriweather';
-  src: url(fonts/Merriweather/Merriweather-BoldItalic.ttf);
+  src: url(./fonts/Merriweather/Merriweather-BoldItalic.ttf);
   font-weight: 600;
   font-style: italic;
 }
@@ -72,14 +72,58 @@ a.inline-roll.unstyled {
 .locked-tooltip.link-matches a.content-link i {
   color: #858778;
 }
-.window-app .window-content {
-  background: #f9f9f9;
+.application.wildsea,
+.window-app.wildsea,
+.wildsea-sheet-app {
+  --wildsea-surface: #f9f9f9;
+  --wildsea-surface-alt: #e2e2df;
+  --wildsea-surface-strong: #858778;
+  --wildsea-surface-contrast: #2e2c20;
+  --wildsea-text: #2d2a2b;
+  --wildsea-text-muted: rgba(98, 98, 86, 0.75);
+  --wildsea-border: #858778;
+}
+.application.wildsea .window-content,
+.window-app.wildsea .window-content,
+.wildsea-sheet-app .window-content,
+.application.wildsea.wildsea-sheet-app,
+.window-app.wildsea.wildsea-sheet-app,
+.wildsea-sheet-app.wildsea-sheet-app,
+.application.wildsea .wildsea-sheet-content,
+.window-app.wildsea .wildsea-sheet-content,
+.wildsea-sheet-app .wildsea-sheet-content {
+  background: var(--wildsea-surface);
+  background-image: none;
+  color: var(--wildsea-text);
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;
 }
-.window-app .window-header {
+.application.wildsea .window-header,
+.window-app.wildsea .window-header,
+.wildsea-sheet-app .window-header,
+.application.wildsea .wildsea-sheet-window-header,
+.window-app.wildsea .wildsea-sheet-window-header,
+.wildsea-sheet-app .wildsea-sheet-window-header {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
+  background: transparent !important;
+  background-image: none !important;
+}
+.wildsea-sheet-form {
+  min-height: 100%;
+  background: var(--wildsea-surface);
+  color: var(--wildsea-text);
+}
+body.theme-dark .application.wildsea,
+body.theme-dark .window-app.wildsea,
+body.theme-dark .wildsea-sheet-app {
+  --wildsea-surface: #15181d;
+  --wildsea-surface-alt: #252830;
+  --wildsea-surface-strong: #8f8a74;
+  --wildsea-surface-contrast: #2f3126;
+  --wildsea-text: #f2efe8;
+  --wildsea-text-muted: rgba(242, 239, 232, 0.72);
+  --wildsea-border: #8f8a74;
 }
 #logo {
   content: url(../assets/logo.webp);
@@ -129,25 +173,33 @@ a.inline-roll.unstyled {
 .right {
   text-align: right;
 }
-.wildsea button:focus,
-.wildsea input[type='text']:focus,
-.wildsea input[type='number']:focus,
-.wildsea input[type='password']:focus,
-.wildsea input[type='date']:focus,
-.wildsea input[type='time']:focus,
-.wildsea input[type='search']:focus,
-.wildsea button:hover,
-.wildsea input[type='text']:hover,
-.wildsea input[type='number']:hover,
-.wildsea input[type='password']:hover,
-.wildsea input[type='date']:hover,
-.wildsea input[type='time']:hover,
-.wildsea input[type='search']:hover {
+.wildsea-sheet-form input[type='text']:focus,
+.dialog-content form.wildsea input[type='text']:focus,
+.wildsea-sheet-form input[type='number']:focus,
+.dialog-content form.wildsea input[type='number']:focus,
+.wildsea-sheet-form input[type='password']:focus,
+.dialog-content form.wildsea input[type='password']:focus,
+.wildsea-sheet-form input[type='date']:focus,
+.dialog-content form.wildsea input[type='date']:focus,
+.wildsea-sheet-form input[type='time']:focus,
+.dialog-content form.wildsea input[type='time']:focus,
+.wildsea-sheet-form input[type='search']:focus,
+.dialog-content form.wildsea input[type='search']:focus,
+.wildsea-sheet-form input[type='text']:hover,
+.dialog-content form.wildsea input[type='text']:hover,
+.wildsea-sheet-form input[type='number']:hover,
+.dialog-content form.wildsea input[type='number']:hover,
+.wildsea-sheet-form input[type='password']:hover,
+.dialog-content form.wildsea input[type='password']:hover,
+.wildsea-sheet-form input[type='date']:hover,
+.dialog-content form.wildsea input[type='date']:hover,
+.wildsea-sheet-form input[type='time']:hover,
+.dialog-content form.wildsea input[type='time']:hover,
+.wildsea-sheet-form input[type='search']:hover,
+.dialog-content form.wildsea input[type='search']:hover {
   box-shadow: 0 0 5px #626256;
 }
-.wildsea button,
-.wildsea form button,
-.wildsea .dialog .dialog-buttons button {
+.dialog .dialog-buttons button {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
@@ -155,12 +207,133 @@ a.inline-roll.unstyled {
   border-radius: 0;
   background: #e2e2df;
 }
-.wildsea button.default,
-.wildsea form button.default,
-.wildsea .dialog .dialog-buttons button.default {
+.dialog .dialog-buttons button.default {
   background: #858778;
   color: #f9f9f9;
   border: none;
+}
+.application.wildsea .window-header ul,
+.window-app.wildsea .window-header ul,
+.wildsea-sheet-app .window-header ul,
+.application.wildsea .wildsea-sheet-window-header ul,
+.window-app.wildsea .wildsea-sheet-window-header ul,
+.wildsea-sheet-app .wildsea-sheet-window-header ul,
+.application.wildsea .window-header ol,
+.window-app.wildsea .window-header ol,
+.wildsea-sheet-app .window-header ol,
+.application.wildsea .wildsea-sheet-window-header ol,
+.window-app.wildsea .wildsea-sheet-window-header ol,
+.wildsea-sheet-app .wildsea-sheet-window-header ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.application.wildsea .window-header li,
+.window-app.wildsea .window-header li,
+.wildsea-sheet-app .window-header li,
+.application.wildsea .wildsea-sheet-window-header li,
+.window-app.wildsea .wildsea-sheet-window-header li,
+.wildsea-sheet-app .wildsea-sheet-window-header li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.application.wildsea .window-header li::before,
+.window-app.wildsea .window-header li::before,
+.wildsea-sheet-app .window-header li::before,
+.application.wildsea .wildsea-sheet-window-header li::before,
+.window-app.wildsea .wildsea-sheet-window-header li::before,
+.wildsea-sheet-app .wildsea-sheet-window-header li::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+.application.wildsea .window-header button,
+.window-app.wildsea .window-header button,
+.wildsea-sheet-app .window-header button,
+.application.wildsea .wildsea-sheet-window-header button,
+.window-app.wildsea .wildsea-sheet-window-header button,
+.wildsea-sheet-app .wildsea-sheet-window-header button,
+.application.wildsea .window-header a,
+.window-app.wildsea .window-header a,
+.wildsea-sheet-app .window-header a,
+.application.wildsea .wildsea-sheet-window-header a,
+.window-app.wildsea .wildsea-sheet-window-header a,
+.wildsea-sheet-app .wildsea-sheet-window-header a,
+.application.wildsea .window-header .header-control,
+.window-app.wildsea .window-header .header-control,
+.wildsea-sheet-app .window-header .header-control,
+.application.wildsea .wildsea-sheet-window-header .header-control,
+.window-app.wildsea .wildsea-sheet-window-header .header-control,
+.wildsea-sheet-app .wildsea-sheet-window-header .header-control {
+  clip-path: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  text-transform: none !important;
+  padding: 0 !important;
+}
+.application.wildsea .window-header button:hover,
+.window-app.wildsea .window-header button:hover,
+.wildsea-sheet-app .window-header button:hover,
+.application.wildsea .wildsea-sheet-window-header button:hover,
+.window-app.wildsea .wildsea-sheet-window-header button:hover,
+.wildsea-sheet-app .wildsea-sheet-window-header button:hover,
+.application.wildsea .window-header a:hover,
+.window-app.wildsea .window-header a:hover,
+.wildsea-sheet-app .window-header a:hover,
+.application.wildsea .wildsea-sheet-window-header a:hover,
+.window-app.wildsea .wildsea-sheet-window-header a:hover,
+.wildsea-sheet-app .wildsea-sheet-window-header a:hover,
+.application.wildsea .window-header .header-control:hover,
+.window-app.wildsea .window-header .header-control:hover,
+.wildsea-sheet-app .window-header .header-control:hover,
+.application.wildsea .wildsea-sheet-window-header .header-control:hover,
+.window-app.wildsea .wildsea-sheet-window-header .header-control:hover,
+.wildsea-sheet-app .wildsea-sheet-window-header .header-control:hover,
+.application.wildsea .window-header button:focus,
+.window-app.wildsea .window-header button:focus,
+.wildsea-sheet-app .window-header button:focus,
+.application.wildsea .wildsea-sheet-window-header button:focus,
+.window-app.wildsea .wildsea-sheet-window-header button:focus,
+.wildsea-sheet-app .wildsea-sheet-window-header button:focus,
+.application.wildsea .window-header a:focus,
+.window-app.wildsea .window-header a:focus,
+.wildsea-sheet-app .window-header a:focus,
+.application.wildsea .wildsea-sheet-window-header a:focus,
+.window-app.wildsea .wildsea-sheet-window-header a:focus,
+.wildsea-sheet-app .wildsea-sheet-window-header a:focus,
+.application.wildsea .window-header .header-control:focus,
+.window-app.wildsea .window-header .header-control:focus,
+.wildsea-sheet-app .window-header .header-control:focus,
+.application.wildsea .wildsea-sheet-window-header .header-control:focus,
+.window-app.wildsea .wildsea-sheet-window-header .header-control:focus,
+.wildsea-sheet-app .wildsea-sheet-window-header .header-control:focus {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+.application.wildsea .window-header i,
+.window-app.wildsea .window-header i,
+.wildsea-sheet-app .window-header i,
+.application.wildsea .wildsea-sheet-window-header i,
+.window-app.wildsea .wildsea-sheet-window-header i,
+.wildsea-sheet-app .wildsea-sheet-window-header i,
+.application.wildsea .window-header span,
+.window-app.wildsea .window-header span,
+.wildsea-sheet-app .window-header span,
+.application.wildsea .wildsea-sheet-window-header span,
+.window-app.wildsea .wildsea-sheet-window-header span,
+.wildsea-sheet-app .wildsea-sheet-window-header span {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 .prosemirror menu button {
   clip-path: none;
@@ -169,23 +342,27 @@ a.inline-roll.unstyled {
 .tox button {
   clip-path: none;
 }
-.wildsea form button {
-  background: #858778;
-  color: #f9f9f9;
-}
-.wildsea form input[type='text'],
-.wildsea form input[type='number'],
-.wildsea form input[type='password'],
-.wildsea form input[type='date'],
-.wildsea form input[type='time'],
-.wildsea form input[type='search'],
-.wildsea form select {
+.wildsea-sheet-form input[type='text'],
+.dialog-content form.wildsea input[type='text'],
+.wildsea-sheet-form input[type='number'],
+.dialog-content form.wildsea input[type='number'],
+.wildsea-sheet-form input[type='password'],
+.dialog-content form.wildsea input[type='password'],
+.wildsea-sheet-form input[type='date'],
+.dialog-content form.wildsea input[type='date'],
+.wildsea-sheet-form input[type='time'],
+.dialog-content form.wildsea input[type='time'],
+.wildsea-sheet-form input[type='search'],
+.dialog-content form.wildsea input[type='search'],
+.wildsea-sheet-form select,
+.dialog-content form.wildsea select {
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
-  background: #e2e2df;
+  background: var(--wildsea-surface-alt, #e2e2df);
   border: none;
   padding: 0 0.5rem;
 }
-.wildsea form label {
+.wildsea-sheet-form label,
+.dialog-content form.wildsea label {
   font-variant: small-caps;
 }
 .directory .directory-header .header-search input {
@@ -249,9 +426,16 @@ a.inline-roll.unstyled {
 .wildsea {
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;
-  background: #f9f9f9;
-  color: #2d2a2b;
+  background: var(--wildsea-surface);
+  color: var(--wildsea-text);
   --blockquote-border: #858778;
+}
+.wildsea > .flexrow,
+.wildsea > div.flexrow,
+.wildsea form > .flexrow,
+.wildsea .wildsea-sheet-form > .flexrow,
+.wildsea .wildsea-sheet-form > div {
+  align-items: flex-start;
 }
 .wildsea ul {
   list-style: none;
@@ -448,7 +632,7 @@ a.inline-roll.unstyled {
   font-weight: 600;
 }
 .wildsea table tbody tr:nth-child(odd) {
-  background: #e2e2df;
+  background: var(--wildsea-surface-alt);
 }
 .wildsea table tbody tr td {
   padding: 0.5rem;
@@ -467,7 +651,7 @@ a.inline-roll.unstyled {
   font-size: 1.1rem;
 }
 .wildsea .text-dark {
-  color: #2e2c20;
+  color: var(--wildsea-surface-contrast);
 }
 .wildsea .text-mid {
   color: #626256;
@@ -476,7 +660,7 @@ a.inline-roll.unstyled {
   color: #858778;
 }
 .wildsea .text-light-transparent {
-  color: #e2e2df;
+  color: var(--wildsea-text-muted);
 }
 .wildsea .img {
   text-align: center;
@@ -491,17 +675,54 @@ a.inline-roll.unstyled {
   margin: 0;
   background: #858778;
 }
+.wildsea .sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.wildsea .sheet-header .img {
+  min-width: 64px;
+  width: 64px;
+  flex: 0 0 64px;
+}
+.wildsea .sheet-header .img img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  max-width: 64px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.wildsea .sheet-header .sheet-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: flex-start;
+}
 .wildsea label {
   font-weight: bold;
   font-variant: small-caps;
 }
+.wildsea .form-group {
+  min-height: 1.5rem;
+  align-items: center;
+}
 .wildsea input,
 .wildsea select {
   border: none;
-  background: #e2e2df;
+  background: var(--wildsea-surface-alt);
+  color: var(--wildsea-text, #2d2a2b);
   text-transform: initial;
   padding: 0 0.5rem;
   border-radius: 0;
+}
+.wildsea input::placeholder,
+.wildsea textarea::placeholder {
+  color: var(--wildsea-text-muted);
+}
+.wildsea option,
+.wildsea optgroup {
+  color: #2d2a2b;
+  background: var(--wildsea-surface);
 }
 .wildsea select {
   padding: 0 0.25rem;
@@ -522,7 +743,7 @@ a.inline-roll.unstyled {
 .wildsea .navigation nav.sheet-tabs a {
   display: block;
   clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
-  background: #e2e2df;
+  background: var(--wildsea-surface-alt);
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   font-size: 1rem;
@@ -543,6 +764,7 @@ a.inline-roll.unstyled {
   display: flex;
   min-height: var(--editor-height);
   border: 1px solid #858778;
+  border-color: var(--wildsea-border);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -593,7 +815,7 @@ a.inline-roll.unstyled {
   color: #f9f9f9;
 }
 .wildsea .light-transparent {
-  background: #e2e2df;
+  background: var(--wildsea-surface-alt);
 }
 .wildsea .padded {
   padding: 0.5rem !important;
@@ -616,7 +838,7 @@ a.inline-roll.unstyled {
   gap: 0.25rem;
 }
 .wildsea .slim-list .slim-item {
-  background: #f9f9f9;
+  background: var(--wildsea-surface);
 }
 .wildsea .drag-preview {
   outline: 1px solid white;
@@ -658,6 +880,7 @@ a.inline-roll.unstyled {
 .wildsea .mire {
   border-radius: 0 2rem 2rem 0;
   border: 2px solid #858778;
+  border-color: var(--wildsea-border);
   padding: 0.25rem 0.5rem;
   position: relative;
 }
@@ -669,16 +892,20 @@ a.inline-roll.unstyled {
 }
 .wildsea .bordered {
   border: 2px solid #626256;
+  border-color: var(--wildsea-surface-strong);
   border-radius: 1rem;
   padding: 0.75rem 0.5rem 0.5rem;
   margin: -0.75rem 0 0;
   min-height: 3rem;
 }
+.wildsea .bordered .flexcol {
+  row-gap: 0.25rem;
+}
 .wildsea h3 + .bordered {
-  border-color: #858778;
+  border-color: var(--wildsea-border);
 }
 .wildsea .aspect {
-  border: 2px solid #858778;
+  border: 2px solid var(--wildsea-border);
   border-radius: 0 1rem 1rem 0;
 }
 .wildsea .aspect h3 {
@@ -699,6 +926,50 @@ a.inline-roll.unstyled {
 }
 .wildsea #resources .item h3 {
   margin-bottom: 0;
+}
+body.theme-dark .application.wildsea .window-header,
+body.theme-dark .window-app.wildsea .window-header,
+body.theme-dark .wildsea-sheet-app .window-header,
+body.theme-dark .application.wildsea .wildsea-sheet-window-header,
+body.theme-dark .window-app.wildsea .wildsea-sheet-window-header,
+body.theme-dark .wildsea-sheet-app .wildsea-sheet-window-header {
+  color: #f9f9f9;
+}
+body.theme-dark .application.wildsea .wildsea input,
+body.theme-dark .window-app.wildsea .wildsea input,
+body.theme-dark .wildsea-sheet-app .wildsea input,
+body.theme-dark .application.wildsea .wildsea select,
+body.theme-dark .window-app.wildsea .wildsea select,
+body.theme-dark .wildsea-sheet-app .wildsea select,
+body.theme-dark .application.wildsea .wildsea textarea,
+body.theme-dark .window-app.wildsea .wildsea textarea,
+body.theme-dark .wildsea-sheet-app .wildsea textarea {
+  color: var(--wildsea-text);
+  background: var(--wildsea-surface-alt);
+}
+body.theme-dark .application.wildsea .wildsea option,
+body.theme-dark .window-app.wildsea .wildsea option,
+body.theme-dark .wildsea-sheet-app .wildsea option,
+body.theme-dark .application.wildsea .wildsea optgroup,
+body.theme-dark .window-app.wildsea .wildsea optgroup,
+body.theme-dark .wildsea-sheet-app .wildsea optgroup {
+  color: var(--wildsea-text);
+  background: var(--wildsea-surface);
+}
+body.theme-dark .application.wildsea .wildsea .img img,
+body.theme-dark .window-app.wildsea .wildsea .img img,
+body.theme-dark .wildsea-sheet-app .wildsea .img img {
+  background: var(--wildsea-surface-strong);
+}
+body.theme-dark .application.wildsea .wildsea .description,
+body.theme-dark .window-app.wildsea .wildsea .description,
+body.theme-dark .wildsea-sheet-app .wildsea .description {
+  background: rgba(255, 255, 255, 0.03);
+}
+body.theme-dark .application.wildsea .wildsea ul.track li,
+body.theme-dark .window-app.wildsea .wildsea ul.track li,
+body.theme-dark .wildsea-sheet-app .wildsea ul.track li {
+  border-color: var(--wildsea-surface-strong);
 }
 .chat-message {
   background: #f9f9f9;
@@ -1153,18 +1424,21 @@ a.inline-roll.unstyled {
 .track-panel {
   position: absolute;
   bottom: 2.5rem;
-  right: 0.5rem;
+  right: 320px;
   pointer-events: initial;
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
   font-family: 'Merriweather', serif;
   font-size: 0.9rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
 }
 .track-panel.top {
   bottom: initial;
   top: 12px;
   flex-direction: column-reverse;
+  max-height: calc(100vh - 6rem);
 }
 .track-panel .options {
   display: flex;

@@ -3,52 +3,50 @@ import WildseaItemSheet from './item.js'
 import { renderDialog } from '../dialog.js'
 
 export default class WildseaShipItemSheet extends WildseaItemSheet {
-  get template() {
-    return `${WILDSEA.root_path}/templates/sheets/ship_item.hbs`
-  }
-
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+  static DEFAULT_OPTIONS = {
+    classes: ['wildsea', 'item-sheet', 'ship-item-sheet'],
+    position: {
       width: 600,
       height: 'auto',
-      tabs: [
-        {
-          navSelector: '.tabs',
-          contentSelector: '.sheet-body',
-          initial: 'main',
-        },
-      ],
-    })
+    },
+    actions: {
+      addRatingMod: WildseaShipItemSheet._onAddRatingMod,
+      editRatingMod: WildseaShipItemSheet._onEditRatingMod,
+      deleteRatingMod: WildseaShipItemSheet._onDeleteRatingMod,
+      editEffect: WildseaShipItemSheet._onEditEffect,
+      deleteEffect: WildseaShipItemSheet._onDeleteEffect,
+    },
   }
 
-  async getData() {
-    const context = await super.getData()
+  static PARTS = {
+    form: {
+      template: `${WILDSEA.root_path}/templates/sheets/ship_item.hbs`,
+    },
+  }
+
+  static TABS = {
+    sheet: {
+      tabs: [
+        { id: 'main', icon: '', label: 'wildsea.description' },
+        { id: 'ratingMods', icon: '', label: 'wildsea.ratingMods' },
+      ],
+    },
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
     context.hasTrack = ['undercrew'].includes(this.item.type)
     return context
   }
 
-  activateListeners(html) {
-    if (this.isEditable) {
-      if (this.item.isOwner) {
-        html.find('.addRatingMod').click(this.addRatingMod.bind(this))
-        html.find('.editRatingMod').click(this.editRatingMod.bind(this))
-        html.find('.deleteRatingMod').click(this.deleteRatingMod.bind(this))
-
-        html.find('.editEffect').click(this.editEffect.bind(this))
-        html.find('.deleteEffect').click(this.deleteEffect.bind(this))
-      }
-    }
-    super.activateListeners(html)
-  }
-
-  async addRatingMod(event) {
+  static async _onAddRatingMod(event, target) {
     event.preventDefault()
 
     const data = await renderDialog(
       game.i18n.localize('wildsea.ratingMod'),
-      this.processRatingModDialog,
+      WildseaShipItemSheet._processRatingModDialog,
       { config: WILDSEA },
-      '/systems/wildsea/templates/dialogs/design_rating_mod.hbs',
+      '/systems/the-wildsea/templates/dialogs/design_rating_mod.hbs',
     )
 
     if (data.cancelled) return
@@ -67,20 +65,20 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
     })
   }
 
-  async editRatingMod(event) {
+  static async _onEditRatingMod(event, target) {
     event.preventDefault()
-    const ratingModId = event.currentTarget.dataset.ratingModId
+    const ratingModId = target.dataset.ratingModId
     const ratingMods = this.item.system.ratingMods
     const ratingMod = ratingMods.filter((e) => e.id === ratingModId)[0]
 
     const data = await renderDialog(
       game.i18n.localize('wildsea.ratingMod'),
-      this.processRatingModDialog,
+      WildseaShipItemSheet._processRatingModDialog,
       {
         config: WILDSEA,
         ...ratingMod,
       },
-      '/systems/wildsea/templates/dialogs/design_rating_mod.hbs',
+      '/systems/the-wildsea/templates/dialogs/design_rating_mod.hbs',
     )
 
     if (data.cancelled) return
@@ -95,9 +93,9 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
     })
   }
 
-  async deleteRatingMod(event) {
+  static _onDeleteRatingMod(event, target) {
     event.preventDefault()
-    const ratingModId = event.currentTarget.dataset.ratingModId
+    const ratingModId = target.dataset.ratingModId
     this.item.update({
       system: {
         ratingMods: this.item.system.ratingMods.filter(
@@ -107,7 +105,7 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
     })
   }
 
-  processRatingModDialog(html) {
+  static _processRatingModDialog(html) {
     const form = html[0].querySelector('form')
     return {
       rating: form.rating.value,
@@ -115,15 +113,15 @@ export default class WildseaShipItemSheet extends WildseaItemSheet {
     }
   }
 
-  editEffect(event) {
+  static _onEditEffect(event, target) {
     event.preventDefault()
-    const effectId = event.currentTarget.dataset.effectId
-    this.item.effects.get(effectId).sheet.render(true)
+    const effectId = target.dataset.effectId
+    this.item.effects.get(effectId).sheet.render({ force: true })
   }
 
-  deleteEffect(event) {
+  static _onDeleteEffect(event, target) {
     event.preventDefault()
-    const effectId = event.currentTarget.dataset.effectId
+    const effectId = target.dataset.effectId
     this.item.deleteEmbeddedDocuments('ActiveEffect', [effectId])
   }
 }

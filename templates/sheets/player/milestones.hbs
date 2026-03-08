@@ -6,14 +6,14 @@
     <div>
       <h3 class="corners mid">
         {{localize "wildsea.major"}}
-        <a class="addItem" data-item-type="milestone" data-item-subtype="major">
+        <a class="addItem" data-action="addItem" data-item-type="milestone" data-item-subtype="major">
           <i class="fas fa-plus"></i>
         </a>
       </h3>
       {{#if (any system.milestone_major)}}
         <div class="slim-list">
           {{#each system.milestone_major as |milestone|}}
-            {{> "systems/wildsea/templates/shared/slim_item.hbs" milestone type="milestones"}}
+            {{> "systems/the-wildsea/templates/shared/slim_item.hbs" milestone type="milestones"}}
           {{/each}}
         </div>
       {{else}}
@@ -23,14 +23,14 @@
     <div>
       <h3 class="corners mid">
         {{localize "wildsea.minor"}}
-        <a class="addItem" data-item-type="milestone" data-item-subtype="minor">
+        <a class="addItem" data-action="addItem" data-item-type="milestone" data-item-subtype="minor">
           <i class="fas fa-plus"></i>
         </a>
       </h3>
       {{#if (any system.milestone_minor)}}
         <div class="slim-list">
           {{#each system.milestone_minor as |milestone|}}
-            {{> "systems/wildsea/templates/shared/slim_item.hbs" milestone type="milestones"}}
+            {{> "systems/the-wildsea/templates/shared/slim_item.hbs" milestone type="milestones"}}
           {{/each}}
         </div>
       {{else}}

@@ -1,29 +1,29 @@
-<form class="wildsea">
+<form>
   <div class="flexrow spaced">
     <div class="flexcol spaced">
-      <div class="flex flex0 flexrow spaced">
-        <div class="flex0 img"><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
-        <div>
+      <div class="sheet-header flex flex0 flexrow spaced">
+        <div class="flex0 img"><img src="{{portraitSrc}}" data-action="editImage" data-edit="img" title="{{actor.name}}" /></div>
+        <div class="sheet-name">
           <input id="name" class="corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
         </div>
       </div>
-      {{> "systems/wildsea/templates/sheets/player/background.hbs"}}
-      {{> "systems/wildsea/templates/sheets/player/milestones.hbs"}}
-      {{> "systems/wildsea/templates/sheets/player/drives.hbs"}}
-      {{> "systems/wildsea/templates/sheets/player/mires.hbs" type="mires"}}
+      {{> "systems/the-wildsea/templates/sheets/player/background.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/milestones.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/drives.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/mires.hbs" type="mires"}}
     </div>
     <div class="flexcol spaced">
-      {{> "systems/wildsea/templates/sheets/player/edges.hbs"}}
-      {{> "systems/wildsea/templates/sheets/player/skills.hbs"}}
-      {{> "systems/wildsea/templates/sheets/player/languages.hbs"}}
-      {{> "systems/wildsea/templates/sheets/player/resources.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/edges.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/skills.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/languages.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/player/resources.hbs"}}
     </div>
     <div class="flexcol spaced">
-      {{> "systems/wildsea/templates/shared/aspects.hbs"
+      {{> "systems/the-wildsea/templates/shared/aspects.hbs"
         aspects=aspects
         title=(localize "wildsea.aspects")
         type="aspect"}}
-      {{> "systems/wildsea/templates/shared/aspects.hbs"
+      {{> "systems/the-wildsea/templates/shared/aspects.hbs"
         aspects=temporaryTracks
         title=(localize "wildsea.temporaryTracks")
         type="temporaryTrack"}}

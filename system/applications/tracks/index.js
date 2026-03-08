@@ -7,17 +7,11 @@ export const setup = () => {
   game.wildsea.trackDatabase = new WildseaTrackDatabase()
   game.wildsea.trackPanel = new WildseaTrackPanel(game.wildsea.trackDatabase)
   game.wildsea.trackDatabase.refresh()
-  const top = document.querySelector('#ui-top')
-  if (top) {
-    const template = document.createElement('template')
-    template.setAttribute('id', 'wildsea-tracks-panel')
-    top?.insertAdjacentElement('afterend', template)
-  }
 
   Handlebars.registerHelper('renderTrack', (track) => track.render())
 
   Hooks.on('canvasReady', () => {
-    game.wildsea.trackPanel.render(true)
+    game.wildsea.trackPanel.render({ force: true })
   })
 
   Hooks.on('createSetting', (setting) => {

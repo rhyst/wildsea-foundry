@@ -1,14 +1,14 @@
 <div id="drives" class="flex0">
   <h2 class="corners dark">
     {{localize "wildsea.drives"}}
-    <a class="addItem" data-item-type="drive">
+    <a class="addItem" data-action="addItem" data-item-type="drive">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
     {{#if (any drives)}}
       <div class = "flexcol item-list spaced">
         {{#each drives as |drive|}}
-          {{> "systems/wildsea/templates/shared/attribute.hbs" drive id=drive.id}}
+          {{> "systems/the-wildsea/templates/shared/attribute.hbs" drive id=drive.id}}
         {{/each}}
       </div>
     {{else}}

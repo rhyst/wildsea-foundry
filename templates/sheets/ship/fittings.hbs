@@ -1,14 +1,14 @@
 <div id="fittings" class="flex0">
   <h2 class="corners dark">
     {{localize "wildsea.fittings"}}
-    <a class="addItem" data-item-type="fittings">
+    <a class="addItem" data-action="addItem" data-item-type="fittings">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any system.fittings)}}
     <div class="flexcol item-list spaced padded-x">
       {{#each system.fittings as |fitting|}}
-        {{> "systems/wildsea/templates/sheets/ship/design.hbs" fitting id=fitting.id type="fitting"}}
+        {{> "systems/the-wildsea/templates/sheets/ship/design.hbs" fitting id=fitting.id type="fitting"}}
       {{/each}}
     </div>
   {{else}}

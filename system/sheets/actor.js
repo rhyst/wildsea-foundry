@@ -3,35 +3,56 @@ import { clamp, clickModifiers } from '../helpers.js'
 import { renderDialog } from '../dialog.js'
 import SortableJS from '../lib/sortable.complete.esm.js'
 
-export default class WildseaActorSheet extends ActorSheet {
-  async getData() {
-    const context = super.getData()
+const { HandlebarsApplicationMixin } = foundry.applications.api
+
+export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
+  static DEFAULT_OPTIONS = {
+    classes: ['wildsea', 'actor-sheet'],
+    form: {
+      submitOnChange: true,
+    },
+    actions: {
+      collapseItem: WildseaActorSheet._onCollapseItem,
+    },
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options)
     context.config = WILDSEA
+    context.portraitSrc = this.actor.img || WILDSEA.defaultTokens[this.actor.type] || WILDSEA.defaultTokens.player
     context.showBurnTooltip = game.settings.get('wildsea', 'showBurnTooltip')
-    context.showAttributeTooltip = game.settings.get('wildsea', 'showAttributeTooltip')
+    context.showAttributeTooltip = game.settings.get(
+      'wildsea',
+      'showAttributeTooltip',
+    )
     return context
   }
 
-  activateListeners(html) {
-    if (this.isEditable) {
-      if (this.actor.isOwner) {
-        // Item context menu
-        new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
-        new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
+  _onRender(context, options) {
+    super._onRender(context, options)
 
-        // collapse aspects and temp tracks
-        html.find('.item .itemContextMenu').click(this.collapseItem.bind(this))
+    this.element.classList.add('wildsea-sheet-app')
+    this.window?.content?.classList.add('wildsea-sheet-content')
+    this.window?.header?.classList.add('wildsea-sheet-window-header')
+    this.form?.classList.add('wildsea-sheet-form')
 
-        // Item tracks
-        html.find('.item .track').click(this.increaseItemTrack.bind(this))
-        html.find('.item .track').contextmenu(this.reduceItemTrack.bind(this))
+    if (!this.isEditable || !this.actor.isOwner) return
 
-        //reorder slim items
-        for (const list of html.find('.slim-list'))
-          this.reorderSlimListHandler(list)
-      }
+    // Item context menus
+    const ContextMenu = foundry.applications.ux.ContextMenu.implementation
+    new ContextMenu(this.element, '.itemContextMenu', this.itemContextMenu, { jQuery: false })
+    new ContextMenu(this.element, '.slimContextMenu', this.slimContextMenu, { jQuery: false })
+
+    // Item tracks - click to increase, right-click to reduce
+    for (const el of this.element.querySelectorAll('.item .track')) {
+      el.addEventListener('click', this.increaseItemTrack.bind(this))
+      el.addEventListener('contextmenu', this.reduceItemTrack.bind(this))
     }
-    super.activateListeners(html)
+
+    // Reorder slim items
+    for (const list of this.element.querySelectorAll('.slim-list')) {
+      this.reorderSlimListHandler(list)
+    }
   }
 
   itemContextMenu = [
@@ -39,7 +60,8 @@ export default class WildseaActorSheet extends ActorSheet {
       name: game.i18n.localize('wildsea.toChat'),
       icon: '<i class="fas fa-comment"></i>',
       callback: (element) => {
-        const itemId = element.closest('.item').data('item-id')
+        const el = element
+        const itemId = el.closest('.item').dataset.itemId
         this.sendItemToChat(itemId)
       },
     },
@@ -47,15 +69,17 @@ export default class WildseaActorSheet extends ActorSheet {
       name: game.i18n.localize('wildsea.edit'),
       icon: '<i class="fas fa-edit"></i>',
       callback: (element) => {
-        const itemId = element.closest('.item').data('item-id')
-        this.actor.items.get(itemId).sheet.render(true)
+        const el = element
+        const itemId = el.closest('.item').dataset.itemId
+        this.actor.items.get(itemId).sheet.render({ force: true })
       },
     },
     {
       name: game.i18n.localize('wildsea.delete'),
       icon: '<i class="fas fa-trash"></i>',
       callback: (element) => {
-        const itemId = element.closest('.item').data('item-id')
+        const el = element
+        const itemId = el.closest('.item').dataset.itemId
         this.actor.deleteEmbeddedDocuments('Item', [itemId])
       },
     },
@@ -66,8 +90,9 @@ export default class WildseaActorSheet extends ActorSheet {
       name: game.i18n.localize('wildsea.toChat'),
       icon: '<i class="fas fa-comment"></i>',
       callback: (element) => {
-        const itemId = element.data('item-id')
-        const itemType = element.data('item-type')
+        const el = element
+        const itemId = el.dataset.itemId
+        const itemType = el.dataset.itemType
         this.sendSlimToChat(itemId, itemType)
       },
     },
@@ -75,8 +100,9 @@ export default class WildseaActorSheet extends ActorSheet {
       name: game.i18n.localize('wildsea.edit'),
       icon: '<i class="fas fa-edit"></i>',
       callback: (element) => {
-        const itemId = element.data('item-id')
-        const itemType = element.data('item-type')
+        const el = element
+        const itemId = el.dataset.itemId
+        const itemType = el.dataset.itemType
         this.editSlimItem(itemId, itemType)
       },
     },
@@ -84,8 +110,9 @@ export default class WildseaActorSheet extends ActorSheet {
       name: game.i18n.localize('wildsea.delete'),
       icon: '<i class="fas fa-trash"></i>',
       callback: (element) => {
-        const itemId = element.data('item-id')
-        const itemType = element.data('item-type')
+        const el = element
+        const itemId = el.dataset.itemId
+        const itemType = el.dataset.itemType
         this.removeSlimItem(itemId, itemType)
       },
     },
@@ -93,7 +120,7 @@ export default class WildseaActorSheet extends ActorSheet {
 
   async addEmbeddedDocument(itemData) {
     const docs = await this.actor.createEmbeddedDocuments('Item', [itemData])
-    docs.forEach((item) => item.sheet.render(true))
+    docs.forEach((item) => item.sheet.render({ force: true }))
   }
 
   async addSlimItem(itemType, itemSubtype = null) {
@@ -205,7 +232,7 @@ export default class WildseaActorSheet extends ActorSheet {
     if (item) {
       item.title = game.i18n.localize(`wildsea.${itemType}`)
 
-      const template = 'systems/wildsea/templates/chat/slim.hbs'
+      const template = 'systems/the-wildsea/templates/chat/slim.hbs'
       const html = await renderTemplate(template, item)
 
       ChatMessage.create({
@@ -219,7 +246,7 @@ export default class WildseaActorSheet extends ActorSheet {
   async sendItemToChat(itemId) {
     const item = this.actor.items.get(itemId)
     if (item) {
-      const template = 'systems/wildsea/templates/chat/item.hbs'
+      const template = 'systems/the-wildsea/templates/chat/item.hbs'
       const html = await renderTemplate(template, item)
 
       ChatMessage.create({
@@ -250,7 +277,7 @@ export default class WildseaActorSheet extends ActorSheet {
     this.itemTrackUpdate(item, clickModifiers(event), -1)
   }
 
-  //updateValue is positive for add, negative for subtract.
+  // updateValue is positive for add, negative for subtract.
   async itemTrackUpdate(item, isBurn, updateValue = 1) {
     const marks = item.system.track.value
     const burns = item.system.track.burn
@@ -279,17 +306,15 @@ export default class WildseaActorSheet extends ActorSheet {
     item.update({ ...update })
   }
 
-  async collapseItem(event) {
+  static _onCollapseItem(event, target) {
     event.preventDefault()
-    const itemElement = event.currentTarget.closest('.item')
+    const itemElement = target.closest('.item')
     const itemId = itemElement.dataset.itemId
-    $(itemElement)
-      .find('.drawer')
-      .slideToggle({
-        done: () => {
-          this.toggleVisibility(itemId)
-        },
-      })
+    const drawer = itemElement.querySelector('.drawer')
+    if (drawer) {
+      drawer.classList.toggle('hidden')
+    }
+    this.toggleVisibility(itemId)
   }
 
   toggleVisibility(itemId) {

@@ -1,4 +1,4 @@
-<form class="wildsea">
+<form>
   <div class="flexcol spaced">
     <div id="header" class="flexrow spaced">
       <div class="flexrow spaced">
@@ -7,14 +7,14 @@
           <input id="name" class="corners" type="text" name="name" value="{{item.name}}" placeholder="{{localize "wildsea.name"}}" />
           <div class="flexrow spaced">
             {{#if (eq item.type 'design')}}
-              {{> "systems/wildsea/templates/shared/select_field.hbs" field="system.type" value=system.type label="wildsea.type" selectOptions=config.designTypes}}
+              {{> "systems/the-wildsea/templates/shared/select_field.hbs" field="system.type" value=system.type label="wildsea.type" selectOptions=config.designTypes}}
             {{else}}
-              {{> "systems/wildsea/templates/shared/text_field.hbs" field="system.type" value=system.type label="wildsea.type"}}
+              {{> "systems/the-wildsea/templates/shared/text_field.hbs" field="system.type" value=system.type label="wildsea.type"}}
             {{/if}}
             {{#if hasTrack}}
-              {{> "systems/wildsea/templates/shared/number_field.hbs" field="system.track.max" value=system.track.max label="wildsea.track" min=0 max=8}}
+              {{> "systems/the-wildsea/templates/shared/number_field.hbs" field="system.track.max" value=system.track.max label="wildsea.track" min=0 max=8}}
             {{/if}}
-            {{> "systems/wildsea/templates/shared/number_field.hbs" field="system.stakes" value=system.stakes label="wildsea.stakes" min=0}}
+            {{> "systems/the-wildsea/templates/shared/number_field.hbs" field="system.stakes" value=system.stakes label="wildsea.stakes" min=0}}
           </div>
         </div>
       </div>
@@ -30,10 +30,10 @@
 
       <section class="sheet-body">
         <div class="tab-main tab" data-group="primary" data-tab="main">
-          {{> "systems/wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.details"}}
+          {{> "systems/the-wildsea/templates/shared/description.hbs" content=system.enrichedDetails target="system.details"}}
         </div>
         <div class="tab-rating-mods tab" data-group="primary" data-tab="ratingMods">
-          {{> "systems/wildsea/templates/shared/rating_mods.hbs"}}
+          {{> "systems/the-wildsea/templates/shared/rating_mods.hbs"}}
         </div>
       </section>
     </div>

@@ -1,20 +1,20 @@
-<form class="wildsea">
+<form>
   <div class="flexrow spaced">
     <div class="flexcol spaced">
-      <div class="flex flex0 flexrow spaced">
-        <div class="flex0 img"><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
-        <div>
+      <div class="sheet-header flex flex0 flexrow spaced">
+        <div class="flex0 img"><img src="{{portraitSrc}}" data-action="editImage" data-edit="img" title="{{actor.name}}" /></div>
+        <div class="sheet-name">
           <input id="name" class="corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
         </div>
       </div>
       
-      {{> "systems/wildsea/templates/sheets/ship/ratings.hbs"}}
-      {{> "systems/wildsea/templates/sheets/ship/designs.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/ship/ratings.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/ship/designs.hbs"}}
 
     </div>
     <div class="flexcol spaced">
-      {{> "systems/wildsea/templates/sheets/ship/fittings.hbs"}}
-      {{> "systems/wildsea/templates/shared/aspects.hbs"
+      {{> "systems/the-wildsea/templates/sheets/ship/fittings.hbs"}}
+      {{> "systems/the-wildsea/templates/shared/aspects.hbs"
         aspects=system.undercrew
         title=(localize "wildsea.undercrew")
         type="undercrew"}}
@@ -26,9 +26,9 @@
           <div class="center padded text-lg light-transparent">{{stakesUsed}}</div>
         </div>
       </div>
-      {{> "systems/wildsea/templates/sheets/ship/conditions.hbs"}}
-      {{> "systems/wildsea/templates/sheets/ship/reputations.hbs"}}
-      {{> "systems/wildsea/templates/sheets/ship/cargo.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/ship/conditions.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/ship/reputations.hbs"}}
+      {{> "systems/the-wildsea/templates/sheets/ship/cargo.hbs"}}
     </div>
 
   </div>

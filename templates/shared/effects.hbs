@@ -20,10 +20,10 @@
           {{#each effects as |effect|}}
             <tr>
               <td>
-                <a class="editEffect" data-effect-id="{{effect.id}}">{{effect.name}}</a>
+                <a class="editEffect" data-action="editEffect" data-effect-id="{{effect.id}}">{{effect.name}}</a>
               </td>
               <td class="right">
-                <a class="deleteEffect" data-effect-id="{{effect.id}}"><i class="fas fa-trash"></i></a>
+                <a class="deleteEffect" data-action="deleteEffect" data-effect-id="{{effect.id}}"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
           {{/each}}
