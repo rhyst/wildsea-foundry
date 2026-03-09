@@ -3,6 +3,8 @@ import { clamp, clickModifiers } from '../helpers.js'
 import { renderDialog } from '../dialog.js'
 import SortableJS from '../lib/sortable.complete.esm.js'
 
+const { renderTemplate } = foundry.applications.handlebars
+
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {

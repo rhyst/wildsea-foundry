@@ -4,6 +4,8 @@ import { clamp, clickModifiers, enrich } from '../helpers.js'
 import WildseaActorSheet from './actor.js'
 import * as Dice from '../dice.js'
 
+const { renderTemplate } = foundry.applications.handlebars
+
 export default class WildseaShipSheet extends WildseaActorSheet {
   static DEFAULT_OPTIONS = {
     classes: ['wildsea', 'actor-sheet', 'ship-sheet'],
@@ -226,9 +228,8 @@ export default class WildseaShipSheet extends WildseaActorSheet {
         'systems/the-wildsea/templates/chat/roll.hbs',
         outcome,
       ),
-      roll,
+      rolls: [roll],
       sound: CONFIG.sounds.dice,
-      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     }
     ChatMessage.create(chatData)
   }
