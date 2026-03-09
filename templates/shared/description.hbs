@@ -1,5 +1,9 @@
 <section class="wildsea-editor-section">
   <div class="wildsea-editor-frame {{#if short}}wildsea-editor-compact{{/if}}">
-    {{editor content target=target button=true owner=owner editable=editable engine="prosemirror"}}
+    {{#if editable}}
+    <prose-mirror name="{{target}}" toggled>{{{content}}}</prose-mirror>
+    {{else}}
+    {{{content}}}
+    {{/if}}
   </div>
 </section>

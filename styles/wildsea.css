@@ -865,21 +865,14 @@ body.theme-dark .wildsea ul.wildsea-track li {
   padding: 0.5rem;
 }
 
-.wildsea-editor-frame .editor {
-  min-height: var(--editor-height);
+.wildsea-editor-frame prose-mirror {
   width: 100%;
 }
 
-.wildsea-editor-frame .editor .editor-edit {
-  z-index: 1000;
-}
-
-.wildsea-editor-frame .editor .editor-content {
+.wildsea-editor-frame .ProseMirror {
   min-height: var(--editor-height);
-}
-
-.wildsea-editor-frame .editor .tox.tox-tinymce {
-  min-height: var(--editor-height);
+  color: var(--color-text-primary);
+  background: transparent;
 }
 
 .wildsea-editor-frame.wildsea-editor-compact {

@@ -17,6 +17,9 @@ export default class WildseaItemSheet extends HandlebarsApplicationMixin(foundry
 
   async _prepareContext(options) {
     const context = await super._prepareContext(options)
+    context.item = this.item
+    context.editable = this.isEditable
+    context.owner = this.document.isOwner
     context.config = WILDSEA
     context.system = this.item.system
     context.system.enrichedDetails = await enrich(this.item.system.details)

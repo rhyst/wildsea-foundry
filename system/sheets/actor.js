@@ -21,6 +21,8 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundr
   async _prepareContext(options) {
     const context = await super._prepareContext(options)
     context.actor = this.actor
+    context.editable = this.isEditable
+    context.owner = this.actor.isOwner
     context.config = WILDSEA
     context.portraitSrc = this.actor.img || WILDSEA.defaultTokens[this.actor.type] || WILDSEA.defaultTokens.player
     context.showBurnTooltip = game.settings.get('wildsea', 'showBurnTooltip')
