@@ -10,6 +10,9 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ['actor-sheet'],
+    window: {
+      resizable: true,
+    },
     form: {
       submitOnChange: true,
     },
