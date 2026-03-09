@@ -97,15 +97,34 @@ Hooks.on('renderJournalPageSheet', (_obj, html) => {
 })
 
 Hooks.on('getSceneControlButtons', (controls) => {
-  controls.tokens.tools.dicePool = {
-    name: 'dicePool',
-    title: 'wildsea.dicePoolTitle',
-    icon: 'fas fa-dice',
-    order: Object.keys(controls.tokens.tools).length,
-    button: true,
-    onChange: async () => {
-      await game.wildsea.dicePool.toggle()
+  controls.wildsea = {
+    name: 'wildsea',
+    title: 'The Wildsea',
+    icon: 'fas fa-anchor',
+    order: Object.keys(controls).length,
+    tools: {
+      dicePool: {
+        name: 'dicePool',
+        title: 'wildsea.dicePoolTitle',
+        icon: 'fas fa-dice',
+        order: 0,
+        button: true,
+        onChange: async () => {
+          await game.wildsea.dicePool.toggle()
+        },
+      },
+      sceneTracks: {
+        name: 'sceneTracks',
+        title: 'wildsea.TRACKS.windowTitle',
+        icon: 'fas fa-bars-progress',
+        order: 1,
+        button: true,
+        onChange: async () => {
+          await game.wildsea.trackPanel.toggle()
+        },
+      },
     },
+    activeTool: 'dicePool',
   }
 })
 

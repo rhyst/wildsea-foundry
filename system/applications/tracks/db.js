@@ -165,7 +165,7 @@ export class WildseaTrackDatabase extends Collection {
     for (const track of Object.values(this.getTrackData()))
       this.set(track.id, track)
 
-    if (canvas.ready) {
+    if (game.wildsea.trackPanel?.rendered) {
       game.wildsea.trackPanel.render({ force: true })
     }
   }

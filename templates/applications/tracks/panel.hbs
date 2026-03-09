@@ -1,4 +1,4 @@
-<section class="wildsea track-panel {{position}}">
+<section class="wildsea">
   <div class="track-list">
     {{#each tracks as |track|}}
       {{#if (or ../options.editable (ne track.visibility 'secret'))}}
@@ -8,7 +8,7 @@
   </div>
   <div class="options text-right">
     {{#if options.editable}}
-    <a class="wildsea-add-button" data-action="addTrack"><i class="fas fa-plus"></i> {{localize "wildsea.TRACKS.addTrack"}}</a>
+    <button type="button" data-action="addTrack"><i class="fas fa-plus"></i> {{localize "wildsea.TRACKS.addTrack"}}</button>
     {{/if}}
   </div>
 </section>

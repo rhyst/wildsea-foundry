@@ -14,18 +14,15 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
   static DEFAULT_OPTIONS = {
     id: 'wildsea-tracks-panel',
     classes: ['track-panel'],
-    window: {
-      frame: false,
+    position: {
+      width: 500,
+      height: 'auto',
     },
-  }
-
-  _insertElement(element) {
-    const top = document.querySelector('#ui-top')
-    if (top) {
-      top.insertAdjacentElement('afterend', element)
-    } else {
-      document.body.appendChild(element)
-    }
+    window: {
+      title: 'wildsea.TRACKS.windowTitle',
+      resizable: true,
+      controls: [],
+    },
   }
 
   static PARTS = {
@@ -41,7 +38,6 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
         editable: game.user.isGM,
       },
       tracks,
-      position: game.settings.get('wildsea', 'trackPosition'),
     }
   }
 
@@ -73,6 +69,14 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
           game.wildsea.trackDatabase.moveTrack(id, newIndex)
         },
       })
+    }
+  }
+
+  async toggle() {
+    if (this.rendered) {
+      this.close()
+    } else {
+      await this.render({ force: true })
     }
   }
 

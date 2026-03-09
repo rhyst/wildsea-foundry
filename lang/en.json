@@ -204,7 +204,8 @@
       "secret": "Secret",
       "trackGroups": "Length",
       "trackGroupsHelpText": "Create breaks with ',' or '|'",
-      "visibility": "Visibility"
+      "visibility": "Visibility",
+      "windowTitle": "Tracks"
     },
     "WARNINGS": {
       "effectDeprecationTitle": "Effects are being deprecated",
@@ -223,12 +224,6 @@
     "showDepth": {
       "label": "Show Depth",
       "hint": "Display the Depth rating on Ship sheets. Requires reload."
-    },
-    "trackPosition": {
-      "label": "Track Position",
-      "hint": "Where to display the UI Track Panel. Requires reload.",
-      "bottom": "Bottom",
-      "top": "Top"
     }
   },
   "TYPES": {

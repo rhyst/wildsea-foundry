@@ -10,10 +10,6 @@ export const setup = () => {
 
   Handlebars.registerHelper('renderTrack', (track) => track.render())
 
-  Hooks.on('canvasReady', () => {
-    game.wildsea.trackPanel.render({ force: true })
-  })
-
   Hooks.on('createSetting', (setting) => {
     if (setting.key === 'wildsea.activeTracks') {
       game.wildsea.trackDatabase.refresh()
