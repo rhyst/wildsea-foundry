@@ -786,6 +786,10 @@ body.theme-dark .wildsea ul.wildsea-track li {
 
 /* ---------- Sheet columns ---------- */
 
+.actor-sheet .window-content {
+  overflow: auto;
+}
+
 .wildsea-sheet-columns {
   display: grid;
   grid-auto-flow: column;
