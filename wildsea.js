@@ -124,7 +124,6 @@ Hooks.on('getSceneControlButtons', (controls) => {
         },
       },
     },
-    activeTool: 'dicePool',
   }
 })
 
