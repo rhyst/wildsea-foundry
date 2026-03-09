@@ -778,6 +778,7 @@ body.theme-dark .wildsea ul.wildsea-track li {
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   align-items: start;
+  gap: 0.25rem;
 }
 
 /* ---------- Profile header / portrait ---------- */
