@@ -897,6 +897,14 @@ body.theme-dark .wildsea ul.wildsea-track li {
   color: #f9f9f9;
 }
 
+/* ---------- Sheet columns ---------- */
+
+.wildsea-sheet-columns {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 /* ---------- Profile header / portrait ---------- */
 
 .wildsea-profile-header {
