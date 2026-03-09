@@ -161,8 +161,12 @@ body.theme-dark .wildsea .wildsea-portrait img {
   background: var(--wildsea-surface-strong);
 }
 
-body.theme-dark .wildsea .wildsea-editor-frame {
-  background: rgba(255, 255, 255, 0.03);
+body.theme-dark .wildsea .wildsea-editor-frame,
+body.theme-dark .wildsea .wildsea-aspect-card,
+body.theme-dark .wildsea .wildsea-section-body,
+body.theme-dark .wildsea .wildsea-compact-item,
+body.theme-dark .wildsea .wildsea-item {
+  background: var(--wildsea-surface-alt);
 }
 
 body.theme-dark .wildsea ul.wildsea-track li {
@@ -421,7 +425,6 @@ body.theme-dark .wildsea ul.wildsea-track li {
 
 .prosemirror menu button {
   clip-path: none;
-  color: #2d2a2b;
 }
 
 .tox button {
@@ -1186,14 +1189,14 @@ h3 + .wildsea-section-body {
    ========================================================================== */
 
 .sheet.journal-entry .journal-entry-content,
-.prosemirror .editor-container {
+.sheet.journal-entry .prosemirror .editor-container {
   background: #f9f9f9;
   font-family: "Merriweather", serif;
   color: #2d2a2b;
 }
 
 .sheet.journal-entry .journal-entry-content .flexrow,
-.prosemirror .editor-container .flexrow {
+.sheet.journal-entry .prosemirror .editor-container .flexrow {
   align-items: start;
 }
 
@@ -1205,14 +1208,14 @@ h3 + .wildsea-section-body {
 .sheet.journal-entry .journal-entry-content .journal-page-content h2,
 .sheet.journal-entry .journal-entry-content .journal-page-content h3,
 .sheet.journal-entry .journal-entry-content .journal-page-content h4,
-.prosemirror .editor-container .journal-page-header h1,
-.prosemirror .editor-container .journal-page-header h2,
-.prosemirror .editor-container .journal-page-header h3,
-.prosemirror .editor-container .journal-page-header h4,
-.prosemirror .editor-container .journal-page-content h1,
-.prosemirror .editor-container .journal-page-content h2,
-.prosemirror .editor-container .journal-page-content h3,
-.prosemirror .editor-container .journal-page-content h4 {
+.sheet.journal-entry .prosemirror .editor-container .journal-page-header h1,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-header h2,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-header h3,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-header h4,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-content h1,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-content h2,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-content h3,
+.sheet.journal-entry .prosemirror .editor-container .journal-page-content h4 {
   font-family: "Teko", sans-serif;
   text-transform: uppercase;
   font-weight: 600;
