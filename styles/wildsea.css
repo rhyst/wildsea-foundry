@@ -1042,6 +1042,7 @@ ul.wildsea-track li {
   border-radius: 50%;
   border: 1px solid #626256;
   position: relative;
+  --wildsea-track-mark: var(--wildsea-text, #2d2a2b);
 }
 
 ul.wildsea-track li::before {
@@ -1053,7 +1054,7 @@ ul.wildsea-track li.checked {
     to top left,
     transparent 0%,
     transparent calc(50% - 2px),
-    #2d2a2b 50%,
+    var(--wildsea-track-mark) 50%,
     transparent calc(50% + 2px),
     transparent 100%
   );
@@ -1065,7 +1066,7 @@ ul.wildsea-track li.burned {
       to top left,
       transparent 0%,
       transparent calc(50% - 2px),
-      #2d2a2b 50%,
+      var(--wildsea-track-mark) 50%,
       transparent calc(50% + 2px),
       transparent 100%
     ),
@@ -1073,7 +1074,7 @@ ul.wildsea-track li.burned {
       to top right,
       transparent 0%,
       transparent calc(50% - 2px),
-      #2d2a2b 50%,
+      var(--wildsea-track-mark) 50%,
       transparent calc(50% + 2px),
       transparent 100%
     );
