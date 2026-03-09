@@ -127,8 +127,6 @@ a.inline-roll.unstyled {
   --wildsea-text: #2d2a2b;
   --wildsea-text-muted: rgba(98, 98, 86, 0.75);
   --wildsea-border: #858778;
-  background: var(--wildsea-surface);
-  background-image: none;
   color: var(--wildsea-text);
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;
@@ -514,9 +512,6 @@ body.theme-dark .wildsea ul.wildsea-track li {
    Sheet components (scoped under .wildsea)
    ========================================================================== */
 
-.wildsea .flexrow {
-  align-items: flex-start;
-}
 
 /* Leaf bullet lists (user-authored rich text) */
 .wildsea ul {
@@ -779,9 +774,10 @@ body.theme-dark .wildsea ul.wildsea-track li {
 /* ---------- Sheet columns ---------- */
 
 .wildsea-sheet-columns {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: start;
 }
 
 /* ---------- Profile header / portrait ---------- */
