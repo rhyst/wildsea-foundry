@@ -64,6 +64,7 @@ export default class WildseaDicePool extends HandlebarsApplicationMixin(foundry.
     window: {
       title: 'wildsea.dicePoolTitle',
       resizable: false,
+      controls: [],
     },
     form: {
       submitOnChange: false,
