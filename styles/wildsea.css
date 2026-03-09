@@ -897,48 +897,34 @@ body.theme-dark .wildsea ul.wildsea-track li {
   color: #f9f9f9;
 }
 
-/* ---------- Sheet header / portrait ---------- */
+/* ---------- Profile header / portrait ---------- */
 
-.wildsea .sheet-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+.wildsea-profile-header {
+  display: grid !important;
+  grid-template-columns: auto 1fr;
+  align-items: start;
 }
 
 .wildsea .wildsea-portrait {
   text-align: center;
-  min-width: 60px;
+  width: 64px;
 }
 
 .wildsea .wildsea-portrait img {
-  max-width: 100%;
-  height: auto;
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
   border: none;
   border-radius: 50%;
   padding: 0;
   margin: 0;
   background: #858778;
-}
-
-.wildsea .sheet-header .wildsea-portrait {
-  min-width: 64px;
-  width: 64px;
-  flex: 0 0 64px;
-}
-
-.wildsea .sheet-header .wildsea-portrait img {
-  display: block;
-  width: 64px;
-  height: 64px;
-  max-width: 64px;
-  object-fit: cover;
   cursor: pointer;
 }
 
-.wildsea .sheet-header .sheet-name {
-  flex: 1 1 auto;
+.wildsea-profile-header .sheet-name {
   min-width: 0;
-  align-self: flex-start;
 }
 
 /* ---------- Add button ---------- */
