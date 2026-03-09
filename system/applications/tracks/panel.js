@@ -13,7 +13,7 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
 
   static DEFAULT_OPTIONS = {
     id: 'wildsea-tracks-panel',
-    classes: ['wildsea', 'track-panel'],
+    classes: ['track-panel'],
     window: {
       frame: false,
     },

@@ -3,7 +3,7 @@ import WildseaItemSheet from './item.js'
 
 export default class WildseaAttributeSheet extends WildseaItemSheet {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'item-sheet'],
+    classes: ['item-sheet'],
     position: {
       width: 600,
       height: 400,

@@ -8,7 +8,7 @@ const { renderTemplate } = foundry.applications.handlebars
 
 export default class WildseaShipSheet extends WildseaActorSheet {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'actor-sheet', 'ship-sheet'],
+    classes: ['actor-sheet', 'ship-sheet'],
     position: {
       width: 1000,
       height: 750,

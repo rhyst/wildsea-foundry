@@ -9,7 +9,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 
 export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'actor-sheet'],
+    classes: ['actor-sheet'],
     form: {
       submitOnChange: true,
     },
@@ -32,11 +32,6 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundr
 
   _onRender(context, options) {
     super._onRender(context, options)
-
-    this.element.classList.add('wildsea-sheet-app')
-    this.window?.content?.classList.add('wildsea-sheet-content')
-    this.window?.header?.classList.add('wildsea-sheet-window-header')
-    this.form?.classList.add('wildsea-sheet-form')
 
     if (!this.isEditable || !this.actor.isOwner) return
 

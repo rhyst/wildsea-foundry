@@ -4,7 +4,7 @@ import WildseaActorSheet from './actor.js'
 
 export default class WildseaPlayerSheet extends WildseaActorSheet {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'actor-sheet', 'player-sheet'],
+    classes: ['actor-sheet', 'player-sheet'],
     position: {
       width: 1000,
       height: 750,

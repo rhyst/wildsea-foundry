@@ -5,7 +5,7 @@ const { HandlebarsApplicationMixin } = foundry.applications.api
 
 export default class WildseaItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'item-sheet'],
+    classes: ['item-sheet'],
     position: {
       width: 600,
       height: 400,
@@ -24,12 +24,4 @@ export default class WildseaItemSheet extends HandlebarsApplicationMixin(foundry
     return context
   }
 
-  _onRender(context, options) {
-    super._onRender(context, options)
-
-    this.element.classList.add('wildsea-sheet-app')
-    this.window?.content?.classList.add('wildsea-sheet-content')
-    this.window?.header?.classList.add('wildsea-sheet-window-header')
-    this.form?.classList.add('wildsea-sheet-form')
-  }
 }

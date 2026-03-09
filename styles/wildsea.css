@@ -119,9 +119,7 @@ a.inline-roll.unstyled {
 
 /* ---------- Theme variables (light) ---------- */
 
-.application.wildsea,
-.window-app.wildsea,
-.wildsea-sheet-app {
+.wildsea {
   --wildsea-surface: #f9f9f9;
   --wildsea-surface-alt: #e2e2df;
   --wildsea-surface-strong: #858778;
@@ -129,12 +127,6 @@ a.inline-roll.unstyled {
   --wildsea-text: #2d2a2b;
   --wildsea-text-muted: rgba(98, 98, 86, 0.75);
   --wildsea-border: #858778;
-}
-
-.application.wildsea .window-content,
-.window-app.wildsea .window-content,
-.wildsea-sheet-app,
-.wildsea-sheet-content {
   background: var(--wildsea-surface);
   background-image: none;
   color: var(--wildsea-text);
@@ -142,26 +134,9 @@ a.inline-roll.unstyled {
   font-size: 0.8rem;
 }
 
-.application.wildsea .window-header,
-.window-app.wildsea .window-header,
-.wildsea-sheet-app .wildsea-sheet-window-header {
-  font-family: 'Teko', sans-serif;
-  text-transform: uppercase;
-  background: transparent !important;
-  background-image: none !important;
-}
-
-.wildsea-sheet-form {
-  min-height: 100%;
-  background: var(--wildsea-surface);
-  color: var(--wildsea-text);
-}
-
 /* ---------- Dark theme ---------- */
 
-body.theme-dark .application.wildsea,
-body.theme-dark .window-app.wildsea,
-body.theme-dark .wildsea-sheet-app {
+body.theme-dark .wildsea {
   --wildsea-surface: #15181d;
   --wildsea-surface-alt: #252830;
   --wildsea-surface-strong: #8f8a74;
@@ -169,12 +144,6 @@ body.theme-dark .wildsea-sheet-app {
   --wildsea-text: #f2efe8;
   --wildsea-text-muted: rgba(242, 239, 232, 0.72);
   --wildsea-border: #8f8a74;
-}
-
-body.theme-dark .application.wildsea .window-header,
-body.theme-dark .window-app.wildsea .window-header,
-body.theme-dark .wildsea-sheet-app .wildsea-sheet-window-header {
-  color: #f9f9f9;
 }
 
 body.theme-dark .wildsea input,
@@ -367,18 +336,18 @@ body.theme-dark .wildsea ul.wildsea-track li {
 
 /* ---------- Form inputs ---------- */
 
-.wildsea-sheet-form input[type='text']:focus,
-.wildsea-sheet-form input[type='number']:focus,
-.wildsea-sheet-form input[type='password']:focus,
-.wildsea-sheet-form input[type='date']:focus,
-.wildsea-sheet-form input[type='time']:focus,
-.wildsea-sheet-form input[type='search']:focus,
-.wildsea-sheet-form input[type='text']:hover,
-.wildsea-sheet-form input[type='number']:hover,
-.wildsea-sheet-form input[type='password']:hover,
-.wildsea-sheet-form input[type='date']:hover,
-.wildsea-sheet-form input[type='time']:hover,
-.wildsea-sheet-form input[type='search']:hover,
+.wildsea input[type='text']:focus,
+.wildsea input[type='number']:focus,
+.wildsea input[type='password']:focus,
+.wildsea input[type='date']:focus,
+.wildsea input[type='time']:focus,
+.wildsea input[type='search']:focus,
+.wildsea input[type='text']:hover,
+.wildsea input[type='number']:hover,
+.wildsea input[type='password']:hover,
+.wildsea input[type='date']:hover,
+.wildsea input[type='time']:hover,
+.wildsea input[type='search']:hover,
 .dialog-content form.wildsea input[type='text']:focus,
 .dialog-content form.wildsea input[type='number']:focus,
 .dialog-content form.wildsea input[type='password']:focus,
@@ -394,13 +363,13 @@ body.theme-dark .wildsea ul.wildsea-track li {
   box-shadow: 0 0 5px #626256;
 }
 
-.wildsea-sheet-form input[type='text'],
-.wildsea-sheet-form input[type='number'],
-.wildsea-sheet-form input[type='password'],
-.wildsea-sheet-form input[type='date'],
-.wildsea-sheet-form input[type='time'],
-.wildsea-sheet-form input[type='search'],
-.wildsea-sheet-form select,
+.wildsea input[type='text'],
+.wildsea input[type='number'],
+.wildsea input[type='password'],
+.wildsea input[type='date'],
+.wildsea input[type='time'],
+.wildsea input[type='search'],
+.wildsea select,
 .dialog-content form.wildsea input[type='text'],
 .dialog-content form.wildsea input[type='number'],
 .dialog-content form.wildsea input[type='password'],
@@ -421,7 +390,7 @@ body.theme-dark .wildsea ul.wildsea-track li {
   padding: 0 0.5rem;
 }
 
-.wildsea-sheet-form label,
+.wildsea label,
 .dialog-content form.wildsea label {
   font-variant: small-caps;
 }
@@ -448,92 +417,6 @@ body.theme-dark .wildsea ul.wildsea-track li {
   background: #858778;
   color: #f9f9f9;
   border: none;
-}
-
-/* ---------- Window header resets ---------- */
-
-.application.wildsea .window-header ul,
-.application.wildsea .window-header ol,
-.window-app.wildsea .window-header ul,
-.window-app.wildsea .window-header ol,
-.wildsea-sheet-app .wildsea-sheet-window-header ul,
-.wildsea-sheet-app .wildsea-sheet-window-header ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.application.wildsea .window-header li,
-.window-app.wildsea .window-header li,
-.wildsea-sheet-app .wildsea-sheet-window-header li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.application.wildsea .window-header li::before,
-.window-app.wildsea .window-header li::before,
-.wildsea-sheet-app .wildsea-sheet-window-header li::before {
-  display: none !important;
-  content: none !important;
-  background: none !important;
-}
-
-.application.wildsea .window-header button,
-.application.wildsea .window-header a,
-.application.wildsea .window-header .header-control,
-.window-app.wildsea .window-header button,
-.window-app.wildsea .window-header a,
-.window-app.wildsea .window-header .header-control,
-.wildsea-sheet-app .wildsea-sheet-window-header button,
-.wildsea-sheet-app .wildsea-sheet-window-header a,
-.wildsea-sheet-app .wildsea-sheet-window-header .header-control {
-  clip-path: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  color: inherit !important;
-  text-transform: none !important;
-  padding: 0 !important;
-}
-
-.application.wildsea .window-header button:hover,
-.application.wildsea .window-header a:hover,
-.application.wildsea .window-header .header-control:hover,
-.application.wildsea .window-header button:focus,
-.application.wildsea .window-header a:focus,
-.application.wildsea .window-header .header-control:focus,
-.window-app.wildsea .window-header button:hover,
-.window-app.wildsea .window-header a:hover,
-.window-app.wildsea .window-header .header-control:hover,
-.window-app.wildsea .window-header button:focus,
-.window-app.wildsea .window-header a:focus,
-.window-app.wildsea .window-header .header-control:focus,
-.wildsea-sheet-app .wildsea-sheet-window-header button:hover,
-.wildsea-sheet-app .wildsea-sheet-window-header a:hover,
-.wildsea-sheet-app .wildsea-sheet-window-header .header-control:hover,
-.wildsea-sheet-app .wildsea-sheet-window-header button:focus,
-.wildsea-sheet-app .wildsea-sheet-window-header a:focus,
-.wildsea-sheet-app .wildsea-sheet-window-header .header-control:focus {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
-
-.application.wildsea .window-header i,
-.application.wildsea .window-header span,
-.window-app.wildsea .window-header i,
-.window-app.wildsea .window-header span,
-.wildsea-sheet-app .wildsea-sheet-window-header i,
-.wildsea-sheet-app .wildsea-sheet-window-header span {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
 }
 
 /* ---------- Editor buttons ---------- */
@@ -631,11 +514,7 @@ body.theme-dark .wildsea ul.wildsea-track li {
    Sheet components (scoped under .wildsea)
    ========================================================================== */
 
-.wildsea > .flexrow,
-.wildsea > div.flexrow,
-.wildsea form > .flexrow,
-.wildsea .wildsea-sheet-form > .flexrow,
-.wildsea .wildsea-sheet-form > div {
+.wildsea .flexrow {
   align-items: flex-start;
 }
 

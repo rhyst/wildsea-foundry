@@ -4,7 +4,7 @@ import WildseaActorSheet from './actor.js'
 
 export default class WildseaAdversarySheet extends WildseaActorSheet {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'actor-sheet', 'adversary-sheet'],
+    classes: ['actor-sheet', 'adversary-sheet'],
     actions: {
       addItem: WildseaAdversarySheet._onAddItem,
     },

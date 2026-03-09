@@ -4,7 +4,7 @@ import { renderDialog } from '../dialog.js'
 
 export default class WildseaShipItemSheet extends WildseaItemSheet {
   static DEFAULT_OPTIONS = {
-    classes: ['wildsea', 'item-sheet', 'ship-item-sheet'],
+    classes: ['item-sheet', 'ship-item-sheet'],
     position: {
       width: 600,
       height: 'auto',
