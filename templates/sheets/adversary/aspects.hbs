@@ -1,17 +1,17 @@
 <div id="aspects" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.aspects"}}
-    <a class="addItem" data-action="addItem" data-item-type="aspect">
+    <a class="wildsea-add-button" data-action="addItem" data-item-type="aspect">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
     {{#if (any aspects)}}
-      <div class = "flexcol item-list spaced">
+      <div class="flexcol item-list wildsea-gapped">
         {{#each aspects as |aspect|}}
           {{> "systems/the-wildsea/templates/shared/attribute.hbs" aspect id=aspect.id}}
         {{/each}}
       </div>
     {{else}}
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+      <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
     {{/if}}
 </div>

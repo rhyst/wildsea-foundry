@@ -1,8 +1,8 @@
 <div id="ratings" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.ratings"}}
   </h2>
-  <div class="flexcol spaced">
+  <div class="flexcol wildsea-gapped">
     {{#each config.shipRatings as |rating|}}
       {{> "systems/the-wildsea/templates/sheets/ship/rating.hbs" rating=rating track=(byKey @root.system.ratings rating)}}
     {{/each}}

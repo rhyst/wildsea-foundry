@@ -1,17 +1,17 @@
 <div id="drives" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.drives"}}
-    <a class="addItem" data-action="addItem" data-item-type="drive">
+    <a class="wildsea-add-button" data-action="addItem" data-item-type="drive">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
     {{#if (any system.drives)}}
-      <div class="slim-list">
+      <div class="wildsea-compact-list">
         {{#each system.drives as |drive|}}
           {{> "systems/the-wildsea/templates/shared/slim_item.hbs" drive type="drives"}}
         {{/each}}
       </div>
     {{else}}
-      <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+      <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
     {{/if}}
 </div>

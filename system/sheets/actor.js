@@ -44,13 +44,13 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundr
     new ContextMenu(this.element, '.slimContextMenu', this.slimContextMenu, { jQuery: false })
 
     // Item tracks - click to increase, right-click to reduce
-    for (const el of this.element.querySelectorAll('.item .track')) {
+    for (const el of this.element.querySelectorAll('.item .wildsea-track')) {
       el.addEventListener('click', this.increaseItemTrack.bind(this))
       el.addEventListener('contextmenu', this.reduceItemTrack.bind(this))
     }
 
     // Reorder slim items
-    for (const list of this.element.querySelectorAll('.slim-list')) {
+    for (const list of this.element.querySelectorAll('.wildsea-compact-list')) {
       this.reorderSlimListHandler(list)
     }
   }
@@ -310,7 +310,7 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundr
     event.preventDefault()
     const itemElement = target.closest('.item')
     const itemId = itemElement.dataset.itemId
-    const drawer = itemElement.querySelector('.drawer')
+    const drawer = itemElement.querySelector('.wildsea-detail-drawer')
     if (drawer) {
       drawer.classList.toggle('hidden')
     }
@@ -335,9 +335,9 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(foundr
     new SortableJS(list, {
       animation: 200,
       direction: 'vertical',
-      draggable: '.slim-item',
-      dragClass: 'drag-preview',
-      ghostClass: 'drag-gap',
+      draggable: '.wildsea-compact-item',
+      dragClass: 'wildsea-drag-preview',
+      ghostClass: 'wildsea-drag-placeholder',
       onEnd: (event) => {
         const id = event.item.dataset.itemId
         const itemType = event.item.dataset.itemType

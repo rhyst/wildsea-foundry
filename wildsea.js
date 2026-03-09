@@ -81,7 +81,7 @@ Hooks.on('renderJournalPageSheet', (_obj, html) => {
   const container = html instanceof HTMLElement ? html : html[0]
   if (game.user.isGM) {
     container.addEventListener('click', async (event) => {
-      const trackEl = event.target.closest('.track')
+      const trackEl = event.target.closest('.wildsea-track')
       if (!trackEl) return
 
       const data = trackEl.dataset

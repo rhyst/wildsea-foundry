@@ -2,11 +2,11 @@
   <h3>
     {{name}}
     {{#if system.type}}
-      <small class="text-light">{{system.type}}</small>
+      <small class="wildsea-text-light">{{system.type}}</small>
     {{/if}}
   </h3>
   {{#if system.track}}
-  <ul class="track" data-item-id="{{id}}" data-item-type="{{type}}">
+  <ul class="wildsea-track" data-item-id="{{id}}" data-item-type="{{type}}">
     {{#times system.track.max}}
       {{{trackCell @index ../system.track.value ../system.track.burn}}}
     {{/times}}

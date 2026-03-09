@@ -1,12 +1,12 @@
-<div class="padded rounded border-slim item" data-item-id="{{id}}">
+<div class="wildsea-padded wildsea-rounded wildsea-border-thin item" data-item-id="{{id}}">
   <h3 class="itemContextMenu">
     {{name}}
     {{#if system.type}}
-      <small class="text-light">{{localize (concat "wildsea." system.type)}}</small>
+      <small class="wildsea-text-light">{{localize (concat "wildsea." system.type)}}</small>
     {{/if}}
   </h3>
   {{#if (any system.tags)}}
-    <div class="drawer {{#if system.collapsed}}hidden{{/if}}">
+    <div class="wildsea-detail-drawer {{#if system.collapsed}}hidden{{/if}}">
       <p>{{system.tags}}</p>
     </div>
   {{/if}}

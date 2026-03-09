@@ -64,9 +64,9 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
       this.sortable = new SortableJS(trackList, {
         animation: 200,
         direction: 'vertical',
-        draggable: '.track',
-        dragClass: 'drag-preview',
-        ghostClass: 'drag-gap',
+        draggable: '.wildsea-track-row',
+        dragClass: 'wildsea-drag-preview',
+        ghostClass: 'wildsea-drag-placeholder',
         onEnd: (event) => {
           const id = event.item.dataset.trackId
           const newIndex = event.newDraggableIndex
@@ -111,7 +111,7 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
   async _onEditTrack(target) {
     if (!game.user.isGM) return
 
-    const id = target.closest('.track')?.dataset.trackId
+    const id = target.closest('.wildsea-track-row')?.dataset.trackId
     if (!id) return
 
     const track = this.db.get(id)
@@ -127,7 +127,7 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
   _onDeleteTrack(target) {
     if (!game.user.isGM) return
 
-    const id = target.closest('.track')?.dataset.trackId
+    const id = target.closest('.wildsea-track-row')?.dataset.trackId
     if (!id) return
 
     this.db.deleteTrack(id)
@@ -136,7 +136,7 @@ export class WildseaTrackPanel extends HandlebarsApplicationMixin(foundry.applic
   _onToggleTrackSlot(event, target) {
     if (!game.user.isGM) return
 
-    const id = target.closest('.track')?.dataset.trackId
+    const id = target.closest('.wildsea-track-row')?.dataset.trackId
     if (!id) return
 
     const slotState = target.dataset.slotState ?? 'empty'

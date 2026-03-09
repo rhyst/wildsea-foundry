@@ -40,7 +40,7 @@ export default class WildseaTrack {
   }
 
   slot(index, state = 'empty') {
-    const classes = ['slot']
+    const classes = ['wildsea-track-slot']
     if (state !== 'empty') classes.push(state)
 
     return `<span class="${classes.join(' ')}" data-action="toggleTrackSlot" data-slot-index="${index}" data-slot-state="${state}"></span>`
@@ -59,13 +59,13 @@ export default class WildseaTrack {
   }
 
   breaker() {
-    return `<span class="break"></span>`
+    return `<span class="wildsea-track-break"></span>`
   }
 
   displayVisibility() {
     switch (this.visibility) {
       case 'hidden':
-        return 'hidden-track'
+        return 'wildsea-track--hidden'
       default:
         return this.visibility
     }

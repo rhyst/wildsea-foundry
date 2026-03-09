@@ -21,7 +21,7 @@ const enrichTrack = async (match) => {
   const trackLabel = label ?? game.i18n.localize('wildsea.track')
   const track = new WildseaTrack({ label: trackLabel, groups })
   const container = document.createElement('span')
-  container.className = 'track'
+  container.className = 'wildsea-track'
   foundry.utils.mergeObject(container.dataset, { label: trackLabel, groups })
 
   if (game.user.isGM) {
@@ -29,7 +29,7 @@ const enrichTrack = async (match) => {
     foundry.utils.mergeObject(container.dataset, { tooltip })
   }
 
-  container.innerHTML = `<a class="label">${trackLabel}</a> <span class="slots">${track.render()}</span>`
+  container.innerHTML = `<a class="wildsea-track-label">${trackLabel}</a> <span class="wildsea-track-slots">${track.render()}</span>`
   return container
 }
 
@@ -39,7 +39,7 @@ const enrichItem = async (match) => {
   const itemName = name ?? item.name
 
   const container = document.createElement('div')
-  container.className = 'wildsea-item'
+  container.className = 'wildsea-enriched-item'
   let html = `@UUID[${uuid}]{${itemName}}`
 
   if (item) {

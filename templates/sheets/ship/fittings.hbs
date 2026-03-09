@@ -1,17 +1,17 @@
 <div id="fittings" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.fittings"}}
-    <a class="addItem" data-action="addItem" data-item-type="fittings">
+    <a class="wildsea-add-button" data-action="addItem" data-item-type="fittings">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any system.fittings)}}
-    <div class="flexcol item-list spaced padded-x">
+    <div class="flexcol item-list wildsea-gapped wildsea-padded-x">
       {{#each system.fittings as |fitting|}}
         {{> "systems/the-wildsea/templates/sheets/ship/design.hbs" fitting id=fitting.id type="fitting"}}
       {{/each}}
     </div>
   {{else}}
-    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+    <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
   {{/if}}
 </div>

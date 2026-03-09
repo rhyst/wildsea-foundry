@@ -1,17 +1,17 @@
 <div id="cargoPassenger" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.cargoPassengers"}}
-    <a class="addItem" data-action="addItem" data-item-type="cargoPassengers">
+    <a class="wildsea-add-button" data-action="addItem" data-item-type="cargoPassengers">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any system.cargoPassengers)}}
-    <div class="flexcol slim-list spaced">
+    <div class="flexcol wildsea-compact-list wildsea-gapped">
       {{#each system.cargoPassengers as |cargoPassenger|}}
         {{> "systems/the-wildsea/templates/shared/slim_item.hbs" cargoPassenger type="cargoPassengers"}}
       {{/each}}
     </div>
   {{else}}
-    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+    <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
   {{/if}}
 </div>

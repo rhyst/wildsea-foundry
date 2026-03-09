@@ -1,17 +1,17 @@
 <div id="mires" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.mires"}}
-    <a class="addItem" data-action="addItem" data-item-type="{{type}}">
+    <a class="wildsea-add-button" data-action="addItem" data-item-type="{{type}}">
       <i class="fas fa-plus"></i>
     </a>
   </h2>
   {{#if (any system.mires)}}
-    <div class="flexcol spaced slim-list">
+    <div class="flexcol wildsea-gapped wildsea-compact-list">
       {{#each system.mires as |mire|}}
         {{> "systems/the-wildsea/templates/sheets/player/mire.hbs" mire type="mires"}}
       {{/each}}
     </div>
   {{else}}
-    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+    <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
   {{/if}}
 </div>

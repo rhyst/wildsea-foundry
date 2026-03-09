@@ -1,8 +1,8 @@
-<form class="wildsea flexcol spaced">
+<form class="wildsea flexcol wildsea-gapped">
   <div class="form-group">
     <label>{{localize "wildsea.rating"}}</label>
     <div class="form-fields">
-      <select id="rating" name="rating" class="corners">
+      <select id="rating" name="rating" class="wildsea-cut-corners">
         <option value="">{{localize "wildsea.none"}}</option>
         {{#each ratings as |value label|}}
           <option value="{{label}}" {{#if (eq ../rating label)}}selected{{/if}}>{{localize (concat "wildsea." label)}} (+{{value}}d)</option>

@@ -64,7 +64,7 @@ export default class WildseaShipSheet extends WildseaActorSheet {
     if (!this.isEditable || !this.actor.isOwner) return
 
     // Track click and contextmenu handlers for rating and reputation tracks
-    for (const el of this.element.querySelectorAll('.track')) {
+    for (const el of this.element.querySelectorAll('.wildsea-track')) {
       el.addEventListener('click', this.adjustTrack.bind(this, 1))
       el.addEventListener('contextmenu', this.adjustTrack.bind(this, -1))
     }

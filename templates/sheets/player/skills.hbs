@@ -1,9 +1,9 @@
 <div id="skills" class="flex0">
-  <h2 class="corners dark">{{localize "wildsea.skills"}}</h2>
-  <div class="bordered">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">{{localize "wildsea.skills"}}</h2>
+  <div class="wildsea-section-body">
 
     {{#each skillsList as |row|}}
-      <div class="flexrow spaced wide">
+      <div class="flexrow wildsea-gapped wide">
         {{#each row as |skill|}}
           {{#if skill}}
             {{> "systems/the-wildsea/templates/sheets/player/list_track.hbs"

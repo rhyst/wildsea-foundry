@@ -1,40 +1,40 @@
 <div id="milestones" class="flex0">
-  <h2 class="corners dark">
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">
     {{localize "wildsea.milestones"}}
   </h2>
-  <div class="flexrow spaced">
+  <div class="flexrow wildsea-gapped">
     <div>
-      <h3 class="corners mid">
+      <h3 class="wildsea-cut-corners wildsea-bg-mid">
         {{localize "wildsea.major"}}
-        <a class="addItem" data-action="addItem" data-item-type="milestone" data-item-subtype="major">
+        <a class="wildsea-add-button" data-action="addItem" data-item-type="milestone" data-item-subtype="major">
           <i class="fas fa-plus"></i>
         </a>
       </h3>
       {{#if (any system.milestone_major)}}
-        <div class="slim-list">
+        <div class="wildsea-compact-list">
           {{#each system.milestone_major as |milestone|}}
             {{> "systems/the-wildsea/templates/shared/slim_item.hbs" milestone type="milestones"}}
           {{/each}}
         </div>
       {{else}}
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
       {{/if}}
     </div>
     <div>
-      <h3 class="corners mid">
+      <h3 class="wildsea-cut-corners wildsea-bg-mid">
         {{localize "wildsea.minor"}}
-        <a class="addItem" data-action="addItem" data-item-type="milestone" data-item-subtype="minor">
+        <a class="wildsea-add-button" data-action="addItem" data-item-type="milestone" data-item-subtype="minor">
           <i class="fas fa-plus"></i>
         </a>
       </h3>
       {{#if (any system.milestone_minor)}}
-        <div class="slim-list">
+        <div class="wildsea-compact-list">
           {{#each system.milestone_minor as |milestone|}}
             {{> "systems/the-wildsea/templates/shared/slim_item.hbs" milestone type="milestones"}}
           {{/each}}
         </div>
       {{else}}
-        <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+        <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
       {{/if}}
     </div>
   </div>

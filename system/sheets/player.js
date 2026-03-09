@@ -68,13 +68,13 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     if (!this.isEditable || !this.actor.isOwner) return
 
     // Mire tracks
-    for (const el of this.element.querySelectorAll('.mire .track')) {
+    for (const el of this.element.querySelectorAll('.wildsea-mire .wildsea-track')) {
       el.addEventListener('click', this.increaseMireTrack.bind(this))
       el.addEventListener('contextmenu', this.decreaseMireTrack.bind(this))
     }
 
     // List tracks (edges, skills, languages)
-    for (const el of this.element.querySelectorAll('.list-track .track')) {
+    for (const el of this.element.querySelectorAll('.wildsea-labeled-track .wildsea-track')) {
       el.addEventListener('click', this.increaseListTrack.bind(this))
       el.addEventListener('contextmenu', this.decreaseListTrack.bind(this))
     }
@@ -84,7 +84,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     event.preventDefault()
 
     const target = event.currentTarget
-    const data = target.closest('.track').dataset
+    const data = target.closest('.wildsea-track').dataset
 
     switch (data.itemType) {
       case 'edge':
@@ -104,7 +104,7 @@ export default class WildseaPlayerSheet extends WildseaActorSheet {
     event.preventDefault()
 
     const target = event.currentTarget
-    const data = target.closest('.track').dataset
+    const data = target.closest('.wildsea-track').dataset
 
     switch (data.itemType) {
       case 'edge':

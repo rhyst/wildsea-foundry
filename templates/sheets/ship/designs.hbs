@@ -1,15 +1,15 @@
 <div id="design" class="flex0">
-  <h2 class="corners dark">{{localize "wildsea.design"}}</h2>
+  <h2 class="wildsea-cut-corners wildsea-bg-dark">{{localize "wildsea.design"}}</h2>
 
-  <div id="designs" class="flexcol spaced">
+  <div id="designs" class="flexcol wildsea-gapped">
   {{#if (any system.designs)}}
-    <div class="flexcol item-list spaced padded-x">
+    <div class="flexcol item-list wildsea-gapped wildsea-padded-x">
       {{#each system.designs as |design|}}
         {{> "systems/the-wildsea/templates/sheets/ship/design.hbs" design id=design.id type="design"}}
       {{/each}}
     </div>
   {{else}}
-    <p class="center corners light-transparent padded">{{localize "wildsea.none"}}</p>
+    <p class="center wildsea-cut-corners wildsea-bg-muted wildsea-padded">{{localize "wildsea.none"}}</p>
   {{/if}}
   </div>
 </div>
