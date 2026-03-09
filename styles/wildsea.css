@@ -561,7 +561,6 @@ body.theme-dark .wildsea ul.wildsea-track li {
 .wildsea {
   font-family: 'Merriweather', serif;
   font-size: 0.8rem;
-  background: var(--wildsea-surface);
   color: var(--wildsea-text);
 }
 
