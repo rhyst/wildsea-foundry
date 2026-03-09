@@ -1,35 +1,32 @@
-<form>
-  <div class="flexrow wildsea-gapped">
-    <div class="flexcol wildsea-gapped">
-      <div class="sheet-header flex flex0 flexrow wildsea-gapped">
-        <div class="flex0 wildsea-portrait"><img src="{{portraitSrc}}" data-action="editImage" data-edit="img" title="{{actor.name}}" /></div>
-        <div class="sheet-name">
-          <input id="name" class="wildsea-cut-corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
-        </div>
+<div class="flexrow wildsea-gapped">
+  <div class="flexcol wildsea-gapped">
+    <div class="sheet-header flex flex0 flexrow wildsea-gapped">
+      <div class="flex0 wildsea-portrait"><img src="{{portraitSrc}}" data-action="editImage" data-edit="img" title="{{actor.name}}" /></div>
+      <div class="sheet-name">
+        <input id="name" class="wildsea-cut-corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
       </div>
+    </div>
 
-      {{> "systems/the-wildsea/templates/sheets/ship/ratings.hbs"}}
-      {{> "systems/the-wildsea/templates/sheets/ship/designs.hbs"}}
-
-    </div>
-    <div class="flexcol wildsea-gapped">
-      {{> "systems/the-wildsea/templates/sheets/ship/fittings.hbs"}}
-      {{> "systems/the-wildsea/templates/shared/aspects.hbs"
-        aspects=system.undercrew
-        title=(localize "wildsea.undercrew")
-        type="undercrew"}}
-    </div>
-    <div class="flexcol wildsea-gapped">
-      <div class="flex0">
-        <div class="flexrow wildsea-cut-corners">
-          <div class="wildsea-bg-mid wildsea-padded wildsea-title-font wildsea-uppercase wildsea-text-lg">{{localize "wildsea.stakes"}}</div>
-          <div class="center wildsea-padded wildsea-text-lg wildsea-bg-muted">{{stakesUsed}}</div>
-        </div>
-      </div>
-      {{> "systems/the-wildsea/templates/sheets/ship/conditions.hbs"}}
-      {{> "systems/the-wildsea/templates/sheets/ship/reputations.hbs"}}
-      {{> "systems/the-wildsea/templates/sheets/ship/cargo.hbs"}}
-    </div>
+    {{> "systems/the-wildsea/templates/sheets/ship/ratings.hbs"}}
+    {{> "systems/the-wildsea/templates/sheets/ship/designs.hbs"}}
 
   </div>
-</form>
+  <div class="flexcol wildsea-gapped">
+    {{> "systems/the-wildsea/templates/sheets/ship/fittings.hbs"}}
+    {{> "systems/the-wildsea/templates/shared/aspects.hbs"
+      aspects=system.undercrew
+      title=(localize "wildsea.undercrew")
+      type="undercrew"}}
+  </div>
+  <div class="flexcol wildsea-gapped">
+    <div class="flex0">
+      <div class="flexrow wildsea-cut-corners">
+        <div class="wildsea-bg-mid wildsea-padded wildsea-title-font wildsea-uppercase wildsea-text-lg">{{localize "wildsea.stakes"}}</div>
+        <div class="center wildsea-padded wildsea-text-lg wildsea-bg-muted">{{stakesUsed}}</div>
+      </div>
+    </div>
+    {{> "systems/the-wildsea/templates/sheets/ship/conditions.hbs"}}
+    {{> "systems/the-wildsea/templates/sheets/ship/reputations.hbs"}}
+    {{> "systems/the-wildsea/templates/sheets/ship/cargo.hbs"}}
+  </div>
+</div>
